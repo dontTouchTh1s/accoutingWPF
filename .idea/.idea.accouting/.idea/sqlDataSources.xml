@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="76877bee-bff4-4b26-8ac6-8f9a03405a31" name="ALIM Mapping">
+      <data-sources db="4d54780e-bd7b-4685-8e6d-29bc2172ab52" ddl="2dbc7cb6-3271-4f66-a790-84d6c408f6b7" />
+      <scope>
+        <node kind="database" qname="accounting" />
+      </scope>
+    </mapping>
+  </component>
+</project>

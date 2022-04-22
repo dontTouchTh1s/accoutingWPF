@@ -1,0 +1,56 @@
+﻿<Window x:Class="accounting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:accounting"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="560" Width="977">
+    <Grid>
+        <TabControl FlowDirection="RightToLeft" Margin="0" BorderBrush="Gainsboro" FontSize="18">
+            <TabControl.Resources>
+                <Style TargetType="TabItem">
+                    <Setter Property="MinWidth" Value="100"></Setter>
+                    <Setter Property="Padding" Value="10"></Setter>
+                    <Setter Property="Height" Value="65"></Setter>
+                </Style>
+            </TabControl.Resources>
+            <TabItem Header="خانه">
+                <Label>
+                    <StackPanel Height="461" Width="244" Background="AliceBlue">
+                        <Label x:Name="label" Content="موجودی صندوق" HorizontalAlignment="Center"/>
+                        <TextBlock x:Name="TBamount" Text="0" HorizontalAlignment="Center"></TextBlock>
+                    </StackPanel>
+                </Label>
+            </TabItem>
+            <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top" >
+                <TabItem.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Canvas.Left" Value="50"></Setter>
+                    </Style>
+                    <Style TargetType="TextBox">
+                        <Setter Property="Canvas.Left" Value="230"></Setter>
+                    </Style>
+                </TabItem.Resources>
+                <Canvas>
+                    <TextBlock x:Name="lblDes" Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." Canvas.Top="15" Canvas.Left="50"/>
+                    <TextBlock x:Name="label1" Text="نام" Canvas.Top="50"/>
+                    <TextBlock x:Name="label1_Copy" Text="نام خانوادگی" Canvas.Top="90"/>
+                    <TextBlock x:Name="label1_Copy1" Text="نام پدر" Canvas.Top="130"/>
+                    <TextBlock x:Name="label1_Copy2" Text="کد ملی" Canvas.Top="170"/>
+                    <TextBlock x:Name="label1_Copy3" Text="شماره حساب" Canvas.Top="210"/>
+
+                    <TextBox x:Name="TbName" TextWrapping="Wrap" Canvas.Top="50" Width="250"/>
+                    <TextBox x:Name="TbLastName" TextWrapping="Wrap" Canvas.Top="90" Width="250"/>
+                    <TextBox x:Name="TbFatherName" Text="" TextWrapping="Wrap" Canvas.Top="130" Width="250"/>
+                    <TextBox x:Name="TbNationalId" Text="" TextWrapping="Wrap" Canvas.Top="170" Width="250"/>
+                    <TextBox x:Name="TbAccountNumber" Text="" TextWrapping="Wrap" Canvas.Top="210" Width="250"/>
+                    <Button x:Name="BtnCreateAccount" Content="ایجاد" Canvas.Left="614" Canvas.Top="411" Height="32" Width="73" Click="create_account"/>
+                    <Label x:Name="LblMessage" Content="Label" Canvas.Left="50" Visibility="Hidden" Canvas.Top="370" Height="64" Width="424" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Background="#FF95FF95"/>
+                </Canvas>
+                
+            </TabItem>
+            <TabItem Header="Details" />
+        </TabControl>
+    </Grid>
+</Window>
