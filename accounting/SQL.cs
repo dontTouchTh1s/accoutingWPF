@@ -1,30 +1,40 @@
 ﻿using System.Data.SqlClient;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace accounting
 {
+    /// <summary>
+    ///     Create a sql connection to server and make to run queries
+    /// </summary>
     public class SqlConnect
     {
         private const string ConnectionString = "Server=ALIM;Database=accounting;Trusted_Connection=True;";
         private SqlConnection _connection;
-        public void Open()
+        public Task Open()
         {
             _connection = new(ConnectionString);
-            _connection.Open();
+            return Task.Run(() =>
+            {
+                _connection.Open();
+            });
         }
         public void Close()
         {
             _connection.Close();
         }
-        public SqlDataReader Query(string query, params string[] values)
+        public async Task<SqlDataReader> Query(string query, params string[] values)
         {
-
-            SqlCommand command = new(query, _connection);
-            for (int i = 0; i < values.Length; i++)
+            SqlDataReader reader = null;
+            await Task.Run(() =>
             {
-                command.Parameters.AddWithValue("@" + i.ToString(), values[i]);
-            }
-            SqlDataReader reader = command.ExecuteReader();
+                SqlCommand command = new(query, _connection);
+                for (int i = 0; i < values.Length; i++)
+                {
+                    command.Parameters.AddWithValue("@" + i.ToString(), values[i]);
+                }
+                reader = command.ExecuteReader();
+            });
             return reader;
         }
 
