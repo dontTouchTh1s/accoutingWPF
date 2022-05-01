@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "I40zQ2xYcduVWQHIllfb+TIKlhmPleiG69qdba8M2zNLo/ly95D1BEZ4+bku2wxZZH+wpfcaXDYdzkHsqwUkfg==",
+  "dgSpecHash": "dmN90jNu3XaurieVuyrv0S3wMUgjeVr37qo8PXHdLC3Aehdlz09y1bF7WhN3uj+klTKcivMrefpibR8/sX1l5w==",
   "success": true,
   "projectFilePath": "F:\\accounting\\accouting\\accounting\\accounting.csproj",
   "expectedPackageFiles": [
@@ -14,7 +14,8 @@
     "C:\\Users\\alim2\\.nuget\\packages\\runtime.win-x86.runtime.native.system.data.sqlclient.sni\\4.4.0\\runtime.win-x86.runtime.native.system.data.sqlclient.sni.4.4.0.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\system.data.sqlclient\\4.8.3\\system.data.sqlclient.4.8.3.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\system.security.accesscontrol\\4.7.0\\system.security.accesscontrol.4.7.0.nupkg.sha512",
-    "C:\\Users\\alim2\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512"
+    "C:\\Users\\alim2\\.nuget\\packages\\system.security.principal.windows\\4.7.0\\system.security.principal.windows.4.7.0.nupkg.sha512",
+    "C:\\Users\\alim2\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\5.0.16\\microsoft.netcore.app.host.win-x64.5.0.16.nupkg.sha512"
   ],
   "logs": []
 }

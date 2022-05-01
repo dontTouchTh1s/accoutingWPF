@@ -3,7 +3,6 @@ F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.deps.json
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.runtimeconfig.json
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.runtimeconfig.dev.json
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.dll
-F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.pdb
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\System.Data.SqlClient.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\runtimes\win-arm64\native\sni.dll
@@ -27,9 +26,8 @@ F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\ref\accounting.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.pdb
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.genruntimeconfig.cache
-F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\FormGroup.baml
-F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\FormGroup.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.csproj.AssemblyReference.cache
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\MaterialDesignColors.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\MaterialDesignThemes.Wpf.dll
+F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\refint\accounting.dll

@@ -3,7 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:uc="clr-namespace:accounting"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:validation="clr-namespace:accounting.Validation"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="13"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="{DynamicResource MaterialDesignPaper}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
         Title="MainWindow" Height="560" Width="977"
         Loaded="Window_Loaded">
@@ -25,63 +33,127 @@
                 </Grid>
             </TabItem>
             <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
-                <TabItem.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Canvas.Left" Value="50" />
-                    </Style>
-                    <Style TargetType="TextBox">
-                        <Setter Property="Canvas.Left" Value="230" />
-                    </Style>
-                </TabItem.Resources>
-                <Canvas Name="canvasTab2">
+                <StackPanel Margin="16, 10">
+                    <TextBlock Name="TitleLabel"
+                               Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
+                    <Grid Margin="8">
+                        <Grid.Resources>
+                            <Style TargetType="TextBlock" />
+                            <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                                <Setter Property="Margin" Value="0,8" />
+                                <Setter Property="Height" Value="56" />
 
-                    <TextBlock Name="lblDes"
-                               Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید."
-                               Canvas.Top="15" Canvas.Left="50" />
-                    <uc:FormGroup x:Name="FgName"
-                                  Title="نام"
-                                  MaxLength="15"
-                                  LengthErrorMessage="حداکثر 15 کاراکتر"
-                                  Alphabetical="True"
-                                  AlphabeticalErrorMessage="فقط از حروف استفاده کنید."
-                                  Canvas.Top="50" />
-                    <uc:FormGroup x:Name="FgLastName"
-                                  Title="نام خانوادگی"
-                                  MaxLength="20"
-                                  MaxLengthErrorMessage="حداکثر 20 کارکاتر"
-                                  Alphabetical="True"
-                                  AlphabeticalErrorMessage="فقط از حروف استفاده کنید."
-                                  Canvas.Top="110" />
-                    <uc:FormGroup x:Name="FgFatherName"
-                                  Title="نام پدر"
-                                  MaxLength="15"
-                                  MaxLengthErrorMessage="حداکثر 15 کارکاتر"
-                                  Alphabetical="True"
-                                  AlphabeticalErrorMessage="فقط از حروف استفاده کنید."
-                                  Canvas.Top="170" />
-                    <uc:FormGroup x:Name="FgNationalId"
-                                  Title="کد ملی"
-                                  Length="10"
-                                  LengthErrorMessage="کد ملی معتبر وارد کنید."
-                                  Numeric="True"
-                                  NumericErrorMessage="فقط از اعداد استفاده کنید."
-                                  Canvas.Top="230" />
-                    <uc:FormGroup x:Name="FgSelfAccountNumber"
-                                  Title="شماره حساب"
-                                  LengthErrorMessage="16"
-                                  MaxLengthErrorMessage="لطفا شماره حساب معتبر وارد کنید."
-                                  Numeric="True"
-                                  NumericErrorMessage="فقط از اعداد استفاده کنید."
-                                  Canvas.Top="290" />
+                            </Style>
+                        </Grid.Resources>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <TextBox
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            x:Name="NameTextBox"
+                            materialDesign:HintAssist.Hint="نام"
+                            materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="Name"
+                                    UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validation:NotEmptyValidationRule
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
 
-                    <Button x:Name="BtnCreateAccount" Content="ایجاد" Canvas.Left="614" Canvas.Top="411" Height="32"
+                        <TextBox
+                            Grid.Column="0"
+                            Grid.Row="1"
+                            x:Name="FullName"
+                            materialDesign:HintAssist.Hint="نام"
+                            materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="Name"
+                                    UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validation:NotEmptyValidationRule
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBox
+                            Grid.Column="0"
+                            Grid.Row="2"
+                            x:Name="s"
+                            materialDesign:HintAssist.Hint="نام"
+                            materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="Name"
+                                    UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validation:NotEmptyValidationRule
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBox
+                            Grid.Column="0"
+                            Grid.Row="3"
+                            x:Name="sdas"
+                            materialDesign:HintAssist.Hint="نام"
+                            materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="Name"
+                                    UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validation:NotEmptyValidationRule
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBox
+                            Grid.Column="0"
+                            Grid.Row="4"
+                            x:Name="as"
+                            materialDesign:HintAssist.Hint="نام"
+                            materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
+                            <TextBox.Text>
+                                <Binding
+                                    Path="Name"
+                                    UpdateSourceTrigger="PropertyChanged">
+                                    <Binding.ValidationRules>
+                                        <validation:NotEmptyValidationRule
+                                            ValidatesOnTargetUpdated="True" />
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <Button
+                            Grid.Column="1"
+                            Grid.Row="5"
+                            x:Name="BtnCreateAccount" Content="ایجاد" Height="32"
                             Width="73" Click="CreateAccount" />
 
-                    <Label x:Name="LblMessage" Content="Label" Canvas.Left="50" Visibility="Hidden" Canvas.Top="370"
-                           Height="64" Width="424" VerticalAlignment="Center" HorizontalAlignment="Center"
-                           VerticalContentAlignment="Center" Background="#FF95FF95" />
-                </Canvas>
-
+                        <Label x:Name="LblMessage" Content="Label" Visibility="Hidden"
+                               Height="64" Width="424" VerticalAlignment="Center" HorizontalAlignment="Center"
+                               VerticalContentAlignment="Center" Background="#FF95FF95" />
+                    </Grid>
+                </StackPanel>
             </TabItem>
             <TabItem Header="Details" />
         </TabControl>

@@ -49,7 +49,7 @@ namespace accounting
 
         private async void CreateAccount(object sender, RoutedEventArgs e)
         {
-            var name = FgName.TextBox.Text;
+            /*var name = FgName.TextBox.Text;
             var lastName = FgLastName.TextBox.Text;
             var fatherName = FgFatherName.TextBox.Text;
             var nationalId = FgNationalId.TextBox.Text;
@@ -72,7 +72,7 @@ namespace accounting
 
             LblMessage.Content = "حساب با موفقیت ساخته شد";
             LblMessage.Visibility = Visibility.Visible;
-            await Animation_Label();
+            await Animation_Label();*/
         }
 
         private async Task Animation_Label()
