@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "/MovdFG2H1882OEkcivT6jGWmI/OGuKHdMQpqWKshPCcyfzoZhbp7iyMgXx8B5eUOXxni6djcNrfrAKsJlU2wg==",
+  "dgSpecHash": "I40zQ2xYcduVWQHIllfb+TIKlhmPleiG69qdba8M2zNLo/ly95D1BEZ4+bku2wxZZH+wpfcaXDYdzkHsqwUkfg==",
   "success": true,
   "projectFilePath": "F:\\accounting\\accouting\\accounting\\accounting.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\alim2\\.nuget\\packages\\materialdesigncolors\\2.0.6\\materialdesigncolors.2.0.6.nupkg.sha512",
+    "C:\\Users\\alim2\\.nuget\\packages\\materialdesignthemes\\4.5.0\\materialdesignthemes.4.5.0.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
