@@ -78,7 +78,7 @@
                                         UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                                            <validation:NumericValidationRule ValidatesOnTargetUpdated="True" />
+                                            <validation:AlphabeticalValidationRule ValidatesOnTargetUpdated="True" />
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
