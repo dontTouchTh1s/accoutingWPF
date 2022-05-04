@@ -5,16 +5,15 @@ using System.Windows.Controls;
 using System.Windows.Media.Animation;
 using accounting.ViewModels;
 
-
 namespace accounting
 {
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private string? _amount;
-        private SqlConnect _sql;
+        private MsSql _sql = null!;
 
         public MainWindow()
         {
@@ -27,7 +26,7 @@ namespace accounting
         /// </summary>
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _sql = new SqlConnect();
+            _sql = new MsSql();
             await _sql.Open();
 
             var data = await _sql.Query("SELECT amount FROM fund");
