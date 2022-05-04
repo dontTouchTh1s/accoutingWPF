@@ -78,6 +78,7 @@
                                         UpdateSourceTrigger="PropertyChanged">
                                         <Binding.ValidationRules>
                                             <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
+
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
