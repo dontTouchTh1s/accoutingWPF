@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using accounting.ViewModels;
+
 
 namespace accounting
 {
@@ -11,12 +13,13 @@ namespace accounting
     /// </summary>
     public partial class MainWindow : Window
     {
-        private string _amount;
+        private string? _amount;
         private SqlConnect _sql;
 
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new TextBoxViewModel();
         }
 
         /// <summary>
