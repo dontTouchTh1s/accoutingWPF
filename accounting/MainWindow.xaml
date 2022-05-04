@@ -79,6 +79,7 @@
                                         <Binding.ValidationRules>
                                             <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
                                             <validation:AlphabeticalValidationRule ValidatesOnTargetUpdated="True" />
+                                            <validation:LengthValidationRule Max="10" Min="5" ValidatesOnTargetUpdated="True" />
                                         </Binding.ValidationRules>
                                     </Binding>
                                 </TextBox.Text>
