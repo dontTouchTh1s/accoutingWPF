@@ -33,15 +33,10 @@
                     </Style>
                 </TabControl.Resources>
                 <TabItem Header="خانه">
-                    <Grid FlowDirection="RightToLeft">
-                        <StackPanel HorizontalAlignment="Left" Height="461" Width="244" Background="AliceBlue">
-                            <Label Content="موجودی صندوق" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="BalanceTextBlock" Text="0" HorizontalAlignment="Center" />
-                        </StackPanel>
-                    </Grid>
+                    <views:SummeryView HorizontalAlignment="Left"/>
                 </TabItem>
                 <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
-                    <views:CreateAccountView />
+                    <views:CreateAccountView HorizontalAlignment="Left" Margin="8"/>
                 </TabItem>
                 <TabItem Header="details" />
             </TabControl>

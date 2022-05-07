@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 F:\accounting\accouting\accounting\App.xaml
-2-190504067
+32123399959
 
-131061054085
+142088295184
 196-1618516911
-MainWindow.xaml;Views\CreateAccountView.xaml;
+MainWindow.xaml;Views\CreateAccountView.xaml;Views\SummeryView.xaml;
 
 False
 
