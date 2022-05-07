@@ -6,6 +6,7 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:validation="clr-namespace:accounting.Validation"
         xmlns:viewModels="clr-namespace:accounting.ViewModels"
+        xmlns:views="clr-namespace:accounting.Views"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -14,10 +15,10 @@
         Background="{DynamicResource MaterialDesignPaper}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="560" Width="977"
+        Title="MainWindow" Height="560" Width="1000"
         Loaded="Window_Loaded"
         d:DataContext="{d:DesignInstance viewModels:TextBoxViewModel, IsDesignTimeCreatable=False}">
-    <Grid x:Name="mainGrid">
+    <Grid>
         <materialDesign:Card>
             <TabControl
                 materialDesign:ColorZoneAssist.Mode="PrimaryMid"
@@ -34,70 +35,17 @@
                 <TabItem Header="خانه">
                     <Grid FlowDirection="RightToLeft">
                         <StackPanel HorizontalAlignment="Left" Height="461" Width="244" Background="AliceBlue">
-                            <Label x:Name="label" Content="موجودی صندوق" HorizontalAlignment="Center" />
-                            <TextBlock x:Name="TBamount" Text="0" HorizontalAlignment="Center" />
+                            <Label Content="موجودی صندوق" HorizontalAlignment="Center" />
+                            <TextBlock x:Name="BalanceTextBlock" Text="0" HorizontalAlignment="Center" />
                         </StackPanel>
                     </Grid>
                 </TabItem>
                 <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
-                    <StackPanel Margin="16, 10">
-                        <TextBlock Name="TitleLabel"
-                                   Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
-                        <Grid Margin="8">
-                            <Grid.Resources>
-                                <Style TargetType="TextBlock" />
-                                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
-                                    <Setter Property="Margin" Value="0,8" />
-                                    <Setter Property="VerticalAlignment" Value="Center" />
-                                    <Setter Property="HorizontalAlignment" Value="Right" />
-                                    <Setter Property="Height" Value="48" />
-                                    <Setter Property="Width" Value="250" />
-                                </Style>
-                            </Grid.Resources>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <TextBox
-                                Grid.Column="0"
-                                Grid.Row="0"
-                                x:Name="NameTextBox"
-                                materialDesign:HintAssist.Hint="نام"
-                                materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
-                                <TextBox.Text>
-                                    <Binding
-                                        Path="Name"
-                                        UpdateSourceTrigger="PropertyChanged">
-                                        <Binding.ValidationRules>
-                                            <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                                            <validation:AlphabeticalValidationRule ValidatesOnTargetUpdated="True" />
-                                            <validation:LengthValidationRule Max="10" Min="5" ValidatesOnTargetUpdated="True" />
-                                        </Binding.ValidationRules>
-                                    </Binding>
-                                </TextBox.Text>
-                            </TextBox>
-                            <Button
-                                Grid.Column="1"
-                                Grid.Row="5"
-                                x:Name="BtnCreateAccount" Content="ایجاد" Height="32"
-                                Width="73" Click="CreateAccount" />
-
-                            <Label x:Name="LblMessage" Content="Label" Visibility="Hidden"
-                                   Height="64" Width="424" VerticalAlignment="Center" HorizontalAlignment="Center"
-                                   VerticalContentAlignment="Center" Background="#FF95FF95" />
-                        </Grid>
-                    </StackPanel>
+                    <views:CreateAccountView />
                 </TabItem>
-                <TabItem Header="Details" />
+                <TabItem Header="details" />
             </TabControl>
+
         </materialDesign:Card>
     </Grid>
 </Window>

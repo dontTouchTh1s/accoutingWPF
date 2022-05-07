@@ -1,4 +1,5 @@
 ﻿#nullable enable
+
 namespace accounting.ViewModels
 {
     public class TextBoxViewModel : BaseViewModel

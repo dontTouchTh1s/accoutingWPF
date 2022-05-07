@@ -31,3 +31,5 @@ F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.csproj.As
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\MaterialDesignColors.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\MaterialDesignThemes.Wpf.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\refint\accounting.dll
+F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\CreateAccountView.g.cs
+F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\CreateAccountView.baml

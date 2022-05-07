@@ -34,7 +34,7 @@ namespace accounting
                 _amount = data["amount"].ToString();
             await data.CloseAsync();
 
-            TBamount.Text = _amount;
+            BalanceTextBlock.Text = _amount;
         }
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,6 +51,7 @@ namespace accounting
 
         private async void CreateAccount(object sender, RoutedEventArgs e)
         {
+            //var a = System.Windows.Controls.Validation.GetHasError(NameTextBox);
             /*var name = FgName.TextBox.Text;
             var lastName = FgLastName.TextBox.Text;
             var fatherName = FgFatherName.TextBox.Text;
@@ -79,9 +80,9 @@ namespace accounting
 
         private async Task Animation_Label()
         {
-            await Task.Delay(3000);
-            var animation = new DoubleAnimation(0, TimeSpan.FromSeconds(2));
-            LblMessage.BeginAnimation(OpacityProperty, animation);
+            //await Task.Delay(3000);
+            //var animation = new DoubleAnimation(0, TimeSpan.FromSeconds(2));
+            //LblMessage.BeginAnimation(OpacityProperty, animation);
         }
     }
 }
