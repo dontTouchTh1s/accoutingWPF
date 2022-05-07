@@ -2,7 +2,7 @@
 
 namespace accounting.ViewModels
 {
-    public class TextBoxViewModel : BaseViewModel
+    public class CreateAccountViewModel : BaseViewModel
     {
         private string? _name;
         private string? _name2;

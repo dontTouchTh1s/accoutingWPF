@@ -1,8 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Media.Animation;
 using accounting.ViewModels;
 
 namespace accounting
@@ -18,7 +16,7 @@ namespace accounting
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new TextBoxViewModel();
+            DataContext = new MainViewModel();
         }
 
         /// <summary>
@@ -34,7 +32,7 @@ namespace accounting
                 _amount = data["amount"].ToString();
             await data.CloseAsync();
 
-            BalanceTextBlock.Text = _amount;
+            //BalanceTextBlock.Text = _amount;
         }
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)

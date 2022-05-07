@@ -1,4 +1,5 @@
-﻿using System.Windows.Controls;
+﻿using accounting.ViewModels;
+using System.Windows.Controls;
 
 namespace accounting.Views
 {

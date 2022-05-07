@@ -4,9 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        xmlns:validation="clr-namespace:accounting.Validation"
-        xmlns:viewModels="clr-namespace:accounting.ViewModels"
         xmlns:views="clr-namespace:accounting.Views"
+        xmlns:viewModels="clr-namespace:accounting.ViewModels"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -17,7 +16,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="560" Width="1000"
         Loaded="Window_Loaded"
-        d:DataContext="{d:DesignInstance viewModels:TextBoxViewModel, IsDesignTimeCreatable=False}">
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel }">
     <Grid>
         <materialDesign:Card>
             <TabControl
@@ -33,10 +32,13 @@
                     </Style>
                 </TabControl.Resources>
                 <TabItem Header="خانه">
-                    <views:SummeryView HorizontalAlignment="Left"/>
+                    <views:SummeryView HorizontalAlignment="Left" />
                 </TabItem>
                 <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
-                    <views:CreateAccountView HorizontalAlignment="Left" Margin="8"/>
+                    <views:CreateAccountView
+                        HorizontalAlignment="Left"
+                        Margin="8"
+                        DataContext="{Binding CreateAccountViewModel}" />
                 </TabItem>
                 <TabItem Header="details" />
             </TabControl>
