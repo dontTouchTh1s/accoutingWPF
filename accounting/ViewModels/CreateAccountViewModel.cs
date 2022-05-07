@@ -1,11 +1,14 @@
 ﻿#nullable enable
 
+using System.Windows.Input;
+using accounting.Commands;
+
 namespace accounting.ViewModels
 {
     public class CreateAccountViewModel : BaseViewModel
     {
         private string? _name;
-        private string? _name2;
+        private string? _fullName;
 
         public string? Name
         {
@@ -13,10 +16,17 @@ namespace accounting.ViewModels
             set => SetProperty(ref _name, value);
         }
 
-        public string? Name2
+        public string? FullName
         {
-            get => _name2;
-            set => SetProperty(ref _name2, value);
+            get => _fullName;
+            set => SetProperty(ref _fullName, value);
+        }
+
+        public ICommand? CreateAccountCommand { get; }
+
+        public CreateAccountViewModel()
+        {
+            CreateAccountCommand = new CreateAccountCommand();
         }
     }
 }

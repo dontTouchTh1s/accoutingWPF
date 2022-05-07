@@ -5,8 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:validation="clr-namespace:accounting.Validation"
+             xmlns:viewmodel="clr-namespace:accounting.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="500" d:DesignWidth="1000">
+             d:DesignHeight="500" d:DesignWidth="1000" d:DataContext="{d:DesignInstance viewmodel:CreateAccountViewModel}">
     <StackPanel HorizontalAlignment="Right" FlowDirection="RightToLeft" Background="White">
         <TextBlock Name="TitleLabel"
                    Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
@@ -55,12 +56,12 @@
             <Button
                 Grid.Column="1"
                 Grid.Row="5"
-                x:Name="BtnCreateAccount" Content="ایجاد" Height="32"
-                Width="73" />
+                x:Name="BtnCreateAccount" Content="ایجاد"
+                Command="{Binding CreateAccountCommand}"/>
 
             <Label x:Name="LblMessage" Content="Label" Visibility="Hidden"
                    Height="64" Width="424" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   VerticalContentAlignment="Center" Background="#FF95FF95" />
+                   VerticalContentAlignment="Center" Background="#FF95FF95"/>
         </Grid>
     </StackPanel>
 </UserControl>
