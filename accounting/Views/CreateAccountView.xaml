@@ -4,22 +4,25 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:validation="clr-namespace:accounting.Validation"
              xmlns:viewmodel="clr-namespace:accounting.ViewModels"
              mc:Ignorable="d"
-             d:DesignHeight="500" d:DesignWidth="1000" d:DataContext="{d:DesignInstance viewmodel:CreateAccountViewModel}">
+             d:DesignHeight="500" d:DesignWidth="1000"
+             d:DataContext="{d:DesignInstance viewmodel:CreateAccountViewModel}">
     <StackPanel HorizontalAlignment="Right" FlowDirection="RightToLeft" Background="White">
         <TextBlock Name="TitleLabel"
                    Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
         <Grid Margin="8">
             <Grid.Resources>
                 <Style TargetType="TextBlock" />
-                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
                     <Setter Property="Margin" Value="0,8" />
                     <Setter Property="VerticalAlignment" Value="Center" />
                     <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="Height" Value="48" />
                     <Setter Property="Width" Value="250" />
+                    <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
+                    <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
+                    <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
+                    <Setter Property="Padding" Value="0,8" />
                 </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
@@ -37,31 +40,72 @@
             <TextBox
                 Grid.Column="0"
                 Grid.Row="0"
-                x:Name="NameTextBox"
                 materialDesign:HintAssist.Hint="نام"
                 materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
                 <TextBox.Text>
                     <Binding
                         Path="Name"
-                        NotifyOnValidationError="True"
-                        UpdateSourceTrigger="PropertyChanged">
-                        <Binding.ValidationRules>
-                            <validation:NotEmptyValidationRule ValidatesOnTargetUpdated="True" />
-                            <validation:AlphabeticalValidationRule ValidatesOnTargetUpdated="True" />
-                            <validation:LengthValidationRule Max="15" ValidatesOnTargetUpdated="True" />
-                        </Binding.ValidationRules>
-                    </Binding>
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
+                </TextBox.Text>
+            </TextBox>
+            <TextBox
+                Grid.Column="0"
+                Grid.Row="1"
+                materialDesign:HintAssist.Hint="نام خانوادگی"
+                materialDesign:HintAssist.HelperText="نام خانوادگی صاحب حساب">
+                <TextBox.Text>
+                    <Binding
+                        Path="LastName"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
+                </TextBox.Text>
+            </TextBox>
+            <TextBox
+                Grid.Column="0"
+                Grid.Row="2"
+                materialDesign:HintAssist.Hint="نام پدر"
+                materialDesign:HintAssist.HelperText="نام پدر صاحب حساب">
+                <TextBox.Text>
+                    <Binding
+                        Path="FatherName"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
+                </TextBox.Text>
+            </TextBox>
+            <TextBox
+                Grid.Column="0"
+                Grid.Row="3"
+                materialDesign:HintAssist.Hint="کد ملی"
+                materialDesign:HintAssist.HelperText="کد ملی 10 رقمی">
+                <TextBox.Text>
+                    <Binding
+                        Path="NationalId"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
+                </TextBox.Text>
+            </TextBox>
+            <TextBox
+                Grid.Column="0"
+                Grid.Row="4"
+                materialDesign:HintAssist.Hint="شماره حساب"
+                materialDesign:HintAssist.HelperText="شماره حساب شخصی صاحب حساب">
+                <TextBox.Text>
+                    <Binding
+                        Path="PersonalAccountNumber"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
                 </TextBox.Text>
             </TextBox>
             <Button
                 Grid.Column="1"
                 Grid.Row="5"
                 x:Name="BtnCreateAccount" Content="ایجاد"
-                Command="{Binding CreateAccountCommand}"/>
+                Command="{Binding CreateAccountCommand}" />
 
             <Label x:Name="LblMessage" Content="Label" Visibility="Hidden"
                    Height="64" Width="424" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   VerticalContentAlignment="Center" Background="#FF95FF95"/>
+                   VerticalContentAlignment="Center" Background="#FF95FF95" />
         </Grid>
     </StackPanel>
 </UserControl>
