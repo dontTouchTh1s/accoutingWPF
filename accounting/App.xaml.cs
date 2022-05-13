@@ -10,11 +10,16 @@ namespace accounting
     /// </summary>
     public partial class App : Application
     {
+        private const string ConnectionString = "Data Source=accounting.db";
+
         protected override void OnStartup(StartupEventArgs e)
         {
-            var options = new DbContextOptionsBuilder().UseSqlite("Data Source=accounting.db").Options;
-            var dbContext = new AccountsDbContext(options);
-            dbContext.Database.Migrate();
+            var options = new DbContextOptionsBuilder().UseSqlite(ConnectionString).Options;
+            using (var dbContext = new AccountsDbContext(options))
+            {
+                dbContext.Database.Migrate();
+            }
+
 
             MainWindow = new MainWindow
             {
