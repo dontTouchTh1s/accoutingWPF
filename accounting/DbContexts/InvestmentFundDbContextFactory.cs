@@ -14,7 +14,7 @@ namespace accounting.DbContexts
         public InvestmentFundDbContext CreateDbContext()
         {
             var options = new DbContextOptionsBuilder().UseSqlite(_connectionString).Options;
-            return new InvestmentFundDbContext(options);
+            return new InvestmentFundDbContext();
         }
     }
 }

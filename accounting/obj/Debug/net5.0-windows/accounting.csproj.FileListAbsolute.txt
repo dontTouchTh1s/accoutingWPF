@@ -3,7 +3,6 @@ F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.deps.json
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.runtimeconfig.json
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.runtimeconfig.dev.json
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.dll
-F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\accounting.pdb
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\Humanizer.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\MaterialDesignColors.dll
@@ -73,3 +72,5 @@ F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\ref\accounting.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.pdb
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.genruntimeconfig.cache
+F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting_Content.g.cs
+F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll

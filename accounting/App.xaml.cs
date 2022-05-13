@@ -28,6 +28,7 @@ namespace accounting
                 dbContext.Database.Migrate();
             }
 
+
             MainWindow = new MainWindow
             {
                 DataContext = new MainViewModel(_investmentFundModel)
