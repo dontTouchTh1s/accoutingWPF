@@ -24,4 +24,8 @@
     <PackageReference Include="System.Data.SqlClient" Version="4.8.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="obj\Debug\net5.0-windows\accounting_MarkupCompile.lref" />
+  </ItemGroup>
+
 </Project>
