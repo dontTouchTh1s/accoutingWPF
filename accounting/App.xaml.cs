@@ -1,5 +1,7 @@
 ﻿using System.Windows;
+using accounting.DbContexts;
 using accounting.ViewModels;
+using Microsoft.EntityFrameworkCore;
 
 namespace accounting
 {
@@ -10,6 +12,10 @@ namespace accounting
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            var options = new DbContextOptionsBuilder().UseSqlite("Data Source=accounting.db").Options;
+            var dbContext = new AccountsDbContext(options);
+            dbContext.Database.Migrate();
+
             MainWindow = new MainWindow
             {
                 DataContext = new MainViewModel()

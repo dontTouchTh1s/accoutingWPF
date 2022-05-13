@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="ALIM" uuid="244316b3-0ef6-4ad6-a206-ba2527c24ec5">
-      <driver-ref>sqlserver.ms</driver-ref>
+    <data-source source="LOCAL" name="accounting" uuid="7d4cd65e-e632-400f-8a5a-4141b963e1ec">
+      <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
-      <jdbc-url>jdbc:sqlserver://ALIM;database=accounting</jdbc-url>
+      <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
+      <jdbc-url>jdbc:sqlite:F:\accounting\accouting\accounting\accounting.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

@@ -283,4 +283,6 @@
 	<s:Boolean x:Key="/Default/CodeEditing/ContextActionTable/DisabledContextActions/=JetBrains_002ERider_002EBackend_002EFeatures_002EDebugger_002EActions_002ECSharp_002ECSharpJumpToStatementContextAction/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeEditing/ContextActionTable/DisabledContextActions/=JetBrains_002ERider_002EBackend_002EFeatures_002EDebugger_002EActions_002ECSharp_002ECSharpRunToCursorContextAction/@EntryIndexedValue">False</s:Boolean>
 	<s:Boolean x:Key="/Default/CodeEditing/ContextActionTable/DisabledContextActions/=JetBrains_002ERider_002EBackend_002EFeatures_002EDebugger_002EActions_002ECSharp_002ECSharpSmartStepIntoContextAction/@EntryIndexedValue">False</s:Boolean>
+	<s:String x:Key="/Default/Environment/Hierarchy/Build/BuildTool/CustomBuildToolPath/@EntryValue">F:\JetBrains Rider 2022.1\tools\MSBuild\Current\Bin\MSBuild.exe</s:String>
+	<s:Int64 x:Key="/Default/Environment/Hierarchy/Build/BuildTool/MsbuildVersion/@EntryValue">1114112</s:Int64>
 	</wpf:ResourceDictionary>
