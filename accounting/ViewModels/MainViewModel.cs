@@ -1,10 +1,12 @@
-﻿namespace accounting.ViewModels
+﻿using accounting.Models;
+
+namespace accounting.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public MainViewModel()
+        public MainViewModel(InvestmentFundModel investmentFundModel)
         {
-            CreateAccountViewModel = new CreateAccountViewModel();
+            CreateAccountViewModel = new CreateAccountViewModel(investmentFundModel);
         }
 
         public CreateAccountViewModel CreateAccountViewModel { get; }

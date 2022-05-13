@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
 using accounting.Commands;
+using accounting.Models;
 using accounting.ValidationRules;
 
 namespace accounting.ViewModels
@@ -20,9 +21,9 @@ namespace accounting.ViewModels
         private string? _nationalId;
         private string? _personalAccountNumber;
 
-        public CreateAccountViewModel()
+        public CreateAccountViewModel(InvestmentFundModel investmentFundModel)
         {
-            CreateAccountCommand = new CreateAccountCommand(this);
+            CreateAccountCommand = new CreateAccountCommand(this, investmentFundModel);
             _errors = new Dictionary<string, List<string>>();
         }
 
@@ -42,7 +43,8 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Alphabetical(_name))
                     errors.Add("فقط حروف وارد کنید.");
 
-                _errors?.Add(nameof(Name), errors);
+                if(errors.Count != 0)
+                    _errors.Add(nameof(Name), errors);
                 ErrorChanged(nameof(Name));
             }
         }
@@ -63,7 +65,8 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Alphabetical(_lastName))
                     errors.Add("فقط حروف وارد کنید.");
 
-                _errors?.Add(nameof(LastName), errors);
+                if(errors.Count != 0)
+                    _errors.Add(nameof(LastName), errors);
                 ErrorChanged(nameof(LastName));
             }
         }
@@ -84,7 +87,8 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Alphabetical(_fatherName))
                     errors.Add("فقط حروف وارد کنید.");
 
-                _errors?.Add(nameof(FatherName), errors);
+                if(errors.Count != 0)
+                    _errors?.Add(nameof(FatherName), errors);
                 ErrorChanged(nameof(FatherName));
             }
         }
@@ -105,7 +109,8 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Numerical(_nationalId))
                     errors.Add("فقط عدد وارد کنید.");
 
-                _errors?.Add(nameof(NationalId), errors);
+                if(errors.Count != 0)
+                    _errors?.Add(nameof(NationalId), errors);
                 ErrorChanged(nameof(NationalId));
             }
         }
@@ -124,7 +129,8 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Numerical(_personalAccountNumber, true))
                     errors.Add("فقط عدد وارد کنید.");
 
-                _errors?.Add(nameof(PersonalAccountNumber), errors);
+                if(errors.Count != 0)
+                    _errors?.Add(nameof(PersonalAccountNumber), errors);
                 ErrorChanged(nameof(PersonalAccountNumber));
             }
         }

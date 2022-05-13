@@ -1,15 +1,19 @@
 ﻿using System.ComponentModel;
+using System.Threading.Tasks;
+using accounting.Models;
 using accounting.ViewModels;
 
 namespace accounting.Commands
 {
-    public class CreateAccountCommand : BaseCommand
+    public class CreateAccountCommand : BaseAsyncCommand
     {
         private readonly CreateAccountViewModel _account;
+        private readonly InvestmentFundModel _investmentFundModel;
 
-        public CreateAccountCommand(CreateAccountViewModel account)
+        public CreateAccountCommand(CreateAccountViewModel account, InvestmentFundModel investmentFundModel)
         {
             _account = account;
+            _investmentFundModel = investmentFundModel;
             account.ErrorsChanged += CreateAccountViewModelPropertyChanged;
         }
 
@@ -25,32 +29,12 @@ namespace accounting.Commands
             return !_account.HasErrors;
         }
 
-        public override void Execute(object? parameter)
+        public override async Task ExecuteAsync()
         {
-            /*var name = FgName.TextBox.Text;
-            var lastName = FgLastName.TextBox.Text;
-            var fatherName = FgFatherName.TextBox.Text;
-            var nationalId = FgNationalId.TextBox.Text;
-            var accountNumber = FgSelfAccountNumber.TextBox.Text;
-            var accountId = "";
-
-            var reader = await _sql.Query(
-                "INSERT INTO people (national_id, name, last_name, father_name, self_account_number) VALUES (@0, @1, @2, @3, @4)",
-                name, lastName, fatherName, nationalId, accountNumber);
-            await reader.CloseAsync();
-
-            reader = await _sql.Query("SELECT account_id FROM people WHERE national_id = @0", nationalId);
-            while (reader.Read()) accountId = reader["account_id"].ToString();
-            await reader.CloseAsync();
-
-            var toDay = DateTime.Today.ToString();
-            reader = await _sql.Query("INSERT INTO accounts VALUES (@0, @1, @2)", accountId, "0", toDay);
-            await reader.CloseAsync();
-
-
-            LblMessage.Content = "حساب با موفقیت ساخته شد";
-            LblMessage.Visibility = Visibility.Visible;
-            await Animation_Label();*/
+            var people = new PeoplesModel(_account.NationalId!, _account.Name!, _account.LastName!, _account.FatherName!,
+                _account.PersonalAccountNumber!);
+            await _investmentFundModel.AddPeople(people);
         }
+
     }
 }
