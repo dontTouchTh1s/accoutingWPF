@@ -7,12 +7,12 @@ namespace accounting.Commands
 {
     public class CreateAccountCommand : BaseAsyncCommand
     {
-        private readonly CreateAccountViewModel _account;
         private readonly InvestmentFundModel _investmentFundModel;
+        private readonly CreateAccountViewModel _peopleViewModel;
 
         public CreateAccountCommand(CreateAccountViewModel account, InvestmentFundModel investmentFundModel)
         {
-            _account = account;
+            _peopleViewModel = account;
             _investmentFundModel = investmentFundModel;
             account.ErrorsChanged += CreateAccountViewModelPropertyChanged;
         }
@@ -24,17 +24,14 @@ namespace accounting.Commands
 
         public override bool CanExecute(object? parameter)
         {
-            if (_account.Name == null && _account.LastName == null) return false;
+            if (_peopleViewModel.Name == null && _peopleViewModel.LastName == null) return false;
 
-            return !_account.HasErrors;
+            return !_peopleViewModel.HasErrors;
         }
 
         public override async Task ExecuteAsync()
         {
-            var people = new PeoplesModel(_account.NationalId!, _account.Name!, _account.LastName!, _account.FatherName!,
-                _account.PersonalAccountNumber!);
-            await _investmentFundModel.AddPeople(people);
+            await _investmentFundModel.AddPeople(_peopleViewModel);
         }
-
     }
 }
