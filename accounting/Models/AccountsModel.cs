@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using accounting.ViewModels;
 
 namespace accounting.Models
 {
@@ -6,14 +8,13 @@ namespace accounting.Models
     {
         public AccountsModel(PeoplesModel owner)
         {
-            Owner = owner;
             CreateDate = DateTime.Now;
             Credit = 0;
+            OwnerNatinalId = owner.NationalId;
         }
-
-
         public int Credit { get; }
         public DateTime CreateDate { get; }
-        public PeoplesModel Owner { get; }
+        public int AccountId { get; }
+        public string OwnerNatinalId { get; }
     }
 }

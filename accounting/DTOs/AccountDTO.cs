@@ -1,14 +1,18 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using accounting.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace accounting.DTOs
 {
     public class AccountDTO
     {
-        [Key] public Guid accountId { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Key]
+        public int AccountId { get; set; }
         public int Credit { get; set; }
-        public DateTime CreateDate { get; set; }
-        public string Owner { get; set; }
+        public string CreateDate { get; set; }
+        public string OwnerNationalId { get; set; }
+        [ForeignKey("OwnerNationalId")]
+        public PeopleDTO Owner { get; set; }
     }
 }

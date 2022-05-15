@@ -1,7 +1,6 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using accounting.DbContexts;
-using accounting.DTOs;
+using accounting.Models;
 
 namespace accounting.Services
 {
@@ -14,14 +13,12 @@ namespace accounting.Services
             _investmentFundDbContextFactory = investmentFundDbContextFactory;
         }
 
-        public async Task CreateAccount()
+        public async Task CreateAccount(AccountsModel account)
         {
             await using (var context = _investmentFundDbContextFactory.CreateDbContext())
             {
-                var accountDTO = new AccountDTO
-                {
-                    CreateDate = DateTime.Now
-                };
+                var dtoConverter = new DTOConverter();
+                var accountDTO = dtoConverter.AccountModelToDTO(account);
                 context.Accounts.Add(accountDTO);
                 await context.SaveChangesAsync();
             }

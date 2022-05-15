@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using accounting.DbContexts;
 using accounting.DTOs;
 using accounting.Models;
@@ -15,26 +14,16 @@ namespace accounting.Services
             _investmentFundDbContextFactory = investmentFundDbContextFactory;
         }
 
-        public async Task AddPeople(PeoplesModel people)
+        public async Task<PeopleDTO> AddPeople(PeoplesModel people)
         {
             await using (var context = _investmentFundDbContextFactory.CreateDbContext())
             {
-                var peopleDTO = CreatePeopleDTO(people);
+                var dtoConverter = new DTOConverter();
+                var peopleDTO = dtoConverter.PeopleModelToDTO(people);
                 context.Peoples.Add(peopleDTO);
                 await context.SaveChangesAsync();
+                return peopleDTO;
             }
-        }
-
-        private PeopleDTO CreatePeopleDTO(PeoplesModel people)
-        {
-            return new PeopleDTO
-            {
-                NationalId = (people.NationalId),
-                Name = people.Name,
-                LastName = people.LastName,
-                FatherName = people.FatherName,
-                PersonalAccountNumber = people.PersonalAccountNumber
-            };
         }
     }
 }
