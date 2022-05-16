@@ -1,6 +1,7 @@
 ﻿using System.Windows;
 using accounting.DbContexts;
 using accounting.Models;
+using accounting.Services;
 using accounting.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +19,16 @@ namespace accounting
         public App()
         {
             _investmentFundDbContextFactory = new InvestmentFundDbContextFactory(ConnectionString);
-            _investmentFundModel = new InvestmentFundModel("mashayekhi", _investmentFundDbContextFactory);
+            DTOConverter dtoConverterService = new();
+            DataBaseAddPeople addPeopleService = new(_investmentFundDbContextFactory, dtoConverterService);
+            DataBaseCreateAccount createAccountService = new(_investmentFundDbContextFactory, dtoConverterService);
+            DataBaseCheckNationalIdExist checkNationalIdExistService = new(_investmentFundDbContextFactory);
+            _investmentFundModel = new InvestmentFundModel
+            ("MASHYEKHI",
+                _investmentFundDbContextFactory,
+                addPeopleService,
+                createAccountService,
+                checkNationalIdExistService);
         }
 
         protected override void OnStartup(StartupEventArgs e)

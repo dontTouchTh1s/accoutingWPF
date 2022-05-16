@@ -1,18 +1,23 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Threading.Tasks;
+using System.Windows.Media;
+using accounting.Exceptions;
 using accounting.Models;
 using accounting.ViewModels;
+using accounting.ViewModels.Dialogs;
+using MaterialDesignThemes.Wpf;
 
 namespace accounting.Commands
 {
     public class CreateAccountCommand : BaseAsyncCommand
     {
+        private readonly CreateAccountViewModel _createAccountViewModel;
         private readonly InvestmentFundModel _investmentFundModel;
-        private readonly CreateAccountViewModel _peopleViewModel;
 
         public CreateAccountCommand(CreateAccountViewModel account, InvestmentFundModel investmentFundModel)
         {
-            _peopleViewModel = account;
+            _createAccountViewModel = account;
             _investmentFundModel = investmentFundModel;
             account.ErrorsChanged += CreateAccountViewModelPropertyChanged;
         }
@@ -24,14 +29,38 @@ namespace accounting.Commands
 
         public override bool CanExecute(object? parameter)
         {
-            if (_peopleViewModel.Name == null && _peopleViewModel.LastName == null) return false;
+            if (_createAccountViewModel.NationalId == null ||
+                _createAccountViewModel.Name == null ||
+                _createAccountViewModel.LastName == null ||
+                _createAccountViewModel.FatherName == null) return false;
 
-            return !_peopleViewModel.HasErrors;
+            return !_createAccountViewModel.HasErrors;
         }
 
         public override async Task ExecuteAsync()
         {
-            await _investmentFundModel.AddPeople(_peopleViewModel);
+            try
+            {
+                await _investmentFundModel.AddPeople(_createAccountViewModel);
+
+                var dialogViewModel = new MessageDialogViewModel("حساب با موفقیت ایجاد شد.",
+                    PackIconKind.Check, new SolidColorBrush(Colors.DarkGreen));
+                await DialogHost.Show(dialogViewModel, "rootDialog");
+            }
+            catch (NationalIdExistException)
+            {
+                var dialogViewModel =
+                    new MessageDialogViewModel("حسابی با کد ملی وارد شده قبلا ساخته شده است.",
+                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.DarkRed));
+                await DialogHost.Show(dialogViewModel, "rootDialog");
+            }
+            catch (Exception)
+            {
+                var dialogViewModel =
+                    new MessageDialogViewModel("در ایجاد حساب مشکلی پیش آمده است.",
+                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.DarkRed));
+                await DialogHost.Show(dialogViewModel, "rootDialog");
+            }
         }
     }
 }

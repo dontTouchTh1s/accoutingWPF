@@ -28,4 +28,10 @@
     <Content Include="obj\Debug\net5.0-windows\accounting_MarkupCompile.lref" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Compile Update="Views\Dialogs\MessageDialogView.cs">
+      <DependentUpon>MessageDialogView.xaml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
 </Project>
