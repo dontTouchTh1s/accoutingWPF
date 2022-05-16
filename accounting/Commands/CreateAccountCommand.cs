@@ -44,21 +44,21 @@ namespace accounting.Commands
                 await _investmentFundModel.AddPeople(_createAccountViewModel);
 
                 var dialogViewModel = new MessageDialogViewModel("حساب با موفقیت ایجاد شد.",
-                    PackIconKind.Check, new SolidColorBrush(Colors.DarkGreen));
+                    PackIconKind.Check, new SolidColorBrush(Colors.Green));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
             catch (NationalIdExistException)
             {
                 var dialogViewModel =
                     new MessageDialogViewModel("حسابی با کد ملی وارد شده قبلا ساخته شده است.",
-                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.DarkRed));
+                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
             catch (Exception)
             {
                 var dialogViewModel =
                     new MessageDialogViewModel("در ایجاد حساب مشکلی پیش آمده است.",
-                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.DarkRed));
+                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
         }
