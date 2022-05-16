@@ -1,16 +1,16 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using accounting.DbContexts;
 using accounting.Services;
 
 namespace accounting.Models
 {
     public class PeoplesModel
     {
-        private readonly InvestmentFundDbContextFactory _investmentFundDbContextFactory;
+        private readonly DataBaseCreateAccount _dataBaseCreateAccountService;
 
         public PeoplesModel(string nationalId, string name, string lastName, string fatherName,
-            string personalAccountNumber, InvestmentFundDbContextFactory investmentFundDbContextFactory,
+            string personalAccountNumber,
+            DataBaseCreateAccount dataBaseCreateAccount,
             List<AccountsModel>? accounts)
         {
             FatherName = fatherName;
@@ -18,7 +18,7 @@ namespace accounting.Models
             Name = name;
             NationalId = nationalId;
             PersonalAccountNumber = personalAccountNumber;
-            _investmentFundDbContextFactory = investmentFundDbContextFactory;
+            _dataBaseCreateAccountService = dataBaseCreateAccount;
             Accounts = accounts;
         }
 
@@ -32,8 +32,7 @@ namespace accounting.Models
         public async Task AddAccount(PeoplesModel owner)
         {
             var account = new AccountsModel(owner);
-            var accountEntity = new DataBaseCreateAccount(_investmentFundDbContextFactory);
-            await accountEntity.CreateAccount(account);
+            await _dataBaseCreateAccountService.CreateAccount(account);
         }
     }
 }

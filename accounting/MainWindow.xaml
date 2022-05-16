@@ -6,6 +6,8 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         xmlns:views="clr-namespace:accounting.Views"
         xmlns:viewModels="clr-namespace:accounting.ViewModels"
+        xmlns:dialogViews="clr-namespace:accounting.Views.Dialogs"
+        xmlns:dialogVms="clr-namespace:accounting.ViewModels.Dialogs"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -17,32 +19,43 @@
         Title="MainWindow" Height="560" Width="1000"
         Loaded="Window_Loaded"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel }">
-    <Grid>
-        <materialDesign:Card>
-            <TabControl
-                materialDesign:ColorZoneAssist.Mode="PrimaryMid"
-                FlowDirection="RightToLeft"
-                Margin="0"
-                BorderBrush="Gainsboro" FontSize="18">
-                <TabControl.Resources>
-                    <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
-                        <Setter Property="MinWidth" Value="100" />
-                        <Setter Property="Padding" Value="10" />
-                        <Setter Property="Height" Value="65" />
-                    </Style>
-                </TabControl.Resources>
-                <TabItem Header="خانه">
-                    <views:SummeryView HorizontalAlignment="Left" />
-                </TabItem>
-                <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
-                    <views:CreateAccountView
-                        HorizontalAlignment="Left"
-                        Margin="8"
-                        DataContext="{Binding CreateAccountViewModel}" />
-                </TabItem>
-                <TabItem Header="details" />
-            </TabControl>
 
-        </materialDesign:Card>
-    </Grid>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type dialogVms:MessageDialogViewModel}">
+            <dialogViews:MessageDialogView />
+        </DataTemplate>
+    </Window.Resources>
+    <materialDesign:DialogHost
+        Identifier="rootDialog"
+        DialogTheme="Inherit"
+        CloseOnClickAway="True">
+        <Grid>
+            <materialDesign:Card>
+                <TabControl
+                    materialDesign:ColorZoneAssist.Mode="PrimaryMid"
+                    FlowDirection="RightToLeft"
+                    Margin="0"
+                    BorderBrush="Gainsboro" FontSize="18"
+                    MouseDoubleClick="Control_OnMouseDoubleClick">
+                    <TabControl.Resources>
+                        <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                            <Setter Property="MinWidth" Value="100" />
+                            <Setter Property="Padding" Value="10" />
+                            <Setter Property="Height" Value="65" />
+                        </Style>
+                    </TabControl.Resources>
+                    <TabItem Header="خانه">
+                        <views:SummeryView HorizontalAlignment="Left" />
+                    </TabItem>
+                    <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
+                        <views:CreateAccountView
+                            HorizontalAlignment="Left"
+                            Margin="8"
+                            DataContext="{Binding CreateAccountViewModel}" />
+                    </TabItem>
+                    <TabItem Header="details" />
+                </TabControl>
+            </materialDesign:Card>
+        </Grid>
+    </materialDesign:DialogHost>
 </Window>

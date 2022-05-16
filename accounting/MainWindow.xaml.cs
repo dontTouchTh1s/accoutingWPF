@@ -1,7 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using accounting.ViewModels;
+using System.Windows.Input;
+using System.Windows.Media;
+using accounting.ViewModels.Dialogs;
+using MaterialDesignThemes.Wpf;
 
 namespace accounting
 {
@@ -18,20 +22,12 @@ namespace accounting
             InitializeComponent();
         }
 
+
         /// <summary>
         ///     Connect to data base when form loaded
         /// </summary>
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            _sql = new MsSql();
-            await _sql.Open();
-
-            var data = await _sql.Query("SELECT amount FROM fund");
-            while (data.Read())
-                _amount = data["amount"].ToString();
-            await data.CloseAsync();
-
-            //BalanceTextBlock.Text = _amount;
         }
 
         private void tabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -51,6 +47,12 @@ namespace accounting
             //await Task.Delay(3000);
             //var animation = new DoubleAnimation(0, TimeSpan.FromSeconds(2));
             //LblMessage.BeginAnimation(OpacityProperty, animation);
+        }
+
+        private async void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var dataContext = new MessageDialogViewModel("hello world", PackIconKind.About, new SolidColorBrush(Colors.Aqua));
+            await DialogHost.Show(dataContext, "rootDialog");
         }
     }
 }
