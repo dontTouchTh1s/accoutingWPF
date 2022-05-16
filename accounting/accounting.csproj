@@ -32,6 +32,7 @@
     <Compile Update="Views\Dialogs\MessageDialogView.cs">
       <DependentUpon>MessageDialogView.xaml</DependentUpon>
     </Compile>
+    <Compile Remove="Services\DataBaseCheckNationalIdExist.cs" />
   </ItemGroup>
 
 </Project>
