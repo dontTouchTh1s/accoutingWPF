@@ -8,7 +8,7 @@ namespace accounting.ViewModels.Dialogs
     {
         private string _messageContent = null!;
         private PackIconKind _messageIcon;
-        private SolidColorBrush _messageIconColor;
+        private SolidColorBrush _messageIconColor = null!;
 
 
         public MessageDialogViewModel(string name, PackIconKind messageIcon, SolidColorBrush messageIconColor)

@@ -47,13 +47,16 @@
                     <TabItem Header="خانه">
                         <views:SummeryView HorizontalAlignment="Left" />
                     </TabItem>
+                    
+                    <TabItem Header="مدیریت وام ها" />
+                    <TabItem Header="واریز و برداشت" />
+                    <TabItem Header="اشخاص و حساب ها" />
                     <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
                         <views:CreateAccountView
                             HorizontalAlignment="Left"
                             Margin="8"
                             DataContext="{Binding CreateAccountViewModel}" />
                     </TabItem>
-                    <TabItem Header="details" />
                 </TabControl>
             </materialDesign:Card>
         </Grid>

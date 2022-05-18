@@ -1,7 +1,7 @@
 ﻿using System.Windows;
-using accounting.DbContexts;
+using accounting.DataBase.DbContexts;
+using accounting.DataBase.Services;
 using accounting.Models;
-using accounting.Services;
 using accounting.ViewModels;
 using Microsoft.EntityFrameworkCore;
 

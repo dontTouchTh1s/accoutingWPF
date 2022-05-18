@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using accounting.Services;
+using accounting.DataBase.Services;
 
 namespace accounting.Models
 {

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace accounting.DTOs
+namespace accounting.DataBase.DTOs
 {
     public class AccountDTO
     {

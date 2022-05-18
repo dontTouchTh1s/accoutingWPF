@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace accounting.DbContexts
+namespace accounting.DataBase.DbContexts
 {
     public class InvestmentFundDbContextFactory
     {

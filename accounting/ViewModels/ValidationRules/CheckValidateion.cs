@@ -1,7 +1,6 @@
-﻿using System;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 
-namespace accounting.ValidationRules
+namespace accounting.ViewModels.ValidationRules
 {
     public static class CheckValidation
     {

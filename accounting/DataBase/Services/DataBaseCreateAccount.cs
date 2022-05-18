@@ -1,30 +1,28 @@
 ﻿using System.Threading.Tasks;
-using accounting.DbContexts;
-using accounting.DTOs;
+using accounting.DataBase.DbContexts;
 using accounting.Models;
 
-namespace accounting.Services
+namespace accounting.DataBase.Services
 {
-    public class DataBaseAddPeople
+    public class DataBaseCreateAccount
     {
         private readonly DTOConverter _dtoConverterService;
         private readonly InvestmentFundDbContextFactory _investmentFundDbContextFactory;
 
-        public DataBaseAddPeople(InvestmentFundDbContextFactory investmentFundDbContextFactory,
+        public DataBaseCreateAccount(InvestmentFundDbContextFactory investmentFundDbContextFactory,
             DTOConverter dtoConverterService)
         {
             _investmentFundDbContextFactory = investmentFundDbContextFactory;
             _dtoConverterService = dtoConverterService;
         }
 
-        public async Task<PeoplesDTO> AddPeople(PeoplesModel people)
+        public async Task CreateAccount(AccountsModel account)
         {
             await using (var context = _investmentFundDbContextFactory.CreateDbContext())
             {
-                var peopleDTO = _dtoConverterService.PeopleModelToDTO(people);
-                context.Peoples.Add(peopleDTO);
+                var accountDTO = _dtoConverterService.AccountModelToDTO(account);
+                context.Accounts.Add(accountDTO);
                 await context.SaveChangesAsync();
-                return peopleDTO;
             }
         }
     }

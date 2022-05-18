@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace accounting.Commands
+namespace accounting.ViewModels.Commands
 {
     public abstract class BaseAsyncCommand : BaseCommand
     {

@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
-using accounting.DbContexts;
+using accounting.DataBase.DbContexts;
+using accounting.DataBase.Services;
 using accounting.Exceptions;
-using accounting.Services;
 using accounting.ViewModels;
 
 namespace accounting.Models

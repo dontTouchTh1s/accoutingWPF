@@ -1,10 +1,10 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using accounting.DbContexts;
+using accounting.DataBase.DbContexts;
 using accounting.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace accounting.Services
+namespace accounting.DataBase.Services
 {
     public class DataBaseCheckNationalIdExist
     {

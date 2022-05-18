@@ -1,11 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Windows.Documents;
-using accounting.DTOs;
+using accounting.DataBase.DTOs;
 using accounting.Models;
 
-namespace accounting.Services
+namespace accounting.DataBase.Services
 {
     public class DTOConverter
     {

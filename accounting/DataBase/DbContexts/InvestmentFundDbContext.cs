@@ -1,7 +1,7 @@
-﻿using accounting.DTOs;
+﻿using accounting.DataBase.DTOs;
 using Microsoft.EntityFrameworkCore;
 
-namespace accounting.DbContexts
+namespace accounting.DataBase.DbContexts
 {
     public class InvestmentFundDbContext : DbContext
     {
