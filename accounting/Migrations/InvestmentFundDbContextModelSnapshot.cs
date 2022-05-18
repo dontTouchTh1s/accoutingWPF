@@ -39,7 +39,55 @@ namespace accounting.Migrations
                     b.ToTable("Accounts");
                 });
 
-            modelBuilder.Entity("accounting.DTOs.PeopleDTO", b =>
+            modelBuilder.Entity("accounting.DTOs.LoanInstallmentsDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("LoanId")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LoanId");
+
+                    b.ToTable("LoanInstallments");
+                });
+
+            modelBuilder.Entity("accounting.DTOs.LoansDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("InstallmentsCount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ReceiveDate")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Loans");
+                });
+
+            modelBuilder.Entity("accounting.DTOs.PeoplesDTO", b =>
                 {
                     b.Property<string>("NationalId")
                         .HasMaxLength(10)
@@ -70,9 +118,36 @@ namespace accounting.Migrations
                     b.ToTable("Peoples");
                 });
 
+            modelBuilder.Entity("accounting.DTOs.TransactionsDTO", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Amount")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Date")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PersonalAccountNumber")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Transactions");
+                });
+
             modelBuilder.Entity("accounting.DTOs.AccountDTO", b =>
                 {
-                    b.HasOne("accounting.DTOs.PeopleDTO", "Owner")
+                    b.HasOne("accounting.DTOs.PeoplesDTO", "Owner")
                         .WithMany("Accounts")
                         .HasForeignKey("OwnerNationalId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -81,7 +156,52 @@ namespace accounting.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("accounting.DTOs.PeopleDTO", b =>
+            modelBuilder.Entity("accounting.DTOs.LoanInstallmentsDTO", b =>
+                {
+                    b.HasOne("accounting.DTOs.LoansDTO", "Loan")
+                        .WithMany("Installments")
+                        .HasForeignKey("LoanId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Loan");
+                });
+
+            modelBuilder.Entity("accounting.DTOs.LoansDTO", b =>
+                {
+                    b.HasOne("accounting.DTOs.AccountDTO", "Account")
+                        .WithMany("Loans")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("accounting.DTOs.TransactionsDTO", b =>
+                {
+                    b.HasOne("accounting.DTOs.AccountDTO", "Account")
+                        .WithMany("Transactions")
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+                });
+
+            modelBuilder.Entity("accounting.DTOs.AccountDTO", b =>
+                {
+                    b.Navigation("Loans");
+
+                    b.Navigation("Transactions");
+                });
+
+            modelBuilder.Entity("accounting.DTOs.LoansDTO", b =>
+                {
+                    b.Navigation("Installments");
+                });
+
+            modelBuilder.Entity("accounting.DTOs.PeoplesDTO", b =>
                 {
                     b.Navigation("Accounts");
                 });

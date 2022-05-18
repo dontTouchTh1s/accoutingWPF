@@ -17,7 +17,7 @@ namespace accounting.Services
             _dtoConverterService = dtoConverterService;
         }
 
-        public async Task<PeopleDTO> AddPeople(PeoplesModel people)
+        public async Task<PeoplesDTO> AddPeople(PeoplesModel people)
         {
             await using (var context = _investmentFundDbContextFactory.CreateDbContext())
             {

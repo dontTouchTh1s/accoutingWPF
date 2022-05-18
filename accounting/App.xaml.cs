@@ -35,6 +35,7 @@ namespace accounting
         {
             using (var dbContext = _investmentFundDbContextFactory.CreateDbContext())
             {
+
                 dbContext.Database.Migrate();
             }
 

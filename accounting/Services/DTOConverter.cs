@@ -20,7 +20,7 @@ namespace accounting.Services
             };
         }
 
-        public PeopleDTO PeopleModelToDTO(PeoplesModel peoplesModel)
+        public PeoplesDTO PeopleModelToDTO(PeoplesModel peoplesModel)
         {
             List<AccountDTO> accountdtoList = new List<AccountDTO>();
             if (peoplesModel.Accounts != null)
@@ -31,7 +31,7 @@ namespace accounting.Services
                 }
             }
 
-            return new PeopleDTO
+            return new PeoplesDTO
             {
                 NationalId = peoplesModel.NationalId,
                 Name = peoplesModel.Name,

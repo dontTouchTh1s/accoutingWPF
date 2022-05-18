@@ -73,6 +73,6 @@ F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\ref\accounting.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.pdb
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.genruntimeconfig.cache
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting_Content.g.cs
-F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\Dialogs\MessageDialogView.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\Dialogs\MessageDialogView.baml
+F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll

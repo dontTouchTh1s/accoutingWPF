@@ -5,8 +5,11 @@ namespace accounting.DbContexts
 {
     public class InvestmentFundDbContext : DbContext
     {
-        public DbSet<PeopleDTO> Peoples { get; set; }
+        public DbSet<PeoplesDTO> Peoples { get; set; }
         public DbSet<AccountDTO> Accounts { get; set; }
+        public DbSet<LoansDTO> Loans { get; set; }
+        public DbSet<TransactionsDTO> Transactions { get; set; }
+        public DbSet<LoanInstallmentsDTO> LoanInstallments { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
