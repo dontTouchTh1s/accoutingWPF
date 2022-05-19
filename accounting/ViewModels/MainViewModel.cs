@@ -7,8 +7,11 @@ namespace accounting.ViewModels
         public MainViewModel(InvestmentFundModel investmentFundModel)
         {
             CreateAccountViewModel = new CreateAccountViewModel(investmentFundModel);
+            SummeryViewModel = new SummeryViewModel(investmentFundModel);
+
         }
 
         public CreateAccountViewModel CreateAccountViewModel { get; }
+        public SummeryViewModel SummeryViewModel { get; }
     }
 }

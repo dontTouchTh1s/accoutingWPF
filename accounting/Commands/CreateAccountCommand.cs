@@ -4,10 +4,11 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using accounting.Exceptions;
 using accounting.Models;
+using accounting.ViewModels;
 using accounting.ViewModels.Dialogs;
 using MaterialDesignThemes.Wpf;
 
-namespace accounting.ViewModels.Commands
+namespace accounting.Commands
 {
     public class CreateAccountCommand : BaseAsyncCommand
     {

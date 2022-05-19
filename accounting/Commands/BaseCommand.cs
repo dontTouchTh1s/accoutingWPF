@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Input;
 
-namespace accounting.ViewModels.Commands
+namespace accounting.Commands
 {
     public abstract class BaseCommand : ICommand
     {

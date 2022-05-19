@@ -23,19 +23,21 @@ namespace accounting
             DataBaseAddPeople addPeopleService = new(_investmentFundDbContextFactory, dtoConverterService);
             DataBaseCreateAccount createAccountService = new(_investmentFundDbContextFactory, dtoConverterService);
             DataBaseCheckNationalIdExist checkNationalIdExistService = new(_investmentFundDbContextFactory);
+            DataBaseInvestmentFundServices dataBaseInvestmentFundServices =
+                new(_investmentFundDbContextFactory, dtoConverterService);
             _investmentFundModel = new InvestmentFundModel
             ("MASHYEKHI",
                 _investmentFundDbContextFactory,
                 addPeopleService,
                 createAccountService,
-                checkNationalIdExistService);
+                checkNationalIdExistService,
+                dataBaseInvestmentFundServices);
         }
 
         protected override void OnStartup(StartupEventArgs e)
         {
             using (var dbContext = _investmentFundDbContextFactory.CreateDbContext())
             {
-
                 dbContext.Database.Migrate();
             }
 

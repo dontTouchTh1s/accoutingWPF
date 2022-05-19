@@ -11,17 +11,21 @@ namespace accounting.Models
         private readonly DataBaseAddPeople _dataBaseAddPeopleService;
         private readonly DataBaseCheckNationalIdExist _dataBaseCheckNationalIdExistService;
         private readonly DataBaseCreateAccount _dataBaseCreateAccountService;
+        private readonly DataBaseInvestmentFundServices _dataBaseInvestmentFundServices;
         private readonly InvestmentFundDbContextFactory _investmentFundDbContextFactory;
+
 
         public InvestmentFundModel(string name, InvestmentFundDbContextFactory investmentFundDbContextFactory,
             DataBaseAddPeople addPeopleService, DataBaseCreateAccount createAccountService,
-            DataBaseCheckNationalIdExist checkNationalIdExistService)
+            DataBaseCheckNationalIdExist checkNationalIdExistService,
+            DataBaseInvestmentFundServices dataBaseInvestmentFundServices)
         {
             Name = name;
             _investmentFundDbContextFactory = investmentFundDbContextFactory;
             _dataBaseAddPeopleService = addPeopleService;
             _dataBaseCreateAccountService = createAccountService;
             _dataBaseCheckNationalIdExistService = checkNationalIdExistService;
+            _dataBaseInvestmentFundServices = dataBaseInvestmentFundServices;
         }
 
         public string Name { get; }
@@ -39,6 +43,11 @@ namespace accounting.Models
             await _dataBaseAddPeopleService.AddPeople(people);
 
             await people.AddAccount(people);
+        }
+
+        public async Task<int> GetBalance()
+        {
+            return await _dataBaseInvestmentFundServices.GetBalance();
         }
     }
 }

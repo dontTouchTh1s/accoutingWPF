@@ -6,8 +6,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows.Input;
+using accounting.Commands;
 using accounting.Models;
-using accounting.ViewModels.Commands;
 using accounting.ViewModels.ValidationRules;
 
 namespace accounting.ViewModels
