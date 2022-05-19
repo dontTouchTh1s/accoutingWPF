@@ -6,6 +6,7 @@ namespace accounting.ViewModels
     {
         public MainViewModel(InvestmentFundModel investmentFundModel)
         {
+            TransactionsViewModel = new TransactionsViewModel();
             CreateAccountViewModel = new CreateAccountViewModel(investmentFundModel);
             SummeryViewModel = new SummeryViewModel(investmentFundModel);
 
@@ -13,5 +14,6 @@ namespace accounting.ViewModels
 
         public CreateAccountViewModel CreateAccountViewModel { get; }
         public SummeryViewModel SummeryViewModel { get; }
+        public TransactionsViewModel TransactionsViewModel { get; }
     }
 }

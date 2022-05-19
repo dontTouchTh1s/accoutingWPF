@@ -33,6 +33,7 @@
                 <TabControl
                     materialDesign:ColorZoneAssist.Mode="PrimaryMid"
                     FlowDirection="RightToLeft"
+
                     Margin="0"
                     BorderBrush="Gainsboro" FontSize="18"
                     MouseDoubleClick="Control_OnMouseDoubleClick">
@@ -44,12 +45,16 @@
                         </Style>
                     </TabControl.Resources>
                     <TabItem Header="خانه">
-                        <views:SummeryView HorizontalAlignment="Left" DataContext="{Binding SummeryViewModel}" />
+                        <views:SummeryView HorizontalAlignment="Left"
+                                           DataContext="{Binding SummeryViewModel}" />
                     </TabItem>
                     <TabItem Header="مدیریت وام ها" />
-                    <TabItem Header="واریز و برداشت" />
+                    <TabItem Header="واریز و برداشت" FlowDirection="RightToLeft">
+                        <views:TransactionView HorizontalAlignment="Left"
+                                               DataContext="{Binding TransactionsViewModel}"/>
+                    </TabItem>
                     <TabItem Header="اشخاص و حساب ها" />
-                    <TabItem Header="ایجاد حساب جدید" Height="65" VerticalAlignment="Top">
+                    <TabItem Header="ایجاد حساب جدید">
                         <views:CreateAccountView
                             HorizontalAlignment="Left"
                             Margin="8"

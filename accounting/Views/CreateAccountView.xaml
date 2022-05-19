@@ -17,8 +17,7 @@
         </ResourceDictionary>
     </UserControl.Resources>
     <StackPanel HorizontalAlignment="Right" FlowDirection="RightToLeft" Background="White">
-        <TextBlock Name="TitleLabel"
-                   Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
+        <TextBlock Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
         <Grid Margin="8">
             <Grid.Resources>
                 <Style TargetType="TextBlock" />
