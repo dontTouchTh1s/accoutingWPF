@@ -1,38 +1,51 @@
 ﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
+using accounting.Commands;
 using accounting.Models;
 
 namespace accounting.ViewModels
 {
     public class TransactionsViewModel : BaseViewModel
     {
-        private int _fundAccountName;
+        private AccountsModel _account;
         private int _amount;
-        private ObservableCollection<AccountsModel> _accountsList;
+        private int _fundAccountId;
+        private string? _personalAccountNumber;
 
-        public int FundAccountName
+        public TransactionsViewModel(InvestmentFundModel investmentFundModel)
         {
-            get => _fundAccountName;
-            set
-            {
-                SetProperty(ref _fundAccountName, value);
-            }
+            MakeTransactionsCommand = new MakeTransactionCommand(this, investmentFundModel);
         }
+
+        public int FundAccountId
+        {
+            get => _fundAccountId;
+            set => SetProperty(ref _fundAccountId, value);
+        }
+
         public int Amount
         {
             get => _amount;
+            set => SetProperty(ref _amount, value);
+        }
+
+        public AccountsModel Account
+        {
+            get => _account;
             set
             {
-                SetProperty(ref _amount, value);
+                SetProperty(ref _account, value);
             }
         }
 
-        public ObservableCollection<AccountsModel> AccountsList
+        public string? PersonalAccountNumber
         {
-            get => _accountsList;
-            set
-            {
-                SetProperty(ref _accountsList, value);
-            }
+            get => _personalAccountNumber;
+            set => SetProperty(ref _personalAccountNumber, value);
         }
+
+        public ICommand? MakeTransactionsCommand { get; }
+
+        public ObservableCollection<AccountsModel> AccountsList { get; set; }
     }
 }

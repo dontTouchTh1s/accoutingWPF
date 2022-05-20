@@ -15,6 +15,6 @@ namespace accounting.DataBase.DTOs
         public string OwnerNationalId { get; set; }
         [ForeignKey("OwnerNationalId")] public PeoplesDTO Owner { get; set; }
         public List<LoansDTO>? Loans { get; set; }
-        public List<TransactionsDTO>? Transactions { get; set; }
+        public List<TransactionsDTO> Transactions { get; set; }
     }
 }

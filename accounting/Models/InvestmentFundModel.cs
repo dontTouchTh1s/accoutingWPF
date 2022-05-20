@@ -1,31 +1,25 @@
 ﻿using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
 using accounting.DataBase.Services;
-using accounting.Exceptions;
 using accounting.ViewModels;
 
 namespace accounting.Models
 {
     public class InvestmentFundModel
     {
-        private readonly DataBaseAddPeople _dataBaseAddPeopleService;
-        private readonly DataBaseCheckNationalIdExist _dataBaseCheckNationalIdExistService;
-        private readonly DataBaseCreateAccount _dataBaseCreateAccountService;
         private readonly DataBaseInvestmentFundServices _dataBaseInvestmentFundServices;
+        private readonly DataBasePeopleServices _dataBasePeopleServices;
         private readonly InvestmentFundDbContextFactory _investmentFundDbContextFactory;
 
 
         public InvestmentFundModel(string name, InvestmentFundDbContextFactory investmentFundDbContextFactory,
-            DataBaseAddPeople addPeopleService, DataBaseCreateAccount createAccountService,
-            DataBaseCheckNationalIdExist checkNationalIdExistService,
-            DataBaseInvestmentFundServices dataBaseInvestmentFundServices)
+            DataBaseInvestmentFundServices dataBaseInvestmentFundServices,
+            DataBasePeopleServices dataBasePeopleServices)
         {
             Name = name;
             _investmentFundDbContextFactory = investmentFundDbContextFactory;
-            _dataBaseAddPeopleService = addPeopleService;
-            _dataBaseCreateAccountService = createAccountService;
-            _dataBaseCheckNationalIdExistService = checkNationalIdExistService;
             _dataBaseInvestmentFundServices = dataBaseInvestmentFundServices;
+            _dataBasePeopleServices = dataBasePeopleServices;
         }
 
         public string Name { get; }
@@ -36,11 +30,10 @@ namespace accounting.Models
             var people = new PeoplesModel(createAccountViewModel.NationalId!, createAccountViewModel.Name!,
                 createAccountViewModel.LastName!, createAccountViewModel.FatherName!,
                 createAccountViewModel.PersonalAccountNumber!,
-                _dataBaseCreateAccountService,
-                null);
-            if (await _dataBaseCheckNationalIdExistService.CheckNationalIdExist(people))
-                throw new NationalIdExistException(people.NationalId);
-            await _dataBaseAddPeopleService.AddPeople(people);
+                null,
+                _dataBasePeopleServices);
+
+            await _dataBasePeopleServices.AddPeople(people);
 
             await people.AddAccount(people);
         }
@@ -48,6 +41,22 @@ namespace accounting.Models
         public async Task<int> GetBalance()
         {
             return await _dataBaseInvestmentFundServices.GetBalance();
+        }
+
+        public async Task MakeTransaction(TransactionsViewModel transactionsViewModel)
+        {
+
+            var transactionModel = new TransactionsModel
+            {
+                FundAccountId = transactionsViewModel.FundAccountId,
+                Amount = transactionsViewModel.Amount,
+                PersonalAccountNumber = transactionsViewModel.PersonalAccountNumber
+            };
+            await MakeTransactions(transactionModel);
+        }
+        public async Task MakeTransactions(TransactionsModel transactionsModel)
+        {
+            await _dataBasePeopleServices.DataBaseAccountsServices.MakeTransaction(transactionsModel);
         }
     }
 }

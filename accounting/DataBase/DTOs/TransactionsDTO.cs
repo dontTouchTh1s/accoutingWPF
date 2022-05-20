@@ -16,6 +16,6 @@ namespace accounting.DataBase.DTOs
 
         [ForeignKey("AccountId")] public AccountDTO Account { get; set; }
 
-        public string PersonalAccountNumber { get; set; }
+        public string? PersonalAccountNumber { get; set; }
     }
 }

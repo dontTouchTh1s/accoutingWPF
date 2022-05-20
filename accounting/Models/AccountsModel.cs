@@ -1,20 +1,30 @@
 ﻿using System;
-using System.Globalization;
-using accounting.ViewModels;
+using System.Threading.Tasks;
+using accounting.DataBase.Services;
 
 namespace accounting.Models
 {
     public class AccountsModel
     {
-        public AccountsModel(PeoplesModel owner)
+        private readonly DataBaseAccountsServices _dataBaseAccountsServices;
+
+        public AccountsModel(DataBaseAccountsServices dataBaseAccountsServices,
+            PeoplesModel owner)
         {
+            _dataBaseAccountsServices = dataBaseAccountsServices;
             CreateDate = DateTime.Now;
             Credit = 0;
-            OwnerNatinalId = owner.NationalId;
+            OwnerNationalId = owner.NationalId;
         }
+
+        public int Id { get; }
         public int Credit { get; }
         public DateTime CreateDate { get; }
-        public int AccountId { get; }
-        public string OwnerNatinalId { get; }
+        public string OwnerNationalId { get; }
+
+        public async Task MakeTransactions(TransactionsModel transactionsModel)
+        {
+            await _dataBaseAccountsServices.MakeTransaction(transactionsModel);
+        }
     }
 }

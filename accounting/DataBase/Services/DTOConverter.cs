@@ -7,27 +7,24 @@ namespace accounting.DataBase.Services
 {
     public class DTOConverter
     {
+        private readonly CultureInfo _faCulture = new("fa-IR");
+
         public AccountDTO AccountModelToDTO(AccountsModel accountsModel)
         {
-            CultureInfo faCulture = new CultureInfo("fa-IR");
             return new AccountDTO
             {
                 Credit = accountsModel.Credit,
-                CreateDate = accountsModel.CreateDate.ToString(faCulture),
-                OwnerNationalId = accountsModel.OwnerNatinalId
+                CreateDate = accountsModel.CreateDate.ToString(_faCulture),
+                OwnerNationalId = accountsModel.OwnerNationalId
             };
         }
 
         public PeoplesDTO PeopleModelToDTO(PeoplesModel peoplesModel)
         {
-            List<AccountDTO> accountdtoList = new List<AccountDTO>();
+            var accountsToList = new List<AccountDTO>();
             if (peoplesModel.Accounts != null)
-            {
                 foreach (var acc in peoplesModel.Accounts)
-                {
-                    accountdtoList.Add(AccountModelToDTO(acc));
-                }
-            }
+                    accountsToList.Add(AccountModelToDTO(acc));
 
             return new PeoplesDTO
             {
@@ -36,7 +33,18 @@ namespace accounting.DataBase.Services
                 LastName = peoplesModel.LastName,
                 FatherName = peoplesModel.FatherName,
                 PersonalAccountNumber = peoplesModel.PersonalAccountNumber,
-                Accounts = accountdtoList
+                Accounts = accountsToList
+            };
+        }
+
+        public TransactionsDTO TransactionsToDTO(TransactionsModel transactionsModel)
+        {
+            return new TransactionsDTO
+            {
+                Amount = transactionsModel.Amount,
+                Date = transactionsModel.Date.ToString(_faCulture),
+                PersonalAccountNumber = "0",
+                AccountId = transactionsModel.FundAccountId
             };
         }
     }

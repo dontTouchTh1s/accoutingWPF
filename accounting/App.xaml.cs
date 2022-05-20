@@ -20,18 +20,15 @@ namespace accounting
         {
             _investmentFundDbContextFactory = new InvestmentFundDbContextFactory(ConnectionString);
             DTOConverter dtoConverterService = new();
-            DataBaseAddPeople addPeopleService = new(_investmentFundDbContextFactory, dtoConverterService);
-            DataBaseCreateAccount createAccountService = new(_investmentFundDbContextFactory, dtoConverterService);
-            DataBaseCheckNationalIdExist checkNationalIdExistService = new(_investmentFundDbContextFactory);
             DataBaseInvestmentFundServices dataBaseInvestmentFundServices =
                 new(_investmentFundDbContextFactory, dtoConverterService);
+            DataBasePeopleServices dataBasePeopleServices = new(_investmentFundDbContextFactory, dtoConverterService);
             _investmentFundModel = new InvestmentFundModel
             ("MASHYEKHI",
                 _investmentFundDbContextFactory,
-                addPeopleService,
-                createAccountService,
-                checkNationalIdExistService,
-                dataBaseInvestmentFundServices);
+                dataBaseInvestmentFundServices,
+                dataBasePeopleServices
+            );
         }
 
         protected override void OnStartup(StartupEventArgs e)

@@ -56,7 +56,7 @@ namespace accounting.Views.Dialogs {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/accounting;V1.0.0.0;component/views/dialogs/messagedialogview.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/accounting;component/views/dialogs/messagedialogview.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\..\..\..\Views\Dialogs\MessageDialogView.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

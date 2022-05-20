@@ -7,16 +7,16 @@ namespace accounting.Commands
     {
         public virtual bool CanExecute(object? parameter)
         {
-            return false;
+            return true;
         }
 
         public abstract void Execute(object? parameter);
+
+        public event EventHandler? CanExecuteChanged;
 
         public void OnCanExecuteChanged()
         {
             CanExecuteChanged?.Invoke(this, EventArgs.Empty);
         }
-
-        public event EventHandler? CanExecuteChanged;
     }
 }

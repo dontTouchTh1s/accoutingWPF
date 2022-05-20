@@ -28,39 +28,43 @@
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
+                <ColumnDefinition Width="420"/>
+                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Row="1"
+            <TextBox Grid.Row="0"
                       Grid.Column="0"
                       materialDesign:HintAssist.Hint="شماره حساب صندوق"
                       materialDesign:HintAssist.HelperText="حسابی که به آن واریز یا برداشت میکنید."
-                      ItemsSource="{Binding AccountsList}">
-                <ComboBox.SelectedItem>
+                      >
+                <TextBox.Text>
                     <Binding
-                        Path="FundAccountName"
+                        Path="FundAccountId"
                         UpdateSourceTrigger="PropertyChanged"
                         ValidatesOnNotifyDataErrors="True" />
-                </ComboBox.SelectedItem>
-            </ComboBox>
-            <ComboBox Grid.Row="0"
+                </TextBox.Text>
+            </TextBox>
+            <TextBox Grid.Row="1"
                       Grid.Column="0"
                       materialDesign:HintAssist.Hint="مبلغ تراکنش"
                       materialDesign:HintAssist.HelperText="">
-                <ComboBox.SelectedItem>
+                <TextBox.Text>
                     <Binding
                         Path="Amount"
                         UpdateSourceTrigger="PropertyChanged"
                         ValidatesOnNotifyDataErrors="True" />
-                </ComboBox.SelectedItem>
-            </ComboBox>
-
+                </TextBox.Text>
+            </TextBox>
+            <Button
+                Grid.Column="1"
+                Grid.Row="2"
+                x:Name="BtnCreateAccount" Content="انجام تراکنش"
+                Command="{Binding MakeTransactionsCommand}" />
         </Grid>
     </StackPanel>
 </UserControl>

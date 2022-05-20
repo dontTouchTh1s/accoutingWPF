@@ -6,19 +6,19 @@ namespace accounting.Models
 {
     public class PeoplesModel
     {
-        private readonly DataBaseCreateAccount _dataBaseCreateAccountService;
+        private readonly DataBasePeopleServices _dataBasePeopleServices;
 
         public PeoplesModel(string nationalId, string name, string lastName, string fatherName,
             string personalAccountNumber,
-            DataBaseCreateAccount dataBaseCreateAccount,
-            List<AccountsModel>? accounts)
+            List<AccountsModel>? accounts,
+            DataBasePeopleServices dataBasePeopleServices)
         {
             FatherName = fatherName;
             LastName = lastName;
             Name = name;
             NationalId = nationalId;
             PersonalAccountNumber = personalAccountNumber;
-            _dataBaseCreateAccountService = dataBaseCreateAccount;
+            _dataBasePeopleServices = dataBasePeopleServices;
             Accounts = accounts;
         }
 
@@ -31,8 +31,8 @@ namespace accounting.Models
 
         public async Task AddAccount(PeoplesModel owner)
         {
-            var account = new AccountsModel(owner);
-            await _dataBaseCreateAccountService.CreateAccount(account);
+            var account = new AccountsModel(_dataBasePeopleServices.DataBaseAccountsServices, owner);
+            await _dataBasePeopleServices.DataBaseAccountsServices.CreateAccount(account);
         }
     }
 }
