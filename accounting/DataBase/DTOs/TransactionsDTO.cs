@@ -12,7 +12,7 @@ namespace accounting.DataBase.DTOs
         public int Amount { get; set; }
         public string Date { get; set; }
 
-        public int AccountId { get; set; }
+        public int? AccountId { get; set; }
 
         [ForeignKey("AccountId")] public AccountDTO Account { get; set; }
 

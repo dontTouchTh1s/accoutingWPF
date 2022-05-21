@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using accounting.DataBase.DTOs;
 using accounting.Models;
 
@@ -19,22 +18,34 @@ namespace accounting.DataBase.Services
             };
         }
 
+        public AccountsModel AccountDTOToModel(AccountDTO accountDTO, DataBaseAccountsServices dataBaseAccountsServices)
+        {
+            return new AccountsModel(accountDTO.AccountId, accountDTO.OwnerNationalId, dataBaseAccountsServices);
+
+        }
+
         public PeoplesDTO PeopleModelToDTO(PeoplesModel peoplesModel)
         {
-            var accountsToList = new List<AccountDTO>();
-            if (peoplesModel.Accounts != null)
-                foreach (var acc in peoplesModel.Accounts)
-                    accountsToList.Add(AccountModelToDTO(acc));
-
             return new PeoplesDTO
             {
                 NationalId = peoplesModel.NationalId,
                 Name = peoplesModel.Name,
                 LastName = peoplesModel.LastName,
                 FatherName = peoplesModel.FatherName,
-                PersonalAccountNumber = peoplesModel.PersonalAccountNumber,
-                Accounts = accountsToList
+                PersonalAccountNumber = peoplesModel.PersonalAccountNumber
             };
+        }
+
+        public PeoplesModel PeopleDTOToModel(PeoplesDTO peoplesDTO, DataBasePeopleServices dataBasePeopleServices)
+        {
+            return new PeoplesModel
+            (peoplesDTO.NationalId,
+                peoplesDTO.Name,
+                peoplesDTO.LastName,
+                peoplesDTO.FatherName,
+                peoplesDTO.PersonalAccountNumber,
+                dataBasePeopleServices
+            );
         }
 
         public TransactionsDTO TransactionsToDTO(TransactionsModel transactionsModel)

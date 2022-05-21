@@ -3,15 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:accounting.Views"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewModels="clr-namespace:accounting.ViewModels"
+             xmlns:views="clr-namespace:accounting.Views"
              d:DataContext="{d:DesignInstance viewModels:TransactionsViewModel}"
              mc:Ignorable="d"
              Background="White"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:AccountsItemsViewModel}">
+            <views:AccountsItemsView />
+        </DataTemplate>
+    </UserControl.Resources>
     <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Right">
-        <TextBlock Text="ایجاد تراکنش"/>
+        <TextBlock Text="ایجاد تراکنش" />
         <Grid Margin="8">
             <Grid.Resources>
                 <Style TargetType="TextBlock" />
@@ -24,35 +29,53 @@
                     <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
                     <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
                     <Setter Property="Padding" Value="0,8" />
-                    <Setter Property="IsEditable" Value="True"/>
+                    <Setter Property="IsEditable" Value="True" />
+                    <Setter Property="StaysOpenOnEdit" Value="True" />
+                </Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                    <Setter Property="Margin" Value="0,8" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Left" />
+                    <Setter Property="Width" Value="250" />
+                    <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
+                    <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
+                    <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
+                    <Setter Property="Padding" Value="0,8" />
                 </Style>
             </Grid.Resources>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="420" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TextBox Grid.Row="0"
+            <ComboBox Grid.Row="0"
                       Grid.Column="0"
                       materialDesign:HintAssist.Hint="شماره حساب صندوق"
                       materialDesign:HintAssist.HelperText="حسابی که به آن واریز یا برداشت میکنید."
-                      >
-                <TextBox.Text>
+                      ItemsSource="{Binding AccountsList}"
+                      KeyDown="UIElement_OnKeyDown">
+                <ComboBox.Text>
+                    <Binding
+                        Path="SearchText"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
+                </ComboBox.Text>
+                <ComboBox.SelectedItem>
                     <Binding
                         Path="FundAccountId"
                         UpdateSourceTrigger="PropertyChanged"
                         ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
+                </ComboBox.SelectedItem>
+            </ComboBox>
             <TextBox Grid.Row="1"
-                      Grid.Column="0"
-                      materialDesign:HintAssist.Hint="مبلغ تراکنش"
-                      materialDesign:HintAssist.HelperText="">
+                     Grid.Column="0"
+                     materialDesign:HintAssist.Hint="مبلغ تراکنش"
+                     materialDesign:HintAssist.HelperText="">
                 <TextBox.Text>
                     <Binding
                         Path="Amount"

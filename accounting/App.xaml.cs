@@ -22,12 +22,10 @@ namespace accounting
             DTOConverter dtoConverterService = new();
             DataBaseInvestmentFundServices dataBaseInvestmentFundServices =
                 new(_investmentFundDbContextFactory, dtoConverterService);
-            DataBasePeopleServices dataBasePeopleServices = new(_investmentFundDbContextFactory, dtoConverterService);
             _investmentFundModel = new InvestmentFundModel
             ("MASHYEKHI",
                 _investmentFundDbContextFactory,
-                dataBaseInvestmentFundServices,
-                dataBasePeopleServices
+                dataBaseInvestmentFundServices
             );
         }
 

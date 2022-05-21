@@ -1,19 +1,16 @@
-﻿using System.Threading.Tasks;
-using accounting.Models;
+﻿using accounting.Models;
 
 namespace accounting.ViewModels
 {
     public class SummeryViewModel : BaseViewModel
     {
-        private int _balance;
         private readonly InvestmentFundModel _investmentFundModel;
+        private int _balance;
 
         public SummeryViewModel(InvestmentFundModel investmentFundModel)
         {
             _investmentFundModel = investmentFundModel;
-#pragma warning disable CS4014
             GetBalance();
-#pragma warning restore CS4014
         }
 
         public int Balance
@@ -22,7 +19,7 @@ namespace accounting.ViewModels
             set => SetProperty(ref _balance, value);
         }
 
-        public async Task GetBalance()
+        public async void GetBalance()
         {
             Balance = await _investmentFundModel.GetBalance();
         }

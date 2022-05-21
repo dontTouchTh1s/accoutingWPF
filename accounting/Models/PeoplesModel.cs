@@ -10,7 +10,6 @@ namespace accounting.Models
 
         public PeoplesModel(string nationalId, string name, string lastName, string fatherName,
             string personalAccountNumber,
-            List<AccountsModel>? accounts,
             DataBasePeopleServices dataBasePeopleServices)
         {
             FatherName = fatherName;
@@ -19,7 +18,6 @@ namespace accounting.Models
             NationalId = nationalId;
             PersonalAccountNumber = personalAccountNumber;
             _dataBasePeopleServices = dataBasePeopleServices;
-            Accounts = accounts;
         }
 
         public string FatherName { get; }
@@ -27,12 +25,17 @@ namespace accounting.Models
         public string Name { get; }
         public string NationalId { get; }
         public string PersonalAccountNumber { get; }
-        public List<AccountsModel>? Accounts { get; }
 
         public async Task AddAccount(PeoplesModel owner)
         {
-            var account = new AccountsModel(_dataBasePeopleServices.DataBaseAccountsServices, owner);
+            var account =
+                new AccountsModel(0, owner.NationalId, _dataBasePeopleServices.DataBaseAccountsServices);
             await _dataBasePeopleServices.DataBaseAccountsServices.CreateAccount(account);
+        }
+
+        public async Task<IEnumerable<AccountsModel>> GetAllAccounts()
+        {
+            return await _dataBasePeopleServices.GetAllAccounts(NationalId);
         }
     }
 }

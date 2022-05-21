@@ -8,13 +8,13 @@ namespace accounting.Models
     {
         private readonly DataBaseAccountsServices _dataBaseAccountsServices;
 
-        public AccountsModel(DataBaseAccountsServices dataBaseAccountsServices,
-            PeoplesModel owner)
+        public AccountsModel(int id, string ownerNationalId, DataBaseAccountsServices dataBaseAccountsServices)
         {
             _dataBaseAccountsServices = dataBaseAccountsServices;
+            Id = id;
             CreateDate = DateTime.Now;
             Credit = 0;
-            OwnerNationalId = owner.NationalId;
+            OwnerNationalId = ownerNationalId;
         }
 
         public int Id { get; }

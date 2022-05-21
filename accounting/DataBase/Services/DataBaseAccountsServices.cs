@@ -23,20 +23,18 @@ namespace accounting.DataBase.Services
 
         public async Task CreateAccount(AccountsModel account)
         {
-            await using (var context = _investmentFundDbContextFactory.CreateDbContext())
-            {
-                var accountDTO = _dtoConverterService.AccountModelToDTO(account);
-                context.Accounts.Add(accountDTO);
-                await context.SaveChangesAsync();
-            }
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var accountDTO = _dtoConverterService.AccountModelToDTO(account);
+            context.Accounts.Add(accountDTO);
+            await context.SaveChangesAsync();
         }
 
         public async Task MakeTransaction(TransactionsModel transactionsModel)
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var accountDTO = await context.Accounts.FindAsync(transactionsModel.FundAccountId);
-            TransactionsDTO transactionsDTO = _dtoConverterService.TransactionsToDTO(transactionsModel);
-            accountDTO.Transactions = new List<TransactionsDTO>{transactionsDTO};
+            var transactionsDTO = _dtoConverterService.TransactionsToDTO(transactionsModel);
+            accountDTO.Transactions = new List<TransactionsDTO> { transactionsDTO };
             context.Accounts.Update(accountDTO);
             await context.SaveChangesAsync();
         }

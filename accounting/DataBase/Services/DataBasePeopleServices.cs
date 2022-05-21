@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
+using accounting.DataBase.DTOs;
 using accounting.Exceptions;
 using accounting.Models;
 
@@ -31,6 +34,15 @@ namespace accounting.DataBase.Services
             var peopleDTO = _dtoConverterService.PeopleModelToDTO(people);
             context.Peoples.Add(peopleDTO);
             await context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<AccountsModel>> GetAllAccounts(string ownerNationalId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            IEnumerable<AccountDTO> accountDTOList =
+                context.Accounts.Where(account => account.OwnerNationalId == ownerNationalId);
+            return accountDTOList.Select(accountDTO =>
+                _dtoConverterService.AccountDTOToModel(accountDTO, DataBaseAccountsServices)).ToList();
         }
     }
 }

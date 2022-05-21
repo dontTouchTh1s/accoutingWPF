@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "rGhnruqkUT9tH/dbyfVbKWP+Ytktx349VsvKZOGqnLjSDw6e1xM9aUAJuZKdD7tuQ/VmVGbYmdzH+LUNGdh4eg==",
+  "dgSpecHash": "9Rl23F7vjovv17QvVhvMiPkZ64+/PpAx7KHjMxe2GrVQ+zymiFXdZ8F0W68+MBr1jCnUf6jej+a8qysI+/J2dA==",
   "success": true,
   "projectFilePath": "F:\\accounting\\accouting\\accounting\\accounting.csproj",
   "expectedPackageFiles": [
@@ -36,6 +36,7 @@
     "C:\\Users\\alim2\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\microsoft.win32.registry\\4.7.0\\microsoft.win32.registry.4.7.0.nupkg.sha512",
+    "C:\\Users\\alim2\\.nuget\\packages\\microsoft.xaml.behaviors.wpf\\1.1.39\\microsoft.xaml.behaviors.wpf.1.1.39.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\netstandard.library\\2.0.1\\netstandard.library.2.0.1.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\newtonsoft.json\\10.0.1\\newtonsoft.json.10.0.1.nupkg.sha512",
     "C:\\Users\\alim2\\.nuget\\packages\\runtime.native.system.data.sqlclient.sni\\4.7.0\\runtime.native.system.data.sqlclient.sni.4.7.0.nupkg.sha512",
