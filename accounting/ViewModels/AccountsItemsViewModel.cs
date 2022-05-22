@@ -3,13 +3,13 @@
     public class AccountsItemsViewModel : BaseViewModel
     {
         private int _accountId;
-        private string _accountOwnerName;
+        private string _accountOwnerFullName;
         private string _accountOwnerNationalId;
 
-        public AccountsItemsViewModel(int accountId, string accountOwnerName, string accountOwnerNationalId)
+        public AccountsItemsViewModel(int accountId, string accountOwnerFullName, string accountOwnerNationalId)
         {
             _accountId = accountId;
-            _accountOwnerName = accountOwnerName;
+            _accountOwnerFullName = accountOwnerFullName;
             _accountOwnerNationalId = accountOwnerNationalId;
         }
 
@@ -21,14 +21,19 @@
 
         public string AccountOwnerFullName
         {
-            get => _accountOwnerName;
-            set => SetProperty(ref _accountOwnerName, value);
+            get => _accountOwnerFullName;
+            set => SetProperty(ref _accountOwnerFullName, value);
         }
 
         public string AccountOwnerNationalId
         {
             get => _accountOwnerNationalId;
             set => SetProperty(ref _accountOwnerNationalId, value);
+        }
+
+        public override string ToString()
+        {
+            return AccountId.ToString();
         }
     }
 }

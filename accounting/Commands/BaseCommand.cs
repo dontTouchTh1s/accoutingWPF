@@ -12,6 +12,7 @@ namespace accounting.Commands
 
         public abstract void Execute(object? parameter);
 
+
         public event EventHandler? CanExecuteChanged;
 
         public void OnCanExecuteChanged()

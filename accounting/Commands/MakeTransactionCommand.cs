@@ -16,7 +16,7 @@ namespace accounting.Commands
             _investmentFundModel = transactionsModel;
         }
 
-        public override async Task ExecuteAsync()
+        public override async Task ExecuteAsync(object? parameter)
         {
             await _investmentFundModel.MakeTransaction(_transactionViewModel);
         }

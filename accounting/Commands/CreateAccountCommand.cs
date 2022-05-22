@@ -37,7 +37,7 @@ namespace accounting.Commands
             return !_createAccountViewModel.HasErrors;
         }
 
-        public override async Task ExecuteAsync()
+        public override async Task ExecuteAsync(object? parameter)
         {
             try
             {

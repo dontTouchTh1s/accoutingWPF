@@ -26,7 +26,7 @@ namespace accounting.Commands
             IsExecuting = true;
             try
             {
-                await ExecuteAsync();
+                await ExecuteAsync(parameter);
             }
             finally
             {
@@ -34,6 +34,6 @@ namespace accounting.Commands
             }
         }
 
-        public abstract Task ExecuteAsync();
+        public abstract Task ExecuteAsync(object? parameter);
     }
 }
