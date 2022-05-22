@@ -23,7 +23,6 @@ namespace accounting.Models
         }
 
         public string Name { get; }
-        public int TotalCapital { get; }
 
         public async Task AddPeople(CreateAccountViewModel createAccountViewModel)
         {
@@ -46,12 +45,7 @@ namespace accounting.Models
         {
             var transactionModel = new TransactionsModel(transactionsViewModel.Amount,
                 transactionsViewModel.FundAccountId, transactionsViewModel.PersonalAccountNumber);
-            await MakeTransactions(transactionModel);
-        }
-
-        public async Task MakeTransactions(TransactionsModel transactionsModel)
-        {
-            await _dataBasePeopleServices.DataBaseAccountsServices.MakeTransaction(transactionsModel);
+            await _dataBasePeopleServices.DataBaseAccountsServices.MakeTransaction(transactionModel);
         }
 
         public async Task<IEnumerable<AccountsModel>> GetAllAccounts()

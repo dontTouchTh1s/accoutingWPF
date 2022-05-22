@@ -34,7 +34,7 @@ namespace accounting.DataBase.Services
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             return context.Peoples
                 .Select(peoplesDTO => _dtoConverterService.PeopleDTOToModel(peoplesDTO, DataBasePeopleServices))
-                .ToList();
+                .ToList().AsEnumerable();
         }
 
         public async Task<Dictionary<PeoplesModel, IEnumerable<AccountsModel>>> GetAllPeoplesAccounts()
@@ -68,12 +68,10 @@ namespace accounting.DataBase.Services
 
         public async Task<Dictionary<PeoplesModel, IEnumerable<AccountsModel>>?> FindPeoplesAccounts(string owner)
         {
-            var peoples = await FindPeople(owner);
-            if (peoples == null || !peoples.Any())
-                return null;
-
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var peoplesAccounts = new Dictionary<PeoplesModel, IEnumerable<AccountsModel>>();
+            var peoples = await FindPeople(owner);
+
             foreach (var people in peoples) peoplesAccounts.Add(people, await people.GetAllAccounts());
             return peoplesAccounts;
         }

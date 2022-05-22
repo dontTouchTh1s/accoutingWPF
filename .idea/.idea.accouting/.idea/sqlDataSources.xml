@@ -7,5 +7,13 @@
         <node kind="database" qname="accounting" />
       </scope>
     </mapping>
+    <mapping uuid="d98e1724-dfc2-4036-93b1-a91f14a9857b" name="InvestmentFund.db Mapping">
+      <data-sources db="dcf42670-5cbb-4b24-9011-ffcd48264b3a" ddl="f98d034b-4831-4efc-82db-975fd66f3700" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
   </component>
 </project>

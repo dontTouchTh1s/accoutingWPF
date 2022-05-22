@@ -4,7 +4,7 @@ namespace accounting.Models
 {
     public class TransactionsModel
     {
-        public TransactionsModel(int amount, int? fundAccountId, string personalAccountNumber)
+        public TransactionsModel(int amount, int? fundAccountId, string? personalAccountNumber)
         {
             Date = DateTime.Now;
             Amount = amount;
