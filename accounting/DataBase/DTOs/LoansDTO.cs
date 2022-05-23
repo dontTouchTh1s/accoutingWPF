@@ -12,10 +12,10 @@ namespace accounting.DataBase.DTOs
 
         public int Amount { get; set; }
         public int InstallmentsCount { get; set; }
-        public int ReceiveDate { get; set; }
+        public string LendDate { get; set; } = null!;
         public int AccountId { get; set; }
+        public string? PersonalAccountNumber { get; set; }
         [ForeignKey("AccountId")] public AccountDTO Account { get; set; }
-
         public List<LoanInstallmentsDTO>? Installments { get; set; }
     }
 }
