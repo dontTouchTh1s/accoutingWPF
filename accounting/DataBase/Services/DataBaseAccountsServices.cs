@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
-using accounting.DataBase.DTOs;
 using accounting.Models;
 
 namespace accounting.DataBase.Services
@@ -34,8 +32,10 @@ namespace accounting.DataBase.Services
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var accountDTO = await context.Accounts.FindAsync(transactionsModel.FundAccountId);
             var transactionsDTO = _dtoConverterService.TransactionsToDTO(transactionsModel);
-            accountDTO.Transactions = new List<TransactionsDTO> { transactionsDTO };
-            context.Accounts.Update(accountDTO);
+            context.Transactions.Add(transactionsDTO);
+            accountDTO.Credit += transactionsDTO.Amount;
+            accountDTO.AvailableCredit = accountDTO.Credit;
+
             await context.SaveChangesAsync();
         }
     }
