@@ -22,34 +22,14 @@
         <Grid Margin="8">
             <Grid.Resources>
                 <Style TargetType="TextBlock" />
-                <Style TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
-                    <Setter Property="Margin" Value="0,8" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="Width" Value="250" />
-                    <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
-                    <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
-                    <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
-                    <Setter Property="Padding" Value="0,8" />
-                    <Setter Property="IsEditable" Value="True" />
-                    <Setter Property="StaysOpenOnEdit" Value="True" />
-                </Style>
-                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
-                    <Setter Property="Margin" Value="0,8" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="Width" Value="250" />
-                    <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
-                    <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
-                    <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
-                    <Setter Property="Padding" Value="0,8" />
-                </Style>
+                <Style TargetType="ComboBox" BasedOn="{StaticResource MdComboboxStyle}" />
+                <Style TargetType="TextBox" BasedOn="{StaticResource MdTextBoxStyle}" />
             </Grid.Resources>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
+                <RowDefinition />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="420" />
@@ -86,41 +66,41 @@
                      materialDesign:HintAssist.HelperText="مبلغ تراکنش">
                 <TextBox.Text>
                     <Binding
-                        Path="Amount"
+                        Path="AmountView"
                         UpdateSourceTrigger="PropertyChanged"
                         ValidatesOnNotifyDataErrors="True" />
                 </TextBox.Text>
             </TextBox>
             <Grid
-                Grid.Row="2" 
+                Grid.Row="2"
                 Grid.Column="0"
-                Margin="0,8">
+                Margin="0,8,0,8">
                 <Grid.Resources>
                     <converter:RadioButtonConverter x:Key="RadioButtonConverter" />
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="0.8*" />
-                    <ColumnDefinition Width="0.8*"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <RadioButton
                     Grid.Column="0"
                     GroupName="TransactionType"
                     Style="{StaticResource MaterialDesignRadioButton}"
-                    IsChecked="{Binding TransactionType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=v}"
-                    Content="واریز">
-                </RadioButton>
+                    IsChecked="{Binding TransactionType,
+                     Converter={StaticResource RadioButtonConverter}, ConverterParameter=Deposit}"
+                    Content="واریز" />
                 <RadioButton
                     Grid.Column="1"
                     GroupName="TransactionType"
                     Style="{StaticResource MaterialDesignRadioButton}"
-                    IsChecked="{Binding TransactionType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=b}"
-                    Content="برداشت">
-                </RadioButton>
+                    IsChecked="{Binding TransactionType,
+                     Converter={StaticResource RadioButtonConverter}, ConverterParameter=Withdraw}"
+                    Content="برداشت" />
             </Grid>
             <TextBox Grid.Row="3"
                      Grid.Column="0"
-                     materialDesign:HintAssist.Hint="شماره حساب شخصی(اختیاری)"
-                     materialDesign:HintAssist.HelperText = "شماره حساب شخصی که به آن واریز یا برداشت میشود.">
+                     materialDesign:HintAssist.Hint="شماره حساب شخصی (اختیاری)"
+                     materialDesign:HintAssist.HelperText="شماره حساب شخصی که به آن واریز یا برداشت میشود.">
                 <TextBox.Text>
                     <Binding
                         Path="PersonalAccountNumber"
@@ -131,7 +111,7 @@
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
-                x:Name="BtnCreateAccount" Content="انجام تراکنش"
+                Content="انجام تراکنش"
                 Command="{Binding MakeTransactionsCommand}" />
         </Grid>
     </StackPanel>
