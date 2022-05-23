@@ -11,6 +11,7 @@ namespace accounting.DataBase.DTOs
         public int AccountId { get; set; }
 
         public int Credit { get; set; }
+        public int AvailableCredit { get; set; }
         public string CreateDate { get; set; }
         public string OwnerNationalId { get; set; }
         [ForeignKey("OwnerNationalId")] public PeoplesDTO Owner { get; set; }
