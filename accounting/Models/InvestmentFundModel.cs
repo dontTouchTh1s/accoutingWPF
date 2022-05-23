@@ -22,7 +22,7 @@ namespace accounting.Models
             _dataBasePeopleServices = _dataBaseInvestmentFundServices.DataBasePeopleServices;
         }
 
-        public string Name { get; }
+        private string Name { get; }
 
         public async Task AddPeople(CreateAccountViewModel createAccountViewModel)
         {
@@ -43,8 +43,8 @@ namespace accounting.Models
 
         public async Task MakeTransaction(TransactionsViewModel transactionsViewModel)
         {
-            var transactionModel = new TransactionsModel(transactionsViewModel.Amount,
-                transactionsViewModel.FundAccountId, transactionsViewModel.PersonalAccountNumber);
+            var transactionModel = new TransactionsModel(transactionsViewModel.Amount ?? 0,
+                transactionsViewModel.FundAccountId ?? 0, transactionsViewModel.PersonalAccountNumber);
             await _dataBasePeopleServices.DataBaseAccountsServices.MakeTransaction(transactionModel);
         }
 
@@ -58,9 +58,11 @@ namespace accounting.Models
             return await _dataBaseInvestmentFundServices.GetAllPeoplesAccounts();
         }
 
-        public async Task<Dictionary<PeoplesModel, IEnumerable<AccountsModel>>?> FindPeoplesAccounts(string ownerName)
+        public async Task LendLoan(LendLoanViewModel lendLoanViewModel)
         {
-            return await _dataBaseInvestmentFundServices.FindPeoplesAccounts(ownerName)!;
+            var loanModel = new LoanModel(lendLoanViewModel.FundAccountId ?? 0, lendLoanViewModel.Amount ?? 0,
+                lendLoanViewModel.InstalmentCount ?? 0, lendLoanViewModel.PersonalAccountNumber);
+            await _dataBaseInvestmentFundServices.LendLoad(loanModel);
         }
     }
 }
