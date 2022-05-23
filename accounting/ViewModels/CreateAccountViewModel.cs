@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
 using accounting.Commands;
@@ -15,6 +16,7 @@ namespace accounting.ViewModels
     public class CreateAccountViewModel : BaseViewModel, INotifyDataErrorInfo
     {
         private readonly Dictionary<string, List<string>> _errors;
+        private string _creditView = "0";
         private string? _fatherName;
         private string? _lastName;
         private string? _name;
@@ -24,7 +26,11 @@ namespace accounting.ViewModels
         public CreateAccountViewModel(InvestmentFundModel investmentFundModel)
         {
             CreateAccountCommand = new CreateAccountCommand(this, investmentFundModel);
+            CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
+            CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
+            CreditLostFocusCommand = new CreditLostFocusCommand(this);
             _errors = new Dictionary<string, List<string>>();
+            CreditView = "400000";
         }
 
         public string? Name
@@ -43,7 +49,7 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Alphabetical(_name))
                     errors.Add("فقط حروف وارد کنید.");
 
-                if(errors.Count != 0)
+                if (errors.Count != 0)
                     _errors.Add(nameof(Name), errors);
                 ErrorChanged(nameof(Name));
             }
@@ -65,7 +71,7 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Alphabetical(_lastName))
                     errors.Add("فقط حروف وارد کنید.");
 
-                if(errors.Count != 0)
+                if (errors.Count != 0)
                     _errors.Add(nameof(LastName), errors);
                 ErrorChanged(nameof(LastName));
             }
@@ -87,7 +93,7 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Alphabetical(_fatherName))
                     errors.Add("فقط حروف وارد کنید.");
 
-                if(errors.Count != 0)
+                if (errors.Count != 0)
                     _errors?.Add(nameof(FatherName), errors);
                 ErrorChanged(nameof(FatherName));
             }
@@ -109,7 +115,7 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Numerical(_nationalId))
                     errors.Add("فقط عدد وارد کنید.");
 
-                if(errors.Count != 0)
+                if (errors.Count != 0)
                     _errors?.Add(nameof(NationalId), errors);
                 ErrorChanged(nameof(NationalId));
             }
@@ -129,7 +135,7 @@ namespace accounting.ViewModels
                 if (!CheckValidation.Numerical(_personalAccountNumber, true))
                     errors.Add("فقط عدد وارد کنید.");
 
-                if(errors.Count != 0)
+                if (errors.Count != 0)
                     _errors?.Add(nameof(PersonalAccountNumber), errors);
                 ErrorChanged(nameof(PersonalAccountNumber));
             }
@@ -137,12 +143,33 @@ namespace accounting.ViewModels
 
         public ICommand? CreateAccountCommand { get; }
 
+        public string CreditView
+        {
+            get => _creditView;
+            set
+            {
+                long.TryParse(value, NumberStyles.Number, CultureInfo.CurrentCulture, out var provider);
+                Credit = provider;
+                value = provider.ToString("N0", CultureInfo.CurrentCulture);
+                SetProperty(ref _creditView, value);
+            }
+        }
+
+        public long Credit { get; set; }
+
+        public ICommand CreditLostFocusCommand { get; }
+
+        public ICommand CreditPreviewKeyDownCommand { get; }
+
+        public ICommand CreditPreviewKeyUpCommand { get; }
+
         public IEnumerable GetErrors(string? propertyName)
         {
             return _errors.GetValueOrDefault(propertyName, new List<string>());
         }
 
         public bool HasErrors => _errors.Any();
+
         public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
 
         private void ErrorChanged(string propertyName)
