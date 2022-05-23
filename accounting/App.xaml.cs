@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Globalization;
+using System.Windows;
 using accounting.DataBase.DbContexts;
 using accounting.DataBase.Services;
 using accounting.Models;
@@ -18,6 +19,7 @@ namespace accounting
 
         public App()
         {
+            CultureInfo.CurrentCulture = new CultureInfo("fa-IR");
             _investmentFundDbContextFactory = new InvestmentFundDbContextFactory(ConnectionString);
             DTOConverter dtoConverterService = new();
             DataBaseInvestmentFundServices dataBaseInvestmentFundServices =
