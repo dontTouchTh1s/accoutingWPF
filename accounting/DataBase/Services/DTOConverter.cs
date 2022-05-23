@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using accounting.DataBase.DTOs;
 using accounting.Models;
 
@@ -20,8 +21,12 @@ namespace accounting.DataBase.Services
 
         public AccountsModel AccountDTOToModel(AccountDTO accountDTO, DataBaseAccountsServices dataBaseAccountsServices)
         {
-            return new AccountsModel(accountDTO.AccountId, accountDTO.OwnerNationalId, dataBaseAccountsServices);
-
+            return new AccountsModel(
+                accountDTO.AccountId,
+                accountDTO.Credit,
+                accountDTO.AvailableCredit,
+                DateTime.Parse(accountDTO.CreateDate, _faCulture),
+                accountDTO.OwnerNationalId, dataBaseAccountsServices);
         }
 
         public PeoplesDTO PeopleModelToDTO(PeoplesModel peoplesModel)
@@ -56,6 +61,18 @@ namespace accounting.DataBase.Services
                 Date = transactionsModel.Date.ToString(_faCulture),
                 PersonalAccountNumber = "0",
                 AccountId = transactionsModel.FundAccountId
+            };
+        }
+
+        public LoansDTO LoanModelToDTO(LoanModel loanModel)
+        {
+            return new LoansDTO
+            {
+                AccountId = loanModel.AccountId,
+                PersonalAccountNumber = loanModel.PersonalAccountNumber,
+                LendDate = loanModel.LendDate.ToString(_faCulture),
+                Amount = loanModel.Amount,
+                InstallmentsCount = loanModel.InstallmentsCount
             };
         }
     }
