@@ -33,10 +33,8 @@
                 <TabControl
                     materialDesign:ColorZoneAssist.Mode="PrimaryMid"
                     FlowDirection="RightToLeft"
-
                     Margin="0"
-                    BorderBrush="Gainsboro" FontSize="18"
-                    MouseDoubleClick="Control_OnMouseDoubleClick">
+                    BorderBrush="Gainsboro" FontSize="18">
                     <TabControl.Resources>
                         <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
                             <Setter Property="MinWidth" Value="100" />
@@ -46,11 +44,13 @@
                     </TabControl.Resources>
                     <TabItem Header="خانه">
                         <views:SummeryView HorizontalAlignment="Left"
+                                           Margin="8"
                                            DataContext="{Binding SummeryViewModel}" />
                     </TabItem>
                     <TabItem Header="مدیریت وام ها" />
                     <TabItem Header="واریز و برداشت" FlowDirection="RightToLeft">
                         <views:TransactionView HorizontalAlignment="Left"
+                                               Margin="8"
                                                DataContext="{Binding TransactionsViewModel}"/>
                     </TabItem>
                     <TabItem Header="اشخاص و حساب ها" />

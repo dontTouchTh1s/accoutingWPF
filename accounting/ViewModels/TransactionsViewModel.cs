@@ -19,6 +19,7 @@ namespace accounting.ViewModels
         private int? _fundAccountId;
         private string? _personalAccountNumber;
         private string? _searchText;
+        private object _transactionType;
 
         public TransactionsViewModel(InvestmentFundModel investmentFundModel)
         {
@@ -88,6 +89,15 @@ namespace accounting.ViewModels
             set => SetProperty(ref _accountOwnerFullName, value);
         }
 
+        public object TransactionType
+        {
+            get => _transactionType;
+            set
+            {
+                SetProperty(ref _transactionType, value);
+            }
+        }
+
         private void FilterAccountsList()
         {
             AccountsList = new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
@@ -115,10 +125,8 @@ namespace accounting.ViewModels
                 var accountsItemsViewModels =
                     new AccountsItemsViewModel(account.Id, vPeoples.Key.Name + " " + vPeoples.Key.LastName,
                         vPeoples.Key.NationalId);
-                ;
                 _accountsItemsViewModels.Add(accountsItemsViewModels);
             }
-
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
         }
     }

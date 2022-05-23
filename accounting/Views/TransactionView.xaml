@@ -7,6 +7,7 @@
              xmlns:viewModels="clr-namespace:accounting.ViewModels"
              xmlns:views="clr-namespace:accounting.Views"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:converter="clr-namespace:accounting.ViewModels.Converter"
              d:DataContext="{d:DesignInstance viewModels:TransactionsViewModel}"
              mc:Ignorable="d"
              Background="White"
@@ -57,7 +58,7 @@
             <ComboBox Grid.Row="0"
                       Grid.Column="0"
                       materialDesign:HintAssist.Hint="شماره حساب صندوق"
-                      materialDesign:HintAssist.HelperText="شمار حسابی که به آن واریز یا برداشت میکنید."
+                      materialDesign:HintAssist.HelperText="شمار حسابی که از آن واریز یا برداشت میکنید."
                       materialDesign:TextFieldAssist.PrefixText="{Binding AccountOwnerFullName}"
                       ItemsSource="{Binding AccountsList}"
                       KeyDown="UIElement_OnKeyDown">
@@ -90,9 +91,46 @@
                         ValidatesOnNotifyDataErrors="True" />
                 </TextBox.Text>
             </TextBox>
+            <Grid
+                Grid.Row="2" 
+                Grid.Column="0"
+                Margin="0,8">
+                <Grid.Resources>
+                    <converter:RadioButtonConverter x:Key="RadioButtonConverter" />
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.8*" />
+                    <ColumnDefinition Width="0.8*"/>
+                </Grid.ColumnDefinitions>
+                <RadioButton
+                    Grid.Column="0"
+                    GroupName="TransactionType"
+                    Style="{StaticResource MaterialDesignRadioButton}"
+                    IsChecked="{Binding TransactionType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=v}"
+                    Content="واریز">
+                </RadioButton>
+                <RadioButton
+                    Grid.Column="1"
+                    GroupName="TransactionType"
+                    Style="{StaticResource MaterialDesignRadioButton}"
+                    IsChecked="{Binding TransactionType, Converter={StaticResource RadioButtonConverter}, ConverterParameter=b}"
+                    Content="برداشت">
+                </RadioButton>
+            </Grid>
+            <TextBox Grid.Row="3"
+                     Grid.Column="0"
+                     materialDesign:HintAssist.Hint="شماره حساب شخصی(اختیاری)"
+                     materialDesign:HintAssist.HelperText = "شماره حساب شخصی که به آن واریز یا برداشت میشود.">
+                <TextBox.Text>
+                    <Binding
+                        Path="PersonalAccountNumber"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
+                </TextBox.Text>
+            </TextBox>
             <Button
+                Grid.Row="3"
                 Grid.Column="1"
-                Grid.Row="2"
                 x:Name="BtnCreateAccount" Content="انجام تراکنش"
                 Command="{Binding MakeTransactionsCommand}" />
         </Grid>
