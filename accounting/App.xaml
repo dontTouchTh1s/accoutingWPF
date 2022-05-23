@@ -3,12 +3,36 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
     <Application.Resources>
+
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <materialDesign:BundledTheme BaseTheme="Light" PrimaryColor="DeepPurple" SecondaryColor="Lime" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
             </ResourceDictionary.MergedDictionaries>
+
+            <Style x:Key="MdComboboxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
+                <Setter Property="Margin" Value="0,8,0,16" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Width" Value="300" />
+                <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
+                <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
+                <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
+                <Setter Property="Padding" Value="0,8" />
+                <Setter Property="IsEditable" Value="True" />
+                <Setter Property="StaysOpenOnEdit" Value="True" />
+            </Style>
+            <Style x:Key="MdTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
+                <Setter Property="Margin" Value="0,8,0,16" />
+                <Setter Property="VerticalAlignment" Value="Center" />
+                <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Width" Value="300" />
+                <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
+                <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
+                <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
+                <Setter Property="Padding" Value="0,8" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 
