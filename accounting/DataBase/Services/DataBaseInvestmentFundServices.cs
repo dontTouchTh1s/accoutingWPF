@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
@@ -66,14 +67,38 @@ namespace accounting.DataBase.Services
                 .ToListAsync();
         }
 
-        public async Task<Dictionary<PeoplesModel, IEnumerable<AccountsModel>>?> FindPeoplesAccounts(string owner)
+        public async Task<Dictionary<PeoplesModel, IEnumerable<AccountsModel>>> FindPeoplesAccounts(string owner)
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
+
+
             var peoplesAccounts = new Dictionary<PeoplesModel, IEnumerable<AccountsModel>>();
             var peoples = await FindPeople(owner);
 
             foreach (var people in peoples) peoplesAccounts.Add(people, await people.GetAllAccounts());
             return peoplesAccounts;
+        }
+
+        public async Task LendLoad(LoanModel loanModel)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var fundBalance = Convert.ToDouble(await GetBalance());
+            var loanAmount = Convert.ToDouble(loanModel.Amount);
+            if (loanModel.Amount > fundBalance)
+                return;
+            if (loanModel.Amount > fundBalance / 2)
+                return;
+            var amountPercentPerAccount = loanAmount * 100 / fundBalance;
+            foreach (var account in context.Accounts)
+            {
+                var availableCredit = Convert.ToDouble(account.AvailableCredit);
+                var loanAmountForAccount = Convert.ToInt32(availableCredit / 100 * amountPercentPerAccount);
+                account.AvailableCredit -= loanAmountForAccount;
+            }
+
+            var loanDTO = _dtoConverterService.LoanModelToDTO(loanModel);
+            context.Loans.Add(loanDTO);
+            await context.SaveChangesAsync();
         }
     }
 }
