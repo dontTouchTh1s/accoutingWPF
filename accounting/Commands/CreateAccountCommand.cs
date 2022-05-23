@@ -47,10 +47,10 @@ namespace accounting.Commands
                     PackIconKind.Check, new SolidColorBrush(Colors.Green));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
-            catch (NationalIdExistException)
+            catch (NationalIdExistException e)
             {
                 var dialogViewModel =
-                    new MessageDialogViewModel("حسابی با کد ملی وارد شده قبلا ساخته شده است.",
+                    new MessageDialogViewModel($"حسابی با کد ملی {e.NationalId} قبلا ساخته شده است.",
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
