@@ -75,7 +75,6 @@ F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.genruntim
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting_Content.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\Dialogs\MessageDialogView.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\Dialogs\MessageDialogView.baml
-F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\TransactionView.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\TransactionView.baml
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\Microsoft.Xaml.Behaviors.dll
@@ -164,3 +163,6 @@ C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\Vie
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\Views\Dialogs\MessageDialogView.baml
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\Views\SummeryView.baml
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\Views\TransactionView.baml
+F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\LendLoanView.g.cs
+F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\LendLoanView.baml
+F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll

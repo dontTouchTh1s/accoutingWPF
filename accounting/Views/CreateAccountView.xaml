@@ -5,14 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewmodel="clr-namespace:accounting.ViewModels"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="1000"
              d:DataContext="{d:DesignInstance viewmodel:CreateAccountViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Button.xaml" />
+                <ResourceDictionary
+                    Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.DialogHost.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -20,23 +23,14 @@
         <TextBlock Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
         <Grid Margin="8">
             <Grid.Resources>
-                <Style TargetType="TextBlock" />
-                <Style TargetType="TextBox" BasedOn="{StaticResource MaterialDesignFloatingHintTextBox}">
-                    <Setter Property="Margin" Value="0,8" />
-                    <Setter Property="VerticalAlignment" Value="Center" />
-                    <Setter Property="HorizontalAlignment" Value="Left" />
-                    <Setter Property="Width" Value="250" />
-                    <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
-                    <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
-                    <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
-                    <Setter Property="Padding" Value="0,8" />
-                </Style>
+                <Style TargetType="TextBox" BasedOn="{StaticResource MdTextBoxStyle}" />
             </Grid.Resources>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
@@ -95,6 +89,33 @@
             <TextBox
                 Grid.Column="0"
                 Grid.Row="4"
+                materialDesign:HintAssist.Hint="اعتبار اولیه"
+                materialDesign:HintAssist.HelperText="حداقل اعتبار اولیه 400000 تومان"
+                materialDesign:TextFieldAssist.PrefixText="تومان">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="PreviewKeyUp">
+                        <b:InvokeCommandAction Command="{Binding Path=CreditPreviewKeyUpCommand}"
+                                               PassEventArgsToCommand="True" />
+                    </b:EventTrigger>
+                    <b:EventTrigger EventName="PreviewKeyDown">
+                        <b:InvokeCommandAction Command="{Binding Path=CreditPreviewKeyDownCommand}"
+                                               PassEventArgsToCommand="True" />
+                    </b:EventTrigger>
+                    <b:EventTrigger EventName="LostFocus">
+                        <b:InvokeCommandAction Command="{Binding Path=CreditLostFocusCommand}"
+                                               PassEventArgsToCommand="True" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
+                <TextBox.Text>
+                    <Binding
+                        Path="CreditView"
+                        UpdateSourceTrigger="PropertyChanged"
+                        ValidatesOnNotifyDataErrors="True" />
+                </TextBox.Text>
+            </TextBox>
+            <TextBox
+                Grid.Column="0"
+                Grid.Row="5"
                 materialDesign:HintAssist.Hint="شماره حساب"
                 materialDesign:HintAssist.HelperText="شماره حساب شخصی صاحب حساب">
                 <TextBox.Text>
@@ -106,7 +127,7 @@
             </TextBox>
             <Button
                 Grid.Column="1"
-                Grid.Row="5"
+                Grid.Row="6"
                 x:Name="BtnCreateAccount" Content="ایجاد"
                 Command="{Binding CreateAccountCommand}" />
 

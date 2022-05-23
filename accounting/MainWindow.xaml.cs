@@ -1,7 +1,4 @@
-﻿using System.Drawing;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
 using accounting.ViewModels.Dialogs;
@@ -28,7 +25,8 @@ namespace accounting
 
         private async void Control_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            var dataContext = new MessageDialogViewModel("hello world", PackIconKind.About, new SolidColorBrush(Colors.Aqua));
+            var dataContext =
+                new MessageDialogViewModel("hello world", PackIconKind.About, new SolidColorBrush(Colors.Aqua));
             await DialogHost.Show(dataContext, "rootDialog");
         }
     }

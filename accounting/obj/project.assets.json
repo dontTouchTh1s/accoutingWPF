@@ -5489,24 +5489,26 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ALIM\\.nuget\\packages\\": {}
+    "C:\\Users\\alim2\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ALIM\\RiderProjects\\accoutingWPF\\accounting\\accounting.csproj",
+      "projectUniqueName": "F:\\accounting\\accouting\\accounting\\accounting.csproj",
       "projectName": "accounting",
-      "projectPath": "C:\\Users\\ALIM\\RiderProjects\\accoutingWPF\\accounting\\accounting.csproj",
-      "packagesPath": "C:\\Users\\ALIM\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ALIM\\RiderProjects\\accoutingWPF\\accounting\\obj\\",
+      "projectPath": "F:\\accounting\\accouting\\accounting\\accounting.csproj",
+      "packagesPath": "C:\\Users\\alim2\\.nuget\\packages\\",
+      "outputPath": "F:\\accounting\\accouting\\accounting\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\ALIM\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\alim2\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net5.0-windows"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -5572,20 +5574,8 @@
         "warn": true,
         "downloadDependencies": [
           {
-            "name": "Microsoft.AspNetCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
             "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[5.0.17, 5.0.17]"
-          },
-          {
-            "name": "Microsoft.NETCore.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
-          },
-          {
-            "name": "Microsoft.WindowsDesktop.App.Ref",
-            "version": "[5.0.0, 5.0.0]"
+            "version": "[5.0.16, 5.0.16]"
           }
         ],
         "frameworkReferences": {
@@ -5596,7 +5586,7 @@
             "privateAssets": "none"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Users\\ALIM\\.dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
       }
     }
   }
