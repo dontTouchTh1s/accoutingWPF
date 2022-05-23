@@ -1,19 +1,15 @@
 ﻿using System.Windows.Controls;
-using accounting.Models;
 using accounting.ViewModels;
 
 namespace accounting.Commands
 {
-    public class AccountIdTextChangedCommand : BaseCommand
+    public class SelectionChangedCommand : BaseCommand
     {
-        private readonly InvestmentFundModel _investmentFundModel;
         private readonly TransactionsViewModel _transactionViewModel;
 
-        public AccountIdTextChangedCommand(TransactionsViewModel transactionsViewModel,
-            InvestmentFundModel investmentFundModel)
+        public SelectionChangedCommand(TransactionsViewModel transactionsViewModel)
         {
             _transactionViewModel = transactionsViewModel;
-            _investmentFundModel = investmentFundModel;
         }
 
         public override void Execute(object? parameter)
