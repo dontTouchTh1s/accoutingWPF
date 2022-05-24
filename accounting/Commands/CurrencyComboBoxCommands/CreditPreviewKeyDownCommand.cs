@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Input;
 
-namespace accounting.Commands
+namespace accounting.Commands.CurrencyComboBoxCommands
 {
     public class CreditPreviewKeyDownCommand : BaseCommand
     {
