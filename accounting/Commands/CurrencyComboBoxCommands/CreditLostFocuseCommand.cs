@@ -1,6 +1,6 @@
 ﻿using accounting.ViewModels;
 
-namespace accounting.Commands
+namespace accounting.Commands.CurrencyComboBoxCommands
 {
     public class CreditLostFocusCommand : BaseCommand
     {
@@ -13,8 +13,8 @@ namespace accounting.Commands
 
         public override void Execute(object? parameter)
         {
-            if (_createAccountViewModel.Credit < 400000)
-                _createAccountViewModel.CreditView = "400000";
+            if (_createAccountViewModel.Credit < 500000)
+                _createAccountViewModel.CreditView = "500000";
         }
     }
 }
