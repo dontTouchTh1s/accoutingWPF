@@ -26,10 +26,10 @@ namespace accounting.Models
         public string NationalId { get; }
         public string? PersonalAccountNumber { get; }
 
-        public async Task AddAccount(PeoplesModel owner)
+        public async Task AddAccount(PeoplesModel owner, ulong credit)
         {
             var account =
-                new AccountsModel(0, owner.NationalId, _dataBasePeopleServices.DataBaseAccountsServices);
+                new AccountsModel(owner.NationalId, credit, _dataBasePeopleServices.DataBaseAccountsServices);
             await _dataBasePeopleServices.DataBaseAccountsServices.CreateAccount(account);
         }
 
