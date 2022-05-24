@@ -8,6 +8,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
 using accounting.Commands;
+using accounting.Commands.CurrencyComboBoxCommands;
 using accounting.Models;
 using accounting.ViewModels.ValidationRules;
 
@@ -30,7 +31,7 @@ namespace accounting.ViewModels
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             CreditLostFocusCommand = new CreditLostFocusCommand(this);
             _errors = new Dictionary<string, List<string>>();
-            CreditView = "400000";
+            CreditView = InvestmentFundModel.MinimumCredit.ToString();
         }
 
         public string? Name
