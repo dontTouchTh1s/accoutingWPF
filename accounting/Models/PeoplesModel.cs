@@ -9,7 +9,7 @@ namespace accounting.Models
         private readonly DataBasePeopleServices _dataBasePeopleServices;
 
         public PeoplesModel(string nationalId, string name, string lastName, string fatherName,
-            string personalAccountNumber,
+            string? personalAccountNumber,
             DataBasePeopleServices dataBasePeopleServices)
         {
             FatherName = fatherName;
@@ -24,7 +24,7 @@ namespace accounting.Models
         public string LastName { get; }
         public string Name { get; }
         public string NationalId { get; }
-        public string PersonalAccountNumber { get; }
+        public string? PersonalAccountNumber { get; }
 
         public async Task AddAccount(PeoplesModel owner)
         {
