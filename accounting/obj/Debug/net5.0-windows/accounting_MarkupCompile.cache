@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\
+C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\
 accounting
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-F:\accounting\accouting\accounting\App.xaml
+C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\App.xaml
 71036227816
 1-334192869
-661594037695
-2211162370451
+70-1288310745
+221-564386903
 MainWindow.xaml;Views\AccountsItemsView.xaml;Views\CreateAccountView.xaml;Views\Dialogs\MessageDialogView.xaml;Views\LendLoanView.xaml;Views\SummeryView.xaml;Views\TransactionView.xaml;
 
 False

@@ -5,7 +5,7 @@ namespace accounting.ViewModels
     public class SummeryViewModel : BaseViewModel
     {
         private readonly InvestmentFundModel _investmentFundModel;
-        private int _balance;
+        private ulong _balance;
 
         public SummeryViewModel(InvestmentFundModel investmentFundModel)
         {
@@ -13,7 +13,7 @@ namespace accounting.ViewModels
             GetBalance();
         }
 
-        public int Balance
+        public ulong Balance
         {
             get => _balance;
             set => SetProperty(ref _balance, value);

@@ -24,17 +24,17 @@ namespace accounting.DataBase.Services
 
         public DataBasePeopleServices DataBasePeopleServices { get; set; }
 
-        public async Task<int> GetBalance()
+        public async Task<ulong> GetBalance()
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var accountsCredit = await context.Accounts.Select(r => r.Credit).ToListAsync();
-            return accountsCredit.Sum();
+            return accountsCredit.Aggregate((a, c) => a + c);
         }
-        public async Task<int> GetAvailableBalance()
+        public async Task<ulong> GetAvailableBalance()
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var accountsCredit = await context.Accounts.Select(r => r.AvailableCredit).ToListAsync();
-            return accountsCredit.Sum();
+            return accountsCredit.Aggregate((a, c) => a + c);
         }
 
         public async Task<IEnumerable<PeoplesModel>> GetAllPeoples()
@@ -100,7 +100,7 @@ namespace accounting.DataBase.Services
             var loanAccount = await context.Accounts.Where(ac => ac.AccountId == loanModel.AccountId).FirstOrDefaultAsync();
             // Amount of the loan can be twice of account credit. If it's not, throw
             if (loanAmount > loanAccount.Credit * 2)
-                throw new NotEnoughCreditException(loanAccount.Credit);
+                throw new NotEnoughCreditException(Convert.ToUInt64(loanAccount.Credit));
             // First, reduce amount of loan from each account available credit
             // We can reduce up to 500000 (Minimum credit)
             var accountsCount = await context.Accounts.CountAsync();
@@ -110,7 +110,7 @@ namespace accounting.DataBase.Services
                 minimumAmountPerAccount =  InvestmentFundModel.MinimumCredit;
             foreach (var account in context.Accounts)
             {
-                account.AvailableCredit -= minimumAmountPerAccount;
+                account.AvailableCredit -= Convert.ToUInt64(minimumAmountPerAccount);
             }
             // If any amount of loan remains, reduce from accounts that have available credit
             var remainAmount = Convert.ToInt32(loanAmount - (minimumAmountPerAccount * accountsCount));
@@ -122,7 +122,7 @@ namespace accounting.DataBase.Services
                     var availableCredit = Convert.ToDouble(account.AvailableCredit);
                     if (availableCredit == 0) break;
                     var loanAmountForAccount = Convert.ToInt32(availableCredit / 100 * amountPercentPerAccount);
-                    account.AvailableCredit -= loanAmountForAccount;
+                    account.AvailableCredit -= Convert.ToUInt64(loanAmountForAccount);
                 }
             }
 

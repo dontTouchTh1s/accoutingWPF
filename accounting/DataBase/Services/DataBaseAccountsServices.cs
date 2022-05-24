@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using System.Windows.Documents;
 using accounting.DataBase.DbContexts;
 using accounting.Exceptions;
@@ -36,11 +37,20 @@ namespace accounting.DataBase.Services
             var transactionsDTO = _dtoConverterService.TransactionsToDTO(transactionsModel);
             
             // Check if available credit is not enough on withdraw, throw exception
-            if (accountDTO.AvailableCredit < transactionsModel.Amount && transactionsModel.Amount < 0)
+            if (accountDTO.AvailableCredit < (ulong)transactionsModel.Amount && transactionsModel.Amount < 0)
                 throw new NotEnoughAvailableCreditException(accountDTO.AvailableCredit);
             
             context.Transactions.Add(transactionsDTO);
-            accountDTO.Credit += transactionsDTO.Amount;
+            switch (transactionsModel.Amount)
+            {
+                case < 0:
+                    accountDTO.Credit -= (ulong)transactionsDTO.Amount;
+                    break;
+                case > 0:
+                    accountDTO.Credit += (ulong)transactionsDTO.Amount;
+                    break;
+            }
+
             accountDTO.AvailableCredit = accountDTO.Credit;
 
             await context.SaveChangesAsync();

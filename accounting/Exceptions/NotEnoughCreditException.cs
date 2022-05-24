@@ -4,10 +4,10 @@ namespace accounting.Exceptions
 {
     public class NotEnoughCreditException : Exception
     {
-        public int Credit;
-        public int MaximumLoan;
+        public ulong Credit;
+        public ulong MaximumLoan;
         
-        public NotEnoughCreditException(int credit) : base("Not enough credit")
+        public NotEnoughCreditException(ulong credit) : base("Not enough credit")
         {
             Credit = credit;
             MaximumLoan = credit * 2;

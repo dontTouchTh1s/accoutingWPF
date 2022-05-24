@@ -14,8 +14,8 @@ namespace accounting.ViewModels
         private ObservableCollection<AccountsItemsViewModel> _accountList;
 
         private string? _accountOwnerFullName;
-        private int? _amount;
-        private int? _fundAccountId;
+        private long? _amount;
+        private ushort? _fundAccountId;
         private string? _personalAccountNumber;
         private string? _searchText;
         private object? _transactionType;
@@ -29,7 +29,7 @@ namespace accounting.ViewModels
             GetAccounts();
         }
 
-        public int? FundAccountId
+        public ushort? FundAccountId
         {
             get => _fundAccountId;
             set => SetProperty(ref _fundAccountId, value);
@@ -43,7 +43,7 @@ namespace accounting.ViewModels
                 SetProperty(ref _searchText, value);
                 try
                 {
-                    FundAccountId = int.Parse(value!);
+                    FundAccountId = ushort.Parse(value!);
                 }
                 catch
                 {
@@ -54,7 +54,7 @@ namespace accounting.ViewModels
             }
         }
 
-        public int? AmountView
+        public long? AmountView
         {
             get => _amount;
             set
@@ -64,7 +64,7 @@ namespace accounting.ViewModels
             }
         }
 
-        public int? Amount { get; set; }
+        public long? Amount { get; set; }
 
         public string? PersonalAccountNumber
         {
@@ -103,8 +103,6 @@ namespace accounting.ViewModels
                         !accountsItemsViewModel.AccountOwnerNationalId.Contains(SearchText))
                         AccountsList.Remove(accountsItemsViewModel);
         }
-
-
         private async void GetAccounts()
         {
             var peoplesAccounts = await _investmentFundModel.GetAllPeoplesAccounts();

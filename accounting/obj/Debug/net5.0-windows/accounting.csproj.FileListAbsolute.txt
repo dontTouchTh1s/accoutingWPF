@@ -85,7 +85,6 @@ C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\acc
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\accounting.runtimeconfig.json
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\accounting.runtimeconfig.dev.json
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\accounting.dll
-C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\ref\accounting.dll
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\accounting.pdb
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\Humanizer.dll
 C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\MaterialDesignColors.dll
@@ -166,3 +165,6 @@ C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\Vie
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\LendLoanView.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\LendLoanView.baml
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\ref\accounting.dll
+C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\Views\LendLoanView.g.cs
+C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\obj\Debug\net5.0-windows\Views\LendLoanView.baml
+C:\Users\ALIM\RiderProjects\accoutingWPF\accounting\bin\Debug\net5.0-windows\ref\accounting.dll

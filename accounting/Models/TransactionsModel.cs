@@ -4,7 +4,7 @@ namespace accounting.Models
 {
     public class TransactionsModel
     {
-        public TransactionsModel(int amount, int fundAccountId, string? personalAccountNumber)
+        public TransactionsModel(long amount, ushort fundAccountId, string? personalAccountNumber)
         {
             Date = DateTime.Now;
             Amount = amount;
@@ -12,10 +12,10 @@ namespace accounting.Models
             PersonalAccountNumber = personalAccountNumber;
         }
 
-        public int Id { get; }
-        public int Amount { get; }
-        public int FundAccountId { get; }
-        public AccountsModel Account { get; }
+        public ushort Id { get; }
+        public long Amount { get; }
+        public ushort FundAccountId { get; }
+        public AccountsModel? Account { get; }
         public DateTime Date { get; }
         public string? PersonalAccountNumber { get; }
     }

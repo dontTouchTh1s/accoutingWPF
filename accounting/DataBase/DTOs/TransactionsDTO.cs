@@ -7,12 +7,12 @@ namespace accounting.DataBase.DTOs
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
-        public int Id { get; set; }
+        public ushort Id { get; set; }
 
-        public int Amount { get; set; }
+        public long Amount { get; set; }
         public string Date { get; set; }
 
-        public int? AccountId { get; set; }
+        public ushort? AccountId { get; set; }
 
         [ForeignKey("AccountId")] public AccountDTO Account { get; set; }
 

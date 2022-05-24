@@ -13,9 +13,9 @@ namespace accounting.ViewModels
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
         private string? _accountOwnerFullName;
-        private int? _amount;
-        private int? _fundAccountId;
-        private int? _instalmentCount;
+        private ulong? _amount;
+        private byte? _fundAccountId;
+        private byte? _instalmentCount;
         private string? _personalAccountNumber;
         private string? _searchText;
 
@@ -37,13 +37,13 @@ namespace accounting.ViewModels
             set => SetProperty(ref _personalAccountNumber, value);
         }
 
-        public int? Amount
+        public ulong? Amount
         {
             get => _amount;
             set => SetProperty(ref _amount, value);
         }
 
-        public int? FundAccountId
+        public byte? FundAccountId
         {
             get => _fundAccountId;
             set => SetProperty(ref _fundAccountId, value);
@@ -57,7 +57,7 @@ namespace accounting.ViewModels
                 SetProperty(ref _searchText, value);
                 try
                 {
-                    FundAccountId = int.Parse(value!);
+                    FundAccountId = byte.Parse(value!);
                 }
                 catch
                 {
@@ -80,7 +80,7 @@ namespace accounting.ViewModels
             set => SetProperty(ref _accountOwnerFullName, value);
         }
 
-        public int? InstalmentCount
+        public byte? InstalmentCount
         {
             get => _instalmentCount;
             set => SetProperty(ref _instalmentCount, value);

@@ -2,18 +2,18 @@
 {
     public class AccountsItemsViewModel : BaseViewModel
     {
-        private int _accountId;
+        private ushort _accountId;
         private string _accountOwnerFullName;
         private string _accountOwnerNationalId;
 
-        public AccountsItemsViewModel(int accountId, string accountOwnerFullName, string accountOwnerNationalId)
+        public AccountsItemsViewModel(ushort accountId, string accountOwnerFullName, string accountOwnerNationalId)
         {
             _accountId = accountId;
             _accountOwnerFullName = accountOwnerFullName;
             _accountOwnerNationalId = accountOwnerNationalId;
         }
 
-        public int AccountId
+        public ushort AccountId
         {
             get => _accountId;
             set => SetProperty(ref _accountId, value);

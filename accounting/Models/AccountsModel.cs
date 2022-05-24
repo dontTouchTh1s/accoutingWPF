@@ -8,9 +8,9 @@ namespace accounting.Models
     {
         private readonly DataBaseAccountsServices _dataBaseAccountsServices;
 
-        public AccountsModel(int id,
-            int credit,
-            int availableCredit,
+        public AccountsModel(ushort id,
+            ulong credit,
+            ulong availableCredit,
             DateTime createDate,
             string ownerNationalId,
             DataBaseAccountsServices dataBaseAccountsServices)
@@ -23,21 +23,20 @@ namespace accounting.Models
             OwnerNationalId = ownerNationalId;
         }
 
-        public AccountsModel(int id,
-            string ownerNationalId,
+        public AccountsModel(string ownerNationalId,
+            ulong credit,
             DataBaseAccountsServices dataBaseAccountsServices)
         {
             _dataBaseAccountsServices = dataBaseAccountsServices;
-            Id = id;
             CreateDate = DateTime.Now;
-            Credit = 0;
-            AvailableCredit = 0;
+            Credit = credit;
+            AvailableCredit = credit - InvestmentFundModel.MinimumCredit;
             OwnerNationalId = ownerNationalId;
         }
 
-        public int Id { get; }
-        public int Credit { get; }
-        public int AvailableCredit { get; }
+        public ushort Id { get; }
+        public ulong Credit { get; }
+        public ulong AvailableCredit { get; }
         public DateTime CreateDate { get; }
         public string OwnerNationalId { get; }
 

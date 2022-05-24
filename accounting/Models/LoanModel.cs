@@ -4,7 +4,7 @@ namespace accounting.Models
 {
     public class LoanModel
     {
-        public LoanModel(int accountId, int amount, int installmentsCount, string? personalAccountNumber)
+        public LoanModel(ushort accountId, ulong amount, byte installmentsCount, string? personalAccountNumber)
         {
             Amount = amount;
             InstallmentsCount = installmentsCount;
@@ -13,11 +13,11 @@ namespace accounting.Models
             PersonalAccountNumber = personalAccountNumber;
         }
 
-        public int Id { get; }
-        public int Amount { get; }
-        public int InstallmentsCount { get; }
+        public ushort Id { get; }
+        public ulong Amount { get; }
+        public byte InstallmentsCount { get; }
         public DateTime LendDate { get; }
-        public int AccountId { get; }
+        public ushort AccountId { get; }
         public string? PersonalAccountNumber { get; }
     }
 }
