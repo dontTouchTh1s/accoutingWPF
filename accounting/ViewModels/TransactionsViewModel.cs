@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Models;
@@ -14,7 +15,7 @@ namespace accounting.ViewModels
         private ObservableCollection<AccountsItemsViewModel> _accountList;
 
         private string? _accountOwnerFullName;
-        private long? _amount;
+        private string _amountView = "0";
         private ushort? _fundAccountId;
         private string? _personalAccountNumber;
         private string? _searchText;
@@ -26,6 +27,7 @@ namespace accounting.ViewModels
             MakeTransactionsCommand = new MakeTransactionCommand(this, investmentFundModel);
             SelectionChanged = new SelectionChangedCommand(this);
             _accountList = AccountsList;
+            AmountView = "0";
             GetAccounts();
         }
 
@@ -54,13 +56,16 @@ namespace accounting.ViewModels
             }
         }
 
-        public long? AmountView
+        public string? AmountView
         {
-            get => _amount;
+            get => _amountView;
             set
             {
-                SetProperty(ref _amount, value);
-                Amount = value;
+                long.TryParse(value, NumberStyles.Number, CultureInfo.CurrentCulture, out var provider);
+                Amount = provider;
+                value = provider.ToString("N0", CultureInfo.CurrentCulture);
+                SetProperty(ref _amountView, value);
+                SetProperty(ref _amountView, value);
             }
         }
 

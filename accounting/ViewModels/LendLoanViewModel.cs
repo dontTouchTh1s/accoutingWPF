@@ -1,8 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using accounting.Commands;
+using accounting.Commands.CurrencyComboBoxCommands;
 using accounting.Models;
 
 namespace accounting.ViewModels
@@ -13,7 +15,7 @@ namespace accounting.ViewModels
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
         private string? _accountOwnerFullName;
-        private ulong? _amount;
+        private string _amountView = "0";
         private byte? _fundAccountId;
         private byte? _instalmentCount;
         private string? _personalAccountNumber;
@@ -24,6 +26,9 @@ namespace accounting.ViewModels
             _investmentFundModel = investmentFundModel;
             LendLoanCommand = new LendLoanCommand(this, investmentFundModel);
             _accountList = AccountsList;
+            CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
+            CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
+            Amount = 0;
 #pragma warning disable CS4014
             GetAccounts();
 #pragma warning restore CS4014
@@ -37,11 +42,19 @@ namespace accounting.ViewModels
             set => SetProperty(ref _personalAccountNumber, value);
         }
 
-        public ulong? Amount
+        public string AmountView
         {
-            get => _amount;
-            set => SetProperty(ref _amount, value);
+            get => _amountView;
+            set
+            {
+                ulong.TryParse(value, NumberStyles.Number, CultureInfo.CurrentCulture, out var provider);
+                Amount = provider;
+                value = provider.ToString("N0", CultureInfo.CurrentCulture);
+                SetProperty(ref _amountView, value);
+            }
         }
+
+        public ulong? Amount { get; set; }
 
         public byte? FundAccountId
         {
@@ -73,7 +86,9 @@ namespace accounting.ViewModels
             get => _accountList;
             set => SetProperty(ref _accountList, value);
         }
+        public ICommand CreditPreviewKeyDownCommand { get; }
 
+        public ICommand CreditPreviewKeyUpCommand { get; }
         public string? AccountOwnerFullName
         {
             get => _accountOwnerFullName;

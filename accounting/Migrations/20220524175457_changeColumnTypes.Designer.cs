@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using accounting.DataBase.DbContexts;
 
 namespace accounting.Migrations
 {
     [DbContext(typeof(InvestmentFundDbContext))]
-    partial class InvestmentFundDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220524175457_changeColumnTypes")]
+    partial class changeColumnTypes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
