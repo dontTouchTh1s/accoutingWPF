@@ -149,14 +149,14 @@ namespace accounting.ViewModels
             get => _creditView;
             set
             {
-                long.TryParse(value, NumberStyles.Number, CultureInfo.CurrentCulture, out var provider);
+                ulong.TryParse(value, NumberStyles.Number, CultureInfo.CurrentCulture, out var provider);
                 Credit = provider;
                 value = provider.ToString("N0", CultureInfo.CurrentCulture);
                 SetProperty(ref _creditView, value);
             }
         }
 
-        public long Credit { get; set; }
+        public ulong Credit { get; set; }
 
         public ICommand CreditLostFocusCommand { get; }
 
