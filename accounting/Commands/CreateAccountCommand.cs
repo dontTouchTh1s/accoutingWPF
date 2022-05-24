@@ -54,7 +54,7 @@ namespace accounting.Commands
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 var dialogViewModel =
                     new MessageDialogViewModel("در ایجاد حساب مشکلی پیش آمده است.",
