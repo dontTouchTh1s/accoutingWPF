@@ -8,6 +8,7 @@ namespace accounting.Models
 {
     public class InvestmentFundModel
     {
+        public const int MinimumCredit = 500000;
         private readonly DataBaseInvestmentFundServices _dataBaseInvestmentFundServices;
         private readonly DataBasePeopleServices _dataBasePeopleServices;
         private readonly InvestmentFundDbContextFactory _investmentFundDbContextFactory;
