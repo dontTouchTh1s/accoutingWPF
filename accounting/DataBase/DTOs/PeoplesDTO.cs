@@ -9,7 +9,7 @@ namespace accounting.DataBase.DTOs
         [MaxLength(15)] [MinLength(3)] public string Name { get; set; }
         [MaxLength(20)] [MinLength(3)] public string LastName { get; set; }
         [MaxLength(15)] [MinLength(3)] public string FatherName { get; set; }
-        [StringLength(16)] public string PersonalAccountNumber { get; set; }
+        [StringLength(16)] public string? PersonalAccountNumber { get; set; }
         public List<AccountDTO>? Accounts { get; set; }
     }
 }
