@@ -34,7 +34,7 @@ namespace accounting.Models
 
             await _dataBasePeopleServices.AddPeople(people);
 
-            await people.AddAccount(people);
+            await people.AddAccount(people, createAccountViewModel.Credit);
         }
 
         public async Task<int> GetBalance()
