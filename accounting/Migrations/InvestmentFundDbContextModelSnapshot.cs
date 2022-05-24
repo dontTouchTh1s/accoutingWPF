@@ -117,7 +117,6 @@ namespace accounting.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PersonalAccountNumber")
-                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("TEXT");
 
