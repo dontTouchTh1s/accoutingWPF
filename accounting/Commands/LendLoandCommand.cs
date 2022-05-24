@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using accounting.Exceptions;
 using accounting.Models;
 using accounting.ViewModels;
 using accounting.ViewModels.Dialogs;
@@ -24,8 +25,25 @@ namespace accounting.Commands
             try
             {
                 await _investmentFundModel.LendLoan(_lendLoanViewModel);
+                var dialogViewModel = new MessageDialogViewModel("وام با موفقیت داده شد.",
+                    PackIconKind.Check, new SolidColorBrush(Colors.Green));
+                await DialogHost.Show(dialogViewModel, "rootDialog");
             }
-            catch (Exception e)
+            catch (NotEnoughCreditException e)
+            {
+                var dialogViewModel =
+                    new MessageDialogViewModel(string.Format("حداکثر مبلغ وام، دو برابر اعتبار حساب است. حداکثر {0}", e.MaximumLoan),
+                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
+                await DialogHost.Show(dialogViewModel, "rootDialog");
+            }
+            catch (NotEnoughFundAvailableBalance e)
+            {
+                var dialogViewModel =
+                    new MessageDialogViewModel(string.Format("صندوق موجودی دردسترس کافی برای این وام ندارد. موجودی فعلی : {0}", e.AvailableBalance),
+                        PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
+                await DialogHost.Show(dialogViewModel, "rootDialog");
+            }
+            catch (Exception)
             {
                 var dialogViewModel =
                     new MessageDialogViewModel("خطایی در ثبت اطالاعات رخ داده است.",
