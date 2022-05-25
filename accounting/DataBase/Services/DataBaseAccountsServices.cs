@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using accounting.DataBase.DbContexts;
 using accounting.Exceptions;
 using accounting.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace accounting.DataBase.Services
 {
@@ -54,6 +57,13 @@ namespace accounting.DataBase.Services
             accountDTO.AvailableCredit = accountDTO.Credit;
 
             await context.SaveChangesAsync();
+        }
+
+        public async Task<IEnumerable<LoanModel>> GetLoans(ushort? fundAccountId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loans = await context.Loans.Where(lone => lone.AccountId == fundAccountId).ToListAsync();
+            return loans.Select(loan => _dtoConverterService.LoanDTOToModel(loan)).ToList();
         }
     }
 }
