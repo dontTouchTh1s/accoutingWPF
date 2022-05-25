@@ -7,12 +7,14 @@
              xmlns:viewModels="clr-namespace:accounting.ViewModels"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:comboBoxItems="clr-namespace:accounting.ViewModels.ComboBoxItems"
+             xmlns:comboBoxItems1="clr-namespace:accounting.Views.ComboBoxItems"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance viewModels:LendLoanViewModel}">
     <UserControl.Resources>
-        <DataTemplate DataType="{x:Type viewModels:AccountsItemsViewModel}">
-            <local:AccountsItemsView />
+        <DataTemplate DataType="{x:Type comboBoxItems:AccountsItemsViewModel}">
+            <comboBoxItems1:AccountsItemsView />
         </DataTemplate>
     </UserControl.Resources>
     <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Right" Background="White">
