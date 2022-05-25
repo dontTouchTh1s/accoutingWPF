@@ -13,6 +13,16 @@ namespace accounting.Models
             PersonalAccountNumber = personalAccountNumber;
         }
 
+        public LoanModel(ushort id, ulong loanAmount, byte loanInstallmentsCount,DateTime lendDate, string? personalAccountNumber, ushort accountId)
+        {
+            Id = id;
+            Amount = loanAmount;
+            InstallmentsCount = loanInstallmentsCount;
+            LendDate = lendDate;
+            PersonalAccountNumber = personalAccountNumber;
+            AccountId = accountId;
+        }
+
         public ushort Id { get; }
         public ulong Amount { get; }
         public byte InstallmentsCount { get; }
