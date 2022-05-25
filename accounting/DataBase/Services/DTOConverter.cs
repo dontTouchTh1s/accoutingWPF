@@ -75,5 +75,15 @@ namespace accounting.DataBase.Services
                 InstallmentsCount = loanModel.InstallmentsCount
             };
         }
+
+        public LoanModel LoanDTOToModel(LoansDTO loan)
+        {
+            return new LoanModel(loan.Id,
+                loan.Amount,
+                loan.InstallmentsCount,
+                DateTime.Parse(loan.LendDate),
+                loan.PersonalAccountNumber,
+                loan.AccountId);
+        }
     }
 }
