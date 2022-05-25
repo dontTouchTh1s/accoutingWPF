@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Models;
+using accounting.ViewModels.ComboBoxItems;
 
 namespace accounting.ViewModels
 {
@@ -11,7 +12,6 @@ namespace accounting.ViewModels
     {
         private readonly List<AccountsItemsViewModel> _accountsItemsViewModels = new();
         private readonly InvestmentFundModel _investmentFundModel;
-
         private ObservableCollection<AccountsItemsViewModel> _accountList;
 
         private string? _accountOwnerFullName;
@@ -108,6 +108,7 @@ namespace accounting.ViewModels
                         !accountsItemsViewModel.AccountOwnerNationalId.Contains(SearchText))
                         AccountsList.Remove(accountsItemsViewModel);
         }
+
         private async void GetAccounts()
         {
             var peoplesAccounts = await _investmentFundModel.GetAllPeoplesAccounts();
