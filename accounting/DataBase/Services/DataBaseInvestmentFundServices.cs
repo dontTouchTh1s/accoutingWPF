@@ -40,9 +40,9 @@ namespace accounting.DataBase.Services
         public async Task<IEnumerable<PeoplesModel>> GetAllPeoples()
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
-            return context.Peoples
+            return await context.Peoples
                 .Select(peoplesDTO => _dtoConverterService.PeopleDTOToModel(peoplesDTO, DataBasePeopleServices))
-                .ToList().AsEnumerable();
+                .ToListAsync();
         }
 
         public async Task<Dictionary<PeoplesModel, IEnumerable<AccountsModel>>> GetAllPeoplesAccounts()
