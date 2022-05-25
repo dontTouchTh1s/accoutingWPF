@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace accounting.Views
+namespace accounting.Views.ComboBoxItems
 {
     public partial class AccountsItemsView : UserControl
     {

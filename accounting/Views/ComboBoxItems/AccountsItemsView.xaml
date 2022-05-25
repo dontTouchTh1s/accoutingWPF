@@ -1,12 +1,13 @@
-﻿<UserControl x:Class="accounting.Views.AccountsItemsView"
+﻿<UserControl x:Class="accounting.Views.ComboBoxItems.AccountsItemsView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:accounting.ViewModels"
+             xmlns:comboBoxItems="clr-namespace:accounting.ViewModels.ComboBoxItems"
              mc:Ignorable="d"
              d:DesignHeight="50" d:DesignWidth="250"
-             d:DataContext="{d:DesignInstance viewModels:AccountsItemsViewModel}">
+             d:DataContext="{d:DesignInstance comboBoxItems:AccountsItemsViewModel}">
     <Grid FlowDirection="RightToLeft">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
