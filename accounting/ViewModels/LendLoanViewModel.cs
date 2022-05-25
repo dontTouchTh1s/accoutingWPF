@@ -6,6 +6,7 @@ using System.Windows.Input;
 using accounting.Commands;
 using accounting.Commands.CurrencyComboBoxCommands;
 using accounting.Models;
+using accounting.ViewModels.ComboBoxItems;
 
 namespace accounting.ViewModels
 {
