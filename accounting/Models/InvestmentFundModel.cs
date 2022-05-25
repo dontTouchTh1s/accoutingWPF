@@ -65,5 +65,10 @@ namespace accounting.Models
                 lendLoanViewModel.InstalmentCount ?? 0, lendLoanViewModel.PersonalAccountNumber);
             await _dataBaseInvestmentFundServices.LendLoad(loanModel);
         }
+
+        public async Task<IEnumerable<LoanModel>> GetAccountLoans(ushort? fundAccountId)
+        {
+            return await _dataBasePeopleServices.DataBaseAccountsServices.GetLoans(fundAccountId);
+        }
     }
 }
