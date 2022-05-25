@@ -1,5 +1,6 @@
 ﻿using System.Windows.Controls;
 using accounting.ViewModels;
+using accounting.ViewModels.ComboBoxItems;
 
 namespace accounting.Commands
 {
