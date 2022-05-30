@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using accounting.Exceptions;
@@ -23,8 +24,9 @@ namespace accounting.Commands
 
         public override async Task ExecuteAsync(object? parameter)
         {
+            _transactionViewModel.Amount = long.Parse(_transactionViewModel.AmountView ?? "0", NumberStyles.Number, CultureInfo.CurrentCulture);
             if ((string)_transactionViewModel.TransactionType! == "Withdraw")
-                _transactionViewModel.Amount *= -1;
+                _transactionViewModel.Amount = -long.Parse(_transactionViewModel.AmountView ?? "0", NumberStyles.Number, CultureInfo.CurrentCulture);
             try
             {
                 await _investmentFundModel.MakeTransaction(_transactionViewModel);
