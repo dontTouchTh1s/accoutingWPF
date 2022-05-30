@@ -8,6 +8,8 @@ namespace accounting.Commands.CurrencyComboBoxCommands
         public override void Execute(object? parameter)
         {
             var args = (KeyEventArgs)parameter!;
+            if (args.Key is >= Key.A and <= Key.Z)
+                args.Handled = true;
             switch (args.Key)
             {
                 case Key.Left:

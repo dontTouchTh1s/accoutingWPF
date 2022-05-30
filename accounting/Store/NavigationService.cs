@@ -11,7 +11,8 @@ namespace accounting.Store
         {
             SummeryViewModel = (SummeryViewModel)ViewModels[0];
             TransactionsViewModel = (TransactionsViewModel)ViewModels[1];
-            ManageLoanViewModel = (ManageLoanViewModel)ViewModels[2];      
+            ManageLoanViewModel = (ManageLoanViewModel)ViewModels[2];
+            CreateAccountViewModel = (CreateAccountViewModel)ViewModels[3];
         }
         public BaseViewModel CurrentViewModel
         {
@@ -26,6 +27,7 @@ namespace accounting.Store
         public ManageLoanViewModel ManageLoanViewModel { get; set; }
         public SummeryViewModel SummeryViewModel { get; set; }
         public TransactionsViewModel TransactionsViewModel { get; set; }
+        public CreateAccountViewModel CreateAccountViewModel { get; }
 
         private void OnCurrentViewChanged()
         {
