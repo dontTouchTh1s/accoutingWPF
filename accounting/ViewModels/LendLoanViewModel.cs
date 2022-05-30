@@ -22,12 +22,11 @@ namespace accounting.ViewModels
         private string? _personalAccountNumber;
         private string? _searchText;
 
-        public LendLoanViewModel(InvestmentFundModel investmentFundModel, NavigationService navigationService)
+        public LendLoanViewModel(InvestmentFundModel investmentFundModel)
         {
             _investmentFundModel = investmentFundModel;
             _accountList = AccountsList;
             LendLoanCommand = new LendLoanCommand(this, investmentFundModel);
-            NavigationCommand = new NavigatoinCommand(navigationService, navigationService.NavigateToDepositLoan);
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             Amount = 0;
@@ -104,8 +103,6 @@ namespace accounting.ViewModels
             get => _instalmentCount;
             set => SetProperty(ref _instalmentCount, value);
         }
-
-        public ICommand NavigationCommand { get; }
 
         private void FilterAccountsList()
         {

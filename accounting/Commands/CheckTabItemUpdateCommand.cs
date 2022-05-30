@@ -17,32 +17,33 @@ namespace accounting.Commands
 
         public override void Execute(object? parameter)
         {
-            var args = (SelectionChangedEventArgs)parameter!;
             try
             {
-                var selectedItem = (TabItem)args.AddedItems[0]!;
+                var selectedItem = (string)parameter!;
 
-                switch (selectedItem.Name)
+                switch (selectedItem)
                 {
                     case "Home":
                     {
-                        _mainViewModel.SummeryViewModel.UpdateContent();
+                         _navigatoinSerivce.Navigate(_navigatoinSerivce.SummeryViewModel);
+                        _navigatoinSerivce.SummeryViewModel.UpdateContent();
                         break;
                     }
                     case "CreateAccount":
                     {
-                        _mainViewModel.CreateAccountViewModel.UpdateContent();
+                        //_navigatoinSerivce.CreateAccountViewModel.UpdateContent();
                         break;
                     }
                     case "Transactions":
                     {
-                        _mainViewModel.TransactionsViewModel.UpdateContent();
+                        _navigatoinSerivce.Navigate(_navigatoinSerivce.TransactionsViewModel);
+                        _navigatoinSerivce.TransactionsViewModel.UpdateContent();
                         break;
                     }
                     case "ManageLoans":
                     {
-                        _navigatoinSerivce.DepositLandViewModel.UpdateContent();
-                        _navigatoinSerivce.LendLoanViewModel.UpdateContent();
+                        _navigatoinSerivce.Navigate(_navigatoinSerivce.ManageLoanViewModel);
+                        _navigatoinSerivce.ManageLoanViewModel.UpdateContent();
                         break;
                     }
                     case "PeoplesAndAcconuts":

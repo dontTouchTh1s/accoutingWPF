@@ -31,7 +31,10 @@ namespace accounting
                 _investmentFundDbContextFactory,
                 dataBaseInvestmentFundServices
             );
-            _navigationStore = new NavigationService(_investmentFundModel);
+            var summeryViewModel = new SummeryViewModel(_investmentFundModel);
+            var transactionsViewModel = new TransactionsViewModel(_investmentFundModel);
+            var manageLoanViewModel = new ManageLoanViewModel(_investmentFundModel);           
+            _navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel);
         }
 
         protected override void OnStartup(StartupEventArgs e)

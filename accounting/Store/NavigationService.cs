@@ -1,5 +1,4 @@
 ﻿using System;
-using accounting.Models;
 using accounting.ViewModels;
 
 namespace accounting.Store
@@ -8,14 +7,13 @@ namespace accounting.Store
     {
         private BaseViewModel _manageLoansCurrentViewModel = null!;
 
-        public NavigationService(InvestmentFundModel investmentFundModel)
+        public NavigationService(params BaseViewModel[] ViewModels)
         {
-            DepositLandViewModel = new DepositLoanInstalmentViewModel(investmentFundModel);
-            LendLoanViewModel = new LendLoanViewModel(investmentFundModel, this);
-            NavigateToLendLoan();
+            SummeryViewModel = (SummeryViewModel)ViewModels[0];
+            TransactionsViewModel = (TransactionsViewModel)ViewModels[1];
+            ManageLoanViewModel = (ManageLoanViewModel)ViewModels[2];      
         }
-
-        public BaseViewModel ManageLoansCurrentViewModel
+        public BaseViewModel CurrentViewModel
         {
             get => _manageLoansCurrentViewModel;
             set
@@ -25,22 +23,18 @@ namespace accounting.Store
             }
         }
 
-        public LendLoanViewModel LendLoanViewModel { get; set; }
-        public DepositLoanInstalmentViewModel DepositLandViewModel { get; set; }
+        public ManageLoanViewModel ManageLoanViewModel { get; set; }
+        public SummeryViewModel SummeryViewModel { get; set; }
+        public TransactionsViewModel TransactionsViewModel { get; set; }
 
         private void OnCurrentViewChanged()
         {
             CurrentViewChanged?.Invoke();
         }
 
-        public void NavigateToDepositLoan()
+        public void Navigate(BaseViewModel navigationDestination)
         {
-            ManageLoansCurrentViewModel = DepositLandViewModel;
-        }
-
-        public void NavigateToLendLoan()
-        {
-            ManageLoansCurrentViewModel = LendLoanViewModel;
+            CurrentViewModel = navigationDestination;
         }
 
         public event Action CurrentViewChanged = null!;

@@ -1,22 +1,21 @@
 ﻿using System;
 using accounting.Store;
+using accounting.ViewModels;
 
 namespace accounting.Commands
 {
     public class NavigatoinCommand : BaseCommand
     {
-        private readonly Action _createViewModel;
-        private readonly NavigationService _navigationStore;
+        private readonly NavigationService _navigationService;
 
-        public NavigatoinCommand(NavigationService navigationStore, Action createViewModel)
+        public NavigatoinCommand(NavigationService navigationService)
         {
-            _navigationStore = navigationStore;
-            _createViewModel = createViewModel;
+            _navigationService = navigationService;
         }
 
         public override void Execute(object? parameter)
         {
-            _createViewModel();
+            _navigationService.Navigate((BaseViewModel)parameter!);
         }
     }
 }
