@@ -32,9 +32,13 @@ namespace accounting.ViewModels
         ///     Notifies listeners that a property value has changed.
         /// </summary>
         /// <param name="propertyName">Name of the property, used to notify listeners.</param>
-        protected void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public virtual void UpdateContent()
+        {
         }
     }
 }
