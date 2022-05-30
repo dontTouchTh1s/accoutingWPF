@@ -26,8 +26,8 @@
         </Style.Setters>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="{StaticResource LightSecondarySurface}"/>
-                <Setter Property="Foreground" Value="{StaticResource LightOnSecondarySurface}"/>
+                <Setter Property="Background" Value="{StaticResource LightBackground}"/>
+                <Setter Property="Foreground" Value="{StaticResource LightOnBackground}"/>
             </Trigger>
         </Style.Triggers>
     </Style>

@@ -43,12 +43,12 @@
         DialogTheme="Inherit"
         CloseOnClickAway="True">
         <Border CornerRadius="25"
-                Background="{StaticResource LightBackground}">
+                Background="{StaticResource LightPrimary}">
             <Grid FlowDirection="RightToLeft">
                 <Grid.Resources>
                     <Style BasedOn="{StaticResource RadioButtonTheme}" TargetType="RadioButton">
-                        <Setter Property="Foreground" Value="{StaticResource LightOnBackground}" />
-                        <Setter Property="Background" Value="{StaticResource LightBackground}" />
+                        <Setter Property="Background" Value="{StaticResource LightPrimary}" />
+                        <Setter Property="Foreground" Value="{StaticResource LightOnPrimary}" />
                     </Style>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
@@ -80,7 +80,6 @@
                     Grid.Row="1"
                     Grid.Column="1"
                     Content="{Binding CurrentViewModel}"/>
-
 
             </Grid>
         </Border>

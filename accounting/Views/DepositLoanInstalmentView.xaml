@@ -17,7 +17,7 @@
             <comboBoxItems1:AccountsItemsView />
         </DataTemplate>
     </UserControl.Resources>
-    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Right" Background="White">
+    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Right">
         <TextBlock Text="ایجاد تراکنش" />
         <Grid Margin="8">
             <Grid.Resources>

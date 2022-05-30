@@ -18,34 +18,33 @@
             <local:DepositLoanInstalmentView />
         </DataTemplate>
     </UserControl.Resources>
-    <Grid FlowDirection="RightToLeft">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <TabControl
-                Background="{StaticResource LightPrimary}"
-                FlowDirection="RightToLeft">
-            <TabControl.Resources>
-                <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
-                    <Setter Property="MinWidth" Value="250" />
-                    <Setter Property="Height" Value="65" />
-                </Style>
-            </TabControl.Resources>
-            <TabItem
+    <Border CornerRadius="0,0,25,25"
+            Background="{StaticResource LightBackground}">
+        <Grid
+        FlowDirection="RightToLeft">
+            <TabControl
+            Margin="0"
+            Style="{StaticResource MaterialDesignFilledTabControl}"
+            FlowDirection="RightToLeft">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                        <Setter Property="MinWidth" Value="250" />
+                        <Setter Property="Height" Value="65" />
+                    </Style>
+                </TabControl.Resources>
+                <TabItem
                     Header="تخصیص وام">
-                <views:LendLoanView 
+                    <views:LendLoanView 
                         Margin="12"
                         HorizontalAlignment="Left"/>
-            </TabItem>
-            <TabItem
+                </TabItem>
+                <TabItem
                     Header="واریز اقساط">
-                <views:DepositLoanInstalmentView
+                    <views:DepositLoanInstalmentView
                         Margin="12"
                         HorizontalAlignment="Left"/>
-            </TabItem>
-        </TabControl>
-    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Border>
 </UserControl>

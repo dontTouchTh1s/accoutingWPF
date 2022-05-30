@@ -50,7 +50,6 @@ F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\runtimes\win-x64\nat
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\runtimes\win-x86\native\e_sqlite3.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
 F:\accounting\accouting\accounting\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
-F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.csproj.AssemblyReference.cache
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\App.baml
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\CreateAccountView.g.cs
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\SummeryView.g.cs
@@ -176,3 +175,4 @@ F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\MainWindow.g.c
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Views\MainWindow.baml
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Theme\HomeRadioButtonTheme.baml
 F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\Theme\TabControlTheme.baml
+F:\accounting\accouting\accounting\obj\Debug\net5.0-windows\accounting.csproj.AssemblyReference.cache
