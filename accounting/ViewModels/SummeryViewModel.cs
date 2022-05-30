@@ -10,7 +10,7 @@ namespace accounting.ViewModels
         public SummeryViewModel(InvestmentFundModel investmentFundModel)
         {
             _investmentFundModel = investmentFundModel;
-            GetBalance();
+            UpdateContent();
         }
 
         public ulong Balance
@@ -22,6 +22,11 @@ namespace accounting.ViewModels
         public async void GetBalance()
         {
             Balance = await _investmentFundModel.GetBalance();
+        }
+
+        public sealed override void UpdateContent()
+        {
+            GetBalance();
         }
     }
 }
