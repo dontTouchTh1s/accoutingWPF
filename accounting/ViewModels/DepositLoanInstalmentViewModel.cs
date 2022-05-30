@@ -10,43 +10,33 @@ namespace accounting.ViewModels
 {
     public class DepositLoanInstalmentViewModel : BaseViewModel
     {
-        private ObservableCollection<LoanItemViewModel> _loanList;
-        private string? _loanSearchText;
-        private ushort? _loanId;
-        private string _amountView = "0";
-        private string? _personalAccountNumber;
+        private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
         private string? _accountSearchText;
+        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
+        private string _amountView = "0";
         private ushort? _fundAccountId;
-        private readonly List<AccountsItemsViewModel> _accountsItemsViewModels = new ();
-        private readonly InvestmentFundModel _investmentFundModel;
-        private readonly List<LoanItemViewModel> _loanItemsViewModels = new();
+        private ushort? _loanId;
+        private List<LoanItemViewModel> _loanItemsViewModels = new();
+        private ObservableCollection<LoanItemViewModel> _loanList;
+        private string? _loanSearchText;
+        private string? _personalAccountNumber;
 
         public DepositLoanInstalmentViewModel(InvestmentFundModel investmentFundModel)
         {
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             PayLoanInstalment = new PayLoanInstalmentCommand();
-            
+
             _investmentFundModel = investmentFundModel;
             AmountHelperText = string.Format("حداقل مبلغ قسط {0} تومان است.", 4);
             AmountView = "0";
-            GetAccounts();
-            GetAccountLoans();
+            _accountList = AccountsList;
+            _loanList = LoansList;
+            UpdateContent();
         }
 
-        private async void GetAccountLoans()
-        {
-            var loanModels = await _investmentFundModel.GetAccountLoans(FundAccountId);
-            foreach (var loan in loanModels)
-            {
-                _loanItemsViewModels.Add(new LoanItemViewModel(loan.Id, loan.Amount, loan.InstallmentsCount));
-            }
-
-            LoansList = new ObservableCollection<LoanItemViewModel>(_loanItemsViewModels);
-
-        }
-
+        public string AmountHelperText { get; }
         public string? AccountOwnerFullName { get; set; }
 
         public ObservableCollection<LoanItemViewModel> LoansList
@@ -55,28 +45,20 @@ namespace accounting.ViewModels
             set => SetProperty(ref _loanList, value);
         }
 
-        public ushort? LoanId
+        public ObservableCollection<AccountsItemsViewModel> AccountsList
         {
-            get => _loanId;
-            set => SetProperty(ref _loanId, value);
+            get => _accountList;
+            set => SetProperty(ref _accountList, value);
         }
-        public string? LoanSearchText
-        {
-            get => _loanSearchText;
-            set => SetProperty(ref _loanSearchText, value);
-        }
-
-        public string AmountHelperText { get; }
 
         public ICommand CreditPreviewKeyUpCommand { get; set; }
-
         public ICommand CreditPreviewKeyDownCommand { get; set; }
+        public ICommand PayLoanInstalment { get; set; }
 
         public string AmountView
         {
             get => _amountView;
             set => SetProperty(ref _amountView, value);
-
         }
 
         public string? PersonalAccountNumber
@@ -85,14 +67,36 @@ namespace accounting.ViewModels
             set => SetProperty(ref _personalAccountNumber, value);
         }
 
-        public ICommand PayLoanInstalment { get; set; }
-
-        public ObservableCollection<AccountsItemsViewModel> AccountsList
+        public ushort? LoanId
         {
-            get => _accountList;
+            get => _loanId;
+            set => SetProperty(ref _loanId, value);
+        }
+
+        public string? LoanSearchText
+        {
+            get => _loanSearchText;
             set
             {
-                SetProperty(ref _accountList, value);
+                SetProperty(ref _loanSearchText, value);
+                try
+                {
+                    LoanId = ushort.Parse(value!);
+                }
+                catch
+                {
+                    LoanId = null;
+                }
+            }
+        }
+
+        public ushort? FundAccountId
+        {
+            get => _fundAccountId;
+            set
+            {
+                SetProperty(ref _fundAccountId, value);
+                GetAccountLoans();
             }
         }
 
@@ -110,16 +114,11 @@ namespace accounting.ViewModels
                 {
                     FundAccountId = null;
                 }
+
                 FilterAccountsList();
             }
         }
 
-        public ushort? FundAccountId
-        {
-            get => _fundAccountId;
-            set => SetProperty(ref (_fundAccountId), value);
-        }
-        
         private void FilterAccountsList()
         {
             AccountsList = new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
@@ -130,8 +129,21 @@ namespace accounting.ViewModels
                         !accountsItemsViewModel.AccountOwnerNationalId.Contains(AccountSearchText))
                         AccountsList.Remove(accountsItemsViewModel);
         }
+
+        private async void GetAccountLoans()
+        {
+            LoansList = new ObservableCollection<LoanItemViewModel>();
+            _loanItemsViewModels = new List<LoanItemViewModel>();
+            var loanModels = await _investmentFundModel.GetAccountLoans(FundAccountId);
+            foreach (var loan in loanModels)
+                _loanItemsViewModels.Add(new LoanItemViewModel(loan.Id, loan.Amount, loan.InstallmentsCount));
+
+            LoansList = new ObservableCollection<LoanItemViewModel>(_loanItemsViewModels);
+        }
+
         private async void GetAccounts()
         {
+            AccountsList = new ObservableCollection<AccountsItemsViewModel>();
             var peoplesAccounts = await _investmentFundModel.GetAllPeoplesAccounts();
             AccountsList = ConvertToItemViewModelList(peoplesAccounts);
         }
@@ -139,6 +151,7 @@ namespace accounting.ViewModels
         private ObservableCollection<AccountsItemsViewModel> ConvertToItemViewModelList(
             Dictionary<PeoplesModel, IEnumerable<AccountsModel>>? peoplesAccounts)
         {
+            _accountsItemsViewModels = new List<AccountsItemsViewModel>();
             foreach (var vPeoples in peoplesAccounts!)
             foreach (var account in vPeoples.Value)
             {
@@ -149,6 +162,11 @@ namespace accounting.ViewModels
             }
 
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
+        }
+
+        public sealed override void UpdateContent()
+        {
+            GetAccounts();
         }
     }
 }
