@@ -3,6 +3,7 @@ using System.Windows;
 using accounting.DataBase.DbContexts;
 using accounting.DataBase.Services;
 using accounting.Models;
+using accounting.Store;
 using accounting.ViewModels;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ namespace accounting
         private const string ConnectionString = "Data Source=InvestmentFund.db";
         private readonly InvestmentFundDbContextFactory _investmentFundDbContextFactory;
         private readonly InvestmentFundModel _investmentFundModel;
+        private readonly NavigationService _navigationStore;
 
         public App()
         {
@@ -29,6 +31,7 @@ namespace accounting
                 _investmentFundDbContextFactory,
                 dataBaseInvestmentFundServices
             );
+            _navigationStore = new NavigationService(_investmentFundModel);
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -41,7 +44,7 @@ namespace accounting
 
             MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel(_investmentFundModel)
+                DataContext = new MainViewModel(_investmentFundModel, _navigationStore)
             };
             MainWindow.Show();
             base.OnStartup(e);

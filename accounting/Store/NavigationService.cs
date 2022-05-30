@@ -6,15 +6,12 @@ namespace accounting.Store
 {
     public class NavigationService
     {
-        private readonly InvestmentFundModel _investmentFundModel;
-
-        private BaseViewModel _manageLoansCurrentViewModel;
+        private BaseViewModel _manageLoansCurrentViewModel = null!;
 
         public NavigationService(InvestmentFundModel investmentFundModel)
         {
-            _investmentFundModel = investmentFundModel;
-            DepositLandViewModel = new DepositLoanInstalmentViewModel(_investmentFundModel);
-            LendLoanViewModel = new LendLoanViewModel(_investmentFundModel, this);
+            DepositLandViewModel = new DepositLoanInstalmentViewModel(investmentFundModel);
+            LendLoanViewModel = new LendLoanViewModel(investmentFundModel, this);
             NavigateToLendLoan();
         }
 
@@ -46,6 +43,6 @@ namespace accounting.Store
             ManageLoansCurrentViewModel = LendLoanViewModel;
         }
 
-        public event Action CurrentViewChanged;
+        public event Action CurrentViewChanged = null!;
     }
 }

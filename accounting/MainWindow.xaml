@@ -8,6 +8,7 @@
         xmlns:viewModels="clr-namespace:accounting.ViewModels"
         xmlns:dialogViews="clr-namespace:accounting.Views.Dialogs"
         xmlns:dialogVms="clr-namespace:accounting.ViewModels.Dialogs"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="13"
@@ -35,6 +36,12 @@
                     FlowDirection="RightToLeft"
                     Margin="0"
                     BorderBrush="Gainsboro" FontSize="18">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding Path=CheckTabItemUpdateCommand}"
+                                                   PassEventArgsToCommand="True" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
                     <TabControl.Resources>
                         <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
                             <Setter Property="MinWidth" Value="100" />
@@ -42,24 +49,27 @@
                             <Setter Property="Height" Value="65" />
                         </Style>
                     </TabControl.Resources>
-                    <TabItem Header="خانه">
+                    <TabItem Header="خانه"
+                             x:Name="Home">
                         <views:SummeryView HorizontalAlignment="Left"
                                            Margin="8"
                                            DataContext="{Binding SummeryViewModel}" />
                     </TabItem>
-                    <TabItem Header="مدیریت وام ها">
-                        <views:LendLoanView
-                            HorizontalAlignment="Left"
-                            Margin="8"
-                            DataContext="{Binding LendLoanViewModel}" />
+                    <TabItem Header="مدیریت وام ها"
+                             x:Name="ManageLoans">
+                        <views:ManageLoanView DataContext="{Binding ManageLoanViewModel}" />
                     </TabItem>
-                    <TabItem Header="واریز و برداشت" FlowDirection="RightToLeft">
+                    <TabItem Header="واریز و برداشت"
+                             x:Name="Transactions"
+                             FlowDirection="RightToLeft">
                         <views:TransactionView HorizontalAlignment="Left"
                                                Margin="8"
                                                DataContext="{Binding TransactionsViewModel}" />
                     </TabItem>
-                    <TabItem Header="اشخاص و حساب ها" />
-                    <TabItem Header="ایجاد حساب جدید">
+                    <TabItem Header="اشخاص و حساب ها"
+                             x:Name="PeoplesAndAcconuts" />
+                    <TabItem Header="ایجاد حساب جدید"
+                             x:Name="CreateAccount">
                         <views:CreateAccountView
                             HorizontalAlignment="Left"
                             Margin="8"

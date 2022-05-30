@@ -96,8 +96,6 @@
                         ValidatesOnNotifyDataErrors="True" />
                 </TextBox.Text>
             </TextBox>
-
-
             <Button
                 Grid.Row="3"
                 Grid.Column="1"
