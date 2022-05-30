@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Models;
@@ -10,7 +11,7 @@ namespace accounting.ViewModels
 {
     public class TransactionsViewModel : BaseViewModel
     {
-        private readonly List<AccountsItemsViewModel> _accountsItemsViewModels = new();
+        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
 
@@ -28,7 +29,7 @@ namespace accounting.ViewModels
             SelectionChanged = new SelectionChangedCommand(this);
             _accountList = AccountsList;
             AmountView = "0";
-            GetAccounts();
+            UpdateContent();
         }
 
         public ushort? FundAccountId
@@ -51,7 +52,6 @@ namespace accounting.ViewModels
                 {
                     FundAccountId = null;
                 }
-
                 FilterAccountsList();
             }
         }
@@ -111,6 +111,7 @@ namespace accounting.ViewModels
 
         private async void GetAccounts()
         {
+            AccountsList = new ObservableCollection<AccountsItemsViewModel>();
             var peoplesAccounts = await _investmentFundModel.GetAllPeoplesAccounts();
             AccountsList = ConvertToItemViewModelList(peoplesAccounts);
         }
@@ -118,6 +119,7 @@ namespace accounting.ViewModels
         private ObservableCollection<AccountsItemsViewModel> ConvertToItemViewModelList(
             Dictionary<PeoplesModel, IEnumerable<AccountsModel>>? peoplesAccounts)
         {
+            _accountsItemsViewModels = new List<AccountsItemsViewModel>();
             foreach (var vPeoples in peoplesAccounts!)
             foreach (var account in vPeoples.Value)
             {
@@ -126,8 +128,12 @@ namespace accounting.ViewModels
                         vPeoples.Key.NationalId);
                 _accountsItemsViewModels.Add(accountsItemsViewModels);
             }
-
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
+        }
+
+        public sealed override void UpdateContent()
+        {
+            GetAccounts();
         }
     }
 }
