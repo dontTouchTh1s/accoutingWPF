@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 using accounting.DataBase.DbContexts;
 using accounting.Exceptions;
 using accounting.Models;
@@ -38,24 +37,25 @@ namespace accounting.DataBase.Services
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var accountDTO = await context.Accounts.FindAsync(transactionsModel.FundAccountId);
             var transactionsDTO = _dtoConverterService.TransactionsToDTO(transactionsModel);
-            
-            // Check if available credit is not enough on withdraw, throw exception
-            if (accountDTO.AvailableCredit < (ulong)transactionsModel.Amount && transactionsModel.Amount < 0)
-                throw new NotEnoughAvailableCreditException(accountDTO.AvailableCredit);
-            
-            context.Transactions.Add(transactionsDTO);
+
             switch (transactionsModel.Amount)
             {
                 case < 0:
-                    accountDTO.Credit -= (ulong)transactionsDTO.Amount;
+                {
+                    // Check if available credit is not enough on withdraw, throw exception
+                    if (accountDTO.AvailableCredit < (ulong)Math.Abs(transactionsModel.Amount))
+                        throw new NotEnoughAvailableCreditException(accountDTO.AvailableCredit);
+                    var value = (ulong)Math.Abs(transactionsDTO.Amount);
+                    accountDTO.Credit -= value;
+                    accountDTO.AvailableCredit -= value;
                     break;
+                }
                 case > 0:
                     accountDTO.Credit += (ulong)transactionsDTO.Amount;
+                    accountDTO.AvailableCredit += (ulong)transactionsDTO.Amount;
                     break;
             }
-
-            accountDTO.AvailableCredit = accountDTO.Credit;
-
+            context.Transactions.Add(transactionsDTO);
             await context.SaveChangesAsync();
         }
 
