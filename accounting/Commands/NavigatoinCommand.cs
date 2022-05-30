@@ -5,10 +5,10 @@ namespace accounting.Commands
 {
     public class NavigatoinCommand : BaseCommand
     {
-        private readonly Func<bool> _createViewModel;
+        private readonly Action _createViewModel;
         private readonly NavigationService _navigationStore;
 
-        public NavigatoinCommand(NavigationService navigationStore, Func<bool> createViewModel)
+        public NavigatoinCommand(NavigationService navigationStore, Action createViewModel)
         {
             _navigationStore = navigationStore;
             _createViewModel = createViewModel;
