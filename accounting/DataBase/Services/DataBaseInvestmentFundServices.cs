@@ -28,8 +28,11 @@ namespace accounting.DataBase.Services
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var accountsCredit = await context.Accounts.Select(r => r.Credit).ToListAsync();
-            return accountsCredit.Aggregate((a, c) => a + c);
+            if (accountsCredit != null && accountsCredit.Any())
+                return accountsCredit.Aggregate((a, c) => a + c);
+            return 0;
         }
+
         public async Task<ulong> GetAvailableBalance()
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
@@ -85,10 +88,11 @@ namespace accounting.DataBase.Services
             foreach (var people in peoples) peoplesAccounts.Add(people, await people.GetAllAccounts());
             return peoplesAccounts;
         }
+
         /// <summary>
         ///     Add a loan to database loan table and reduce the amount of loan, from each account available credit.
-        /// <param name="loanModel">Model of loan</param>
-        /// </summary>        
+        ///     <param name="loanModel">Model of loan</param>
+        /// </summary>
         public async Task LendLoad(LoanModel loanModel)
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
@@ -97,7 +101,8 @@ namespace accounting.DataBase.Services
             if (fundAvailableBalance < loanModel.Amount)
                 throw new NotEnoughFundAvailableBalance(Convert.ToInt64(fundAvailableBalance));
             var loanAmount = Convert.ToDouble(loanModel.Amount);
-            var loanAccount = await context.Accounts.Where(ac => ac.AccountId == loanModel.AccountId).FirstOrDefaultAsync();
+            var loanAccount = await context.Accounts.Where(ac => ac.AccountId == loanModel.AccountId)
+                .FirstOrDefaultAsync();
             // Amount of the loan can be twice of account credit. If it's not, throw
             if (loanAmount > loanAccount.Credit * 2)
                 throw new NotEnoughCreditException(Convert.ToUInt64(loanAccount.Credit));
@@ -107,13 +112,11 @@ namespace accounting.DataBase.Services
             var amountPerAccount = Convert.ToInt32(loanAmount / accountsCount);
             var minimumAmountPerAccount = amountPerAccount;
             if (amountPerAccount > InvestmentFundModel.MinimumCredit)
-                minimumAmountPerAccount =  InvestmentFundModel.MinimumCredit;
+                minimumAmountPerAccount = InvestmentFundModel.MinimumCredit;
             foreach (var account in context.Accounts)
-            {
                 account.AvailableCredit -= Convert.ToUInt64(minimumAmountPerAccount);
-            }
             // If any amount of loan remains, reduce from accounts that have available credit
-            var remainAmount = Convert.ToInt32(loanAmount - (minimumAmountPerAccount * accountsCount));
+            var remainAmount = Convert.ToInt32(loanAmount - minimumAmountPerAccount * accountsCount);
             if (remainAmount != 0)
             {
                 var amountPercentPerAccount = remainAmount * 100 / fundAvailableBalance;
@@ -130,7 +133,5 @@ namespace accounting.DataBase.Services
             context.Loans.Add(loanDTO);
             await context.SaveChangesAsync();
         }
-
-        
     }
 }
