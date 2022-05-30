@@ -1,0 +1,94 @@
+﻿<Window x:Class="accounting.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:views="clr-namespace:accounting.Views"
+        xmlns:viewModels="clr-namespace:accounting.ViewModels"
+        xmlns:dialogViews="clr-namespace:accounting.Views.Dialogs"
+        xmlns:dialogVms="clr-namespace:accounting.ViewModels.Dialogs"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+        TextElement.FontWeight="Regular"
+        TextElement.FontSize="14"
+        TextOptions.TextFormattingMode="Ideal"
+        TextOptions.TextRenderingMode="Auto"
+        Background="Transparent"
+        Foreground="{StaticResource LightOnBackground}"
+        FontFamily="{DynamicResource MaterialDesignFont}"
+        AllowsTransparency="True"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Title="MainWindow" Height="560" Width="1000"
+        d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
+    
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type dialogVms:MessageDialogViewModel}">
+            <dialogViews:MessageDialogView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:SummeryViewModel}">
+            <views:SummeryView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:TransactionsViewModel}">
+            <views:TransactionView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:ManageLoanViewModel}">
+            <views:ManageLoanView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CreateAccountViewModel}">
+            <views:CreateAccountView />
+        </DataTemplate>
+        
+    </Window.Resources>
+    <materialDesign:DialogHost
+        Identifier="rootDialog"
+        DialogTheme="Inherit"
+        CloseOnClickAway="True">
+        <Border CornerRadius="25"
+                Background="{StaticResource LightPrimary}">
+            <Grid FlowDirection="RightToLeft">
+                <Grid.Resources>
+                    <Style BasedOn="{StaticResource RadioButtonTheme}" TargetType="RadioButton">
+                        <Setter Property="Background" Value="{StaticResource LightPrimary}" />
+                        <Setter Property="Foreground" Value="{StaticResource LightOnPrimary}" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel
+                Grid.Row="1"
+                Grid.Column="0">
+                    <RadioButton
+                        GroupName="ViewControl"
+                        Content="خانه"
+                        IsChecked="True"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Home"/>
+                    <RadioButton
+                        GroupName="ViewControl"
+                        Content="تراکنش ها"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Transactions"/>
+                    <RadioButton
+                        GroupName="ViewControl"
+                        Content="مدیریت وام ها"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="ManageLoans"/>
+                    <RadioButton
+                        GroupName="ViewControl"
+                        Content="ساخت حساب"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="CreateAccount"/>
+                </StackPanel>
+                <ContentControl 
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Content="{Binding CurrentViewModel}"/>
+
+            </Grid>
+        </Border>
+    </materialDesign:DialogHost>
+</Window>
