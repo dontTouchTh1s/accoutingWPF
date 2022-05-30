@@ -1,0 +1,43 @@
+﻿<UserControl x:Class="accounting.Views.ManageLoanView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:accounting.Views"
+             xmlns:viewModels="clr-namespace:accounting.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800"
+             d:DataContext="{d:DesignInstance viewModels:ManageLoanViewModel }">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModels:LendLoanViewModel}">
+            <local:LendLoanView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:DepositLoanInstalmentViewModel}">
+            <local:DepositLoanInstalmentView />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid FlowDirection="RightToLeft">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="450" />
+            <RowDefinition Height="46" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="700"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+            <ContentControl
+                Margin="8"
+                Content="{Binding CurrentViewModel }" />
+        <StackPanel
+            VerticalAlignment="Bottom"
+            Grid.Row="0"
+            Grid.Column="1">
+            <Button Content="واریز اقساط"
+                Margin="8"
+                Command="{Binding NavigateToDepositCommand}"/>
+            <Button Content="واریز اقساط"
+                Margin="8"
+                Command="{Binding NavigateToLendCommand}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
