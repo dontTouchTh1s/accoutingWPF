@@ -1,37 +1,38 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Threading.Tasks;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Commands.CurrencyComboBoxCommands;
 using accounting.Models;
+using accounting.Store;
 using accounting.ViewModels.ComboBoxItems;
 
 namespace accounting.ViewModels
 {
     public class LendLoanViewModel : BaseViewModel
     {
-        private readonly List<AccountsItemsViewModel> _accountsItemsViewModels = new();
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
         private string? _accountOwnerFullName;
+        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
         private string _amountView = "0";
         private byte? _fundAccountId;
         private byte? _instalmentCount;
         private string? _personalAccountNumber;
         private string? _searchText;
 
-        public LendLoanViewModel(InvestmentFundModel investmentFundModel)
+        public LendLoanViewModel(InvestmentFundModel investmentFundModel, NavigationService navigationService)
         {
             _investmentFundModel = investmentFundModel;
-            LendLoanCommand = new LendLoanCommand(this, investmentFundModel);
             _accountList = AccountsList;
+            LendLoanCommand = new LendLoanCommand(this, investmentFundModel);
+            NavigationCommand = new NavigatoinCommand(navigationService, navigationService.NavigateToDepositLoan);
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             Amount = 0;
 #pragma warning disable CS4014
-            GetAccounts();
+            UpdateContent();
 #pragma warning restore CS4014
         }
 
@@ -87,9 +88,11 @@ namespace accounting.ViewModels
             get => _accountList;
             set => SetProperty(ref _accountList, value);
         }
+
         public ICommand CreditPreviewKeyDownCommand { get; }
 
         public ICommand CreditPreviewKeyUpCommand { get; }
+
         public string? AccountOwnerFullName
         {
             get => _accountOwnerFullName;
@@ -102,6 +105,8 @@ namespace accounting.ViewModels
             set => SetProperty(ref _instalmentCount, value);
         }
 
+        public ICommand NavigationCommand { get; }
+
         private void FilterAccountsList()
         {
             AccountsList = new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
@@ -113,8 +118,9 @@ namespace accounting.ViewModels
                         AccountsList.Remove(accountsItemsViewModel);
         }
 
-        private async Task GetAccounts()
+        private async void GetAccounts()
         {
+            AccountsList = new ObservableCollection<AccountsItemsViewModel>();
             var peoplesAccounts = await _investmentFundModel.GetAllPeoplesAccounts();
             AccountsList = ConvertToItemViewModelList(peoplesAccounts);
         }
@@ -122,6 +128,7 @@ namespace accounting.ViewModels
         private ObservableCollection<AccountsItemsViewModel> ConvertToItemViewModelList(
             Dictionary<PeoplesModel, IEnumerable<AccountsModel>>? peoplesAccounts)
         {
+            _accountsItemsViewModels = new List<AccountsItemsViewModel>();
             foreach (var vPeoples in peoplesAccounts!)
             foreach (var account in vPeoples.Value)
             {
@@ -130,8 +137,12 @@ namespace accounting.ViewModels
                         vPeoples.Key.NationalId);
                 _accountsItemsViewModels.Add(accountsItemsViewModels);
             }
-
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
+        }
+
+        public sealed override void UpdateContent()
+        {
+            GetAccounts();
         }
     }
 }
