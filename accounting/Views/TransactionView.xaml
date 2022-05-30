@@ -12,109 +12,113 @@
              xmlns:comboBoxItems1="clr-namespace:accounting.Views.ComboBoxItems"
              d:DataContext="{d:DesignInstance viewModels:TransactionsViewModel}"
              mc:Ignorable="d"
-             Background="White"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FlowDirection="RightToLeft">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type comboBoxItems:AccountsItemsViewModel}">
             <comboBoxItems1:AccountsItemsView />
         </DataTemplate>
     </UserControl.Resources>
-    <StackPanel FlowDirection="RightToLeft" HorizontalAlignment="Right">
-        <TextBlock Text="ایجاد تراکنش" />
-        <Grid Margin="8">
-            <Grid.Resources>
-                <Style TargetType="TextBlock" />
-                <Style TargetType="ComboBox" BasedOn="{StaticResource MdComboboxStyle}" />
-                <Style TargetType="TextBox" BasedOn="{StaticResource MdTextBoxStyle}" />
-            </Grid.Resources>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="420" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <ComboBox Grid.Row="0"
+    <Border CornerRadius="0,0,25,25"
+            Background="{StaticResource LightBackground}">
+        <StackPanel
+            Margin="12">
+            <TextBlock Text="ایجاد تراکنش" />
+            <Grid Margin="8">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock" />
+                    <Style TargetType="ComboBox" BasedOn="{StaticResource MdComboboxStyle}" />
+                    <Style TargetType="TextBox" BasedOn="{StaticResource MdTextBoxStyle}" />
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="420" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ComboBox Grid.Row="0"
                       Grid.Column="0"
                       materialDesign:HintAssist.Hint="شماره حساب صندوق"
                       materialDesign:HintAssist.HelperText="شمار حسابی که از آن واریز یا برداشت میکنید."
                       materialDesign:TextFieldAssist.PrefixText="{Binding AccountOwnerFullName}"
                       ItemsSource="{Binding AccountsList}"
                       KeyDown="UIElement_OnKeyDown">
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="SelectionChanged">
-                        <b:InvokeCommandAction Command="{Binding Path=SelectionChanged}"
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding Path=SelectionChanged}"
                                                PassEventArgsToCommand="True" />
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-                <ComboBox.Text>
-                    <Binding
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                    <ComboBox.Text>
+                        <Binding
                         Path="SearchText"
                         UpdateSourceTrigger="PropertyChanged" />
-                </ComboBox.Text>
-                <ComboBox.SelectedItem>
-                    <Binding
+                    </ComboBox.Text>
+                    <ComboBox.SelectedItem>
+                        <Binding
                         Path="FundAccountId"
                         UpdateSourceTrigger="LostFocus"
                         ValidatesOnNotifyDataErrors="True" />
-                </ComboBox.SelectedItem>
-            </ComboBox>
-            <TextBox Grid.Row="1"
+                    </ComboBox.SelectedItem>
+                </ComboBox>
+                <TextBox Grid.Row="1"
                      Grid.Column="0"
                      materialDesign:HintAssist.Hint="مبلغ تراکنش"
                      materialDesign:HintAssist.HelperText="مبلغ تراکنش">
-                <TextBox.Text>
-                    <Binding
+                    <TextBox.Text>
+                        <Binding
                         Path="AmountView"
                         UpdateSourceTrigger="PropertyChanged"
                         ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <Grid
+                    </TextBox.Text>
+                </TextBox>
+                <Grid
                 Grid.Row="2"
                 Grid.Column="0"
                 Margin="0,8,0,8">
-                <Grid.Resources>
-                    <converter:RadioButtonConverter x:Key="RadioButtonConverter" />
-                </Grid.Resources>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <RadioButton
+                    <Grid.Resources>
+                        <converter:RadioButtonConverter x:Key="RadioButtonConverter" />
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <RadioButton
                     Grid.Column="0"
                     GroupName="TransactionType"
                     Style="{StaticResource MaterialDesignRadioButton}"
                     IsChecked="{Binding TransactionType,
                      Converter={StaticResource RadioButtonConverter}, ConverterParameter=Deposit}"
                     Content="واریز" />
-                <RadioButton
+                    <RadioButton
                     Grid.Column="1"
                     GroupName="TransactionType"
                     Style="{StaticResource MaterialDesignRadioButton}"
                     IsChecked="{Binding TransactionType,
                      Converter={StaticResource RadioButtonConverter}, ConverterParameter=Withdraw}"
                     Content="برداشت" />
-            </Grid>
-            <TextBox Grid.Row="3"
+                </Grid>
+                <TextBox Grid.Row="3"
                      Grid.Column="0"
                      materialDesign:HintAssist.Hint="شماره حساب شخصی (اختیاری)"
                      materialDesign:HintAssist.HelperText="شماره حساب شخصی که به آن واریز یا برداشت میشود.">
-                <TextBox.Text>
-                    <Binding
+                    <TextBox.Text>
+                        <Binding
                         Path="PersonalAccountNumber"
                         UpdateSourceTrigger="PropertyChanged"
                         ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <Button
+                    </TextBox.Text>
+                </TextBox>
+                <Button
                 Grid.Row="3"
                 Grid.Column="1"
                 Content="انجام تراکنش"
                 Command="{Binding MakeTransactionsCommand}" />
-        </Grid>
-    </StackPanel>
+            </Grid>
+        </StackPanel>
+    </Border>
 </UserControl>

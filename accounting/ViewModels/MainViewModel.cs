@@ -13,8 +13,8 @@ namespace accounting.ViewModels
         {
             _navigationService = navigationService;
             CheckTabItemUpdateCommand = new CheckTabItemUpdateCommand(this, _navigationService);
-            CurrentViewModel = navigationService.CurrentViewModel;
             _navigationService.CurrentViewChanged += OnCurrentViewChanged;
+            navigationService.Navigate(navigationService.SummeryViewModel);
         }
         private BaseViewModel _currentViewModel;
 
