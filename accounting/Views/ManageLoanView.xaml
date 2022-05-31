@@ -10,22 +10,14 @@
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="1000"
              d:DataContext="{d:DesignInstance viewModels:ManageLoanViewModel }">
-    <UserControl.Resources>
-        <DataTemplate DataType="{x:Type viewModels:LendLoanViewModel}">
-            <local:LendLoanView />
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:DepositLoanInstalmentViewModel}">
-            <local:DepositLoanInstalmentView />
-        </DataTemplate>
-    </UserControl.Resources>
     <Border CornerRadius="0,0,25,25"
             Background="{StaticResource LightBackground}">
         <Grid
-        FlowDirection="RightToLeft">
-            <TabControl
-            Margin="0"
-            Style="{StaticResource MaterialDesignFilledTabControl}"
             FlowDirection="RightToLeft">
+            <TabControl
+                Style="{StaticResource MaterialDesignFilledTabControl}"
+                Margin="0"
+                FlowDirection="RightToLeft">
                 <TabControl.Resources>
                     <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
                         <Setter Property="MinWidth" Value="250" />
@@ -36,13 +28,15 @@
                     Header="تخصیص وام">
                     <views:LendLoanView 
                         Margin="12"
-                        HorizontalAlignment="Left"/>
+                        HorizontalAlignment="Left"
+                        DataContext="{Binding LendLoanViewModel}"/>
                 </TabItem>
                 <TabItem
                     Header="واریز اقساط">
                     <views:DepositLoanInstalmentView
                         Margin="12"
-                        HorizontalAlignment="Left"/>
+                        HorizontalAlignment="Left"
+                        DataContext="{Binding DepositLoanInstalmentViewModel}"/>
                 </TabItem>
             </TabControl>
         </Grid>

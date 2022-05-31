@@ -25,13 +25,14 @@ namespace accounting.Commands
                 {
                     case "Home":
                     {
-                         _navigatoinSerivce.Navigate(_navigatoinSerivce.SummeryViewModel);
+                        _navigatoinSerivce.Navigate(_navigatoinSerivce.SummeryViewModel);
                         _navigatoinSerivce.SummeryViewModel.UpdateContent();
                         break;
                     }
                     case "CreateAccount":
                     {
-                        //_navigatoinSerivce.CreateAccountViewModel.UpdateContent();
+                        _navigatoinSerivce.Navigate(_navigatoinSerivce.CreateAccountViewModel);
+                        _navigatoinSerivce.CreateAccountViewModel.UpdateContent();
                         break;
                     }
                     case "Transactions":

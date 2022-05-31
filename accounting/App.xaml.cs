@@ -33,8 +33,9 @@ namespace accounting
             );
             var summeryViewModel = new SummeryViewModel(_investmentFundModel);
             var transactionsViewModel = new TransactionsViewModel(_investmentFundModel);
-            var manageLoanViewModel = new ManageLoanViewModel(_investmentFundModel);           
-            _navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel);
+            var manageLoanViewModel = new ManageLoanViewModel(_investmentFundModel);
+            var createAccountViewModel = new CreateAccountViewModel(_investmentFundModel);
+            _navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel, createAccountViewModel);
         }
 
         protected override void OnStartup(StartupEventArgs e)

@@ -7,6 +7,7 @@
              xmlns:viewmodel="clr-namespace:accounting.ViewModels"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d"
+             FlowDirection="RightToLeft"
              d:DesignHeight="500" d:DesignWidth="1000"
              d:DataContext="{d:DesignInstance viewmodel:CreateAccountViewModel}">
     <UserControl.Resources>
@@ -19,121 +20,117 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <StackPanel HorizontalAlignment="Right" FlowDirection="RightToLeft" Background="White">
-        <TextBlock Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
-        <Grid Margin="8">
-            <Grid.Resources>
-                <Style TargetType="TextBox" BasedOn="{StaticResource MdTextBoxStyle}" />
-            </Grid.Resources>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <TextBox
-                Grid.Column="0"
-                Grid.Row="0"
-                materialDesign:HintAssist.Hint="نام"
-                materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
-                <TextBox.Text>
-                    <Binding
-                        Path="Name"
-                        UpdateSourceTrigger="PropertyChanged"
-                        ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <TextBox
-                Grid.Column="0"
-                Grid.Row="1"
-                materialDesign:HintAssist.Hint="نام خانوادگی"
-                materialDesign:HintAssist.HelperText="نام خانوادگی صاحب حساب">
-                <TextBox.Text>
-                    <Binding
-                        Path="LastName"
-                        UpdateSourceTrigger="PropertyChanged"
-                        ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <TextBox
-                Grid.Column="0"
-                Grid.Row="2"
-                materialDesign:HintAssist.Hint="نام پدر"
-                materialDesign:HintAssist.HelperText="نام پدر صاحب حساب">
-                <TextBox.Text>
-                    <Binding
-                        Path="FatherName"
-                        UpdateSourceTrigger="PropertyChanged"
-                        ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <TextBox
-                Grid.Column="0"
-                Grid.Row="3"
-                materialDesign:HintAssist.Hint="کد ملی"
-                materialDesign:HintAssist.HelperText="کد ملی 10 رقمی">
-                <TextBox.Text>
-                    <Binding
-                        Path="NationalId"
-                        UpdateSourceTrigger="PropertyChanged"
-                        ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <TextBox
-                Grid.Column="0"
-                Grid.Row="4"
-                materialDesign:HintAssist.Hint="اعتبار اولیه"
-                materialDesign:HintAssist.HelperText="حداقل اعتبار اولیه 400000 تومان"
-                materialDesign:TextFieldAssist.PrefixText="تومان">
-                <b:Interaction.Triggers>
-                    <b:EventTrigger EventName="PreviewKeyUp">
-                        <b:InvokeCommandAction Command="{Binding Path=CreditPreviewKeyUpCommand}"
-                                               PassEventArgsToCommand="True" />
-                    </b:EventTrigger>
-                    <b:EventTrigger EventName="PreviewKeyDown">
-                        <b:InvokeCommandAction Command="{Binding Path=CreditPreviewKeyDownCommand}"
-                                               PassEventArgsToCommand="True" />
-                    </b:EventTrigger>
-                    <b:EventTrigger EventName="LostFocus">
-                        <b:InvokeCommandAction Command="{Binding Path=CreditLostFocusCommand}"
-                                               PassEventArgsToCommand="True" />
-                    </b:EventTrigger>
-                </b:Interaction.Triggers>
-                <TextBox.Text>
-                    <Binding
-                        Path="CreditView"
-                        UpdateSourceTrigger="PropertyChanged"
-                        ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <TextBox
-                Grid.Column="0"
-                Grid.Row="5"
-                materialDesign:HintAssist.Hint="شماره حساب"
-                materialDesign:HintAssist.HelperText="شماره حساب شخصی صاحب حساب">
-                <TextBox.Text>
-                    <Binding
-                        Path="PersonalAccountNumber"
-                        UpdateSourceTrigger="PropertyChanged"
-                        ValidatesOnNotifyDataErrors="True" />
-                </TextBox.Text>
-            </TextBox>
-            <Button
-                Grid.Column="1"
-                Grid.Row="6"
-                x:Name="BtnCreateAccount" Content="ایجاد"
-                Command="{Binding CreateAccountCommand}" />
-
-            <Label x:Name="LblMessage" Content="Label" Visibility="Hidden"
-                   Height="64" Width="424" VerticalAlignment="Center" HorizontalAlignment="Center"
-                   VerticalContentAlignment="Center" Background="#FF95FF95" />
-        </Grid>
-    </StackPanel>
+    <Border 
+        CornerRadius="0,0,25,25"
+        Background="{StaticResource LightBackground}">
+        <StackPanel Margin="12">
+            <TextBlock Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
+            <Grid Margin="8">
+                <Grid.Resources>
+                    <Style TargetType="TextBox" BasedOn="{StaticResource MdTextBoxStyle}" />
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBox
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    materialDesign:HintAssist.Hint="نام"
+                    materialDesign:HintAssist.HelperText="نام کوچک صاحب حساب">
+                    <TextBox.Text>
+                        <Binding
+                            Path="Name"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnNotifyDataErrors="True" />
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    materialDesign:HintAssist.Hint="نام خانوادگی"
+                    materialDesign:HintAssist.HelperText="نام خانوادگی صاحب حساب">
+                    <TextBox.Text>
+                        <Binding
+                            Path="LastName"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnNotifyDataErrors="True" />
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    materialDesign:HintAssist.Hint="نام پدر"
+                    materialDesign:HintAssist.HelperText="نام پدر صاحب حساب">
+                    <TextBox.Text>
+                        <Binding
+                            Path="FatherName"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnNotifyDataErrors="True" />
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    materialDesign:HintAssist.Hint="کد ملی"
+                    materialDesign:HintAssist.HelperText="کد ملی 10 رقمی">
+                    <TextBox.Text>
+                        <Binding
+                            Path="NationalId"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnNotifyDataErrors="True" />
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    materialDesign:HintAssist.Hint="اعتبار اولیه"
+                    materialDesign:HintAssist.HelperText="حداقل اعتبار اولیه 400000 تومان"
+                    materialDesign:TextFieldAssist.PrefixText="تومان">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="PreviewKeyDown">
+                            <b:InvokeCommandAction Command="{Binding Path=CreditPreviewKeyDownCommand}"
+                                                   PassEventArgsToCommand="True" />
+                        </b:EventTrigger>
+                        <b:EventTrigger EventName="LostFocus">
+                            <b:InvokeCommandAction Command="{Binding Path=CreditLostFocusCommand}"
+                                                   PassEventArgsToCommand="True" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
+                    <TextBox.Text>
+                        <Binding
+                            Path="CreditView"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnNotifyDataErrors="True" />
+                    </TextBox.Text>
+                </TextBox>
+                <TextBox
+                    Grid.Column="0"
+                    Grid.Row="5"
+                    materialDesign:HintAssist.Hint="شماره حساب"
+                    materialDesign:HintAssist.HelperText="شماره حساب شخصی صاحب حساب">
+                    <TextBox.Text>
+                        <Binding
+                            Path="PersonalAccountNumber"
+                            UpdateSourceTrigger="PropertyChanged"
+                            ValidatesOnNotifyDataErrors="True" />
+                    </TextBox.Text>
+                </TextBox>
+                <Button
+                    Grid.Column="1"
+                    Grid.Row="6"
+                    x:Name="BtnCreateAccount" Content="ایجاد"
+                    Command="{Binding CreateAccountCommand}" />
+            </Grid>
+        </StackPanel>
+        </Border>
 </UserControl>

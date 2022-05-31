@@ -69,6 +69,12 @@
                      Grid.Column="0"
                      materialDesign:HintAssist.Hint="مبلغ تراکنش"
                      materialDesign:HintAssist.HelperText="مبلغ تراکنش">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="PreviewKeyDown">
+                            <b:InvokeCommandAction Command="{Binding Path=CreditPreviewKeyDownCommand}"
+                                                   PassEventArgsToCommand="True" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
                     <TextBox.Text>
                         <Binding
                         Path="AmountView"

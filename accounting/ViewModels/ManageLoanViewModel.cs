@@ -10,7 +10,12 @@ namespace accounting.ViewModels
 
         public ManageLoanViewModel(InvestmentFundModel investmentFundModel)
         {
-            
+            LendLoanViewModel = new LendLoanViewModel(investmentFundModel);
+            DepositLoanInstalmentViewModel = new DepositLoanInstalmentViewModel(investmentFundModel);
+
         }
+
+        public LendLoanViewModel LendLoanViewModel { get; }
+        public DepositLoanInstalmentViewModel DepositLoanInstalmentViewModel { get; }
     }
 }

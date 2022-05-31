@@ -1,6 +1,4 @@
-﻿#nullable enable
-
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +21,10 @@ namespace accounting.ViewModels
         private string? _name;
         private string? _nationalId;
         private string? _personalAccountNumber;
+
+        public CreateAccountViewModel()
+        {
+        }
 
         public CreateAccountViewModel(InvestmentFundModel investmentFundModel)
         {

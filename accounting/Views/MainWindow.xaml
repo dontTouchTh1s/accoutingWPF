@@ -36,6 +36,9 @@
         <DataTemplate DataType="{x:Type viewModels:ManageLoanViewModel}">
             <views:ManageLoanView />
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModels:CreateAccountViewModel}">
+            <views:CreateAccountView />
+        </DataTemplate>
         
     </Window.Resources>
     <materialDesign:DialogHost
@@ -63,18 +66,22 @@
                 Grid.Row="1"
                 Grid.Column="0">
                     <RadioButton
-                    GroupName="ViewControl"
-                    Content="خانه"
-                    IsChecked="True"
-                    Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Home"/>
+                        GroupName="ViewControl"
+                        Content="خانه"
+                        IsChecked="True"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Home"/>
                     <RadioButton
-                    GroupName="ViewControl"
-                    Content="تراکنش ها"
-                    Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Transactions"/>
+                        GroupName="ViewControl"
+                        Content="تراکنش ها"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Transactions"/>
                     <RadioButton
-                    GroupName="ViewControl"
-                    Content="مدیریت وام ها"
-                    Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="ManageLoans"/>
+                        GroupName="ViewControl"
+                        Content="مدیریت وام ها"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="ManageLoans"/>
+                    <RadioButton
+                        GroupName="ViewControl"
+                        Content="ساخت حساب"
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="CreateAccount"/>
                 </StackPanel>
                 <ContentControl 
                     Grid.Row="1"
