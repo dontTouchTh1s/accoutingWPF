@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
+using accounting.DataBase.DTOs;
 using accounting.Exceptions;
 using accounting.Models;
 using Microsoft.EntityFrameworkCore;
@@ -132,6 +133,28 @@ namespace accounting.DataBase.Services
             var loanDTO = _dtoConverterService.LoanModelToDTO(loanModel);
             context.Loans.Add(loanDTO);
             await context.SaveChangesAsync();
+        }
+
+        public async Task<Dictionary<PeoplesModel, Dictionary<AccountsModel, List<LoanModel>>>> GetAllLoans()
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loansByPeopleAccounts = new Dictionary<PeoplesModel, Dictionary<AccountsModel, List<LoanModel>>>();
+            foreach (var people in context.Peoples)
+            {
+                var accountDic = new Dictionary<AccountsModel, List<LoanModel>>();
+                foreach (var account in context.Accounts)
+                {
+                    var loanList = new List<LoanModel>();
+                    foreach (var loan in context.Loans)
+                    {
+                        loanList = new List<LoanModel>();
+                        loanList.Add(_dtoConverterService.LoanDTOToModel(loan));
+                    }
+                    accountDic.Add(_dtoConverterService.AccountDTOToModel(account, DataBasePeopleServices.DataBaseAccountsServices), loanList);
+                }
+                loansByPeopleAccounts.Add(_dtoConverterService.PeopleDTOToModel(people, DataBasePeopleServices), accountDic);
+            }
+            return loansByPeopleAccounts;
         }
     }
 }
