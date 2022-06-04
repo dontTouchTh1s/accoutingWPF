@@ -17,7 +17,6 @@ namespace accounting
         private const string ConnectionString = "Data Source=InvestmentFund.db";
         private readonly InvestmentFundDbContextFactory _investmentFundDbContextFactory;
         private readonly InvestmentFundModel _investmentFundModel;
-        private readonly NavigationService _navigationStore;
 
         public App()
         {
@@ -31,11 +30,7 @@ namespace accounting
                 _investmentFundDbContextFactory,
                 dataBaseInvestmentFundServices
             );
-            var summeryViewModel = new SummeryViewModel(_investmentFundModel);
-            var transactionsViewModel = new TransactionsViewModel(_investmentFundModel);
-            var manageLoanViewModel = new ManageLoanViewModel(_investmentFundModel);
-            var createAccountViewModel = new CreateAccountViewModel(_investmentFundModel);
-            _navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel, createAccountViewModel);
+
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -44,11 +39,16 @@ namespace accounting
             {
                 dbContext.Database.Migrate();
             }
+            var summeryViewModel = new SummeryViewModel(_investmentFundModel);
+            var transactionsViewModel = new TransactionsViewModel(_investmentFundModel);
+            var manageLoanViewModel = new ManageLoanViewModel(_investmentFundModel);
+            var createAccountViewModel = new CreateAccountViewModel(_investmentFundModel);
+            var navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel, createAccountViewModel);
 
 
             MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel(_investmentFundModel, _navigationStore)
+                DataContext = new MainViewModel(_investmentFundModel, navigationStore)
             };
             MainWindow.Show();
             base.OnStartup(e);
