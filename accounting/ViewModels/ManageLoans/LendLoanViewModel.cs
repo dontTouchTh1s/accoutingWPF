@@ -5,10 +5,9 @@ using System.Windows.Input;
 using accounting.Commands;
 using accounting.Commands.CurrencyComboBoxCommands;
 using accounting.Models;
-using accounting.Store;
 using accounting.ViewModels.ComboBoxItems;
 
-namespace accounting.ViewModels
+namespace accounting.ViewModels.ManageLoans
 {
     public class LendLoanViewModel : BaseViewModel
     {
