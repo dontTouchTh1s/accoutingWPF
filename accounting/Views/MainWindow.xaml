@@ -8,6 +8,7 @@
         xmlns:viewModels="clr-namespace:accounting.ViewModels"
         xmlns:dialogViews="clr-namespace:accounting.Views.Dialogs"
         xmlns:dialogVms="clr-namespace:accounting.ViewModels.Dialogs"
+        xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -31,7 +32,7 @@
         <DataTemplate DataType="{x:Type viewModels:TransactionsViewModel}">
             <views:TransactionView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:ManageLoanViewModel}">
+        <DataTemplate DataType="{x:Type manageLoans:ManageLoanViewModel}">
             <views:ManageLoanView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:CreateAccountViewModel}">
@@ -67,11 +68,10 @@
                     Foreground="{StaticResource LightOnPrimary}"
                     VerticalAlignment="Center"
                     Margin="16,0,0,0"
-                    FontSize="20">
-                </TextBlock>
+                    FontSize="20" />
                 <StackPanel
                     Orientation="Horizontal"
-                    
+
                     Grid.Row="0"
                     Grid.Column="1"
                     VerticalAlignment="Center"
@@ -82,14 +82,12 @@
                         Kind="CloseCircleOutline"
                         Width="30"
                         Height="30"
-                        Foreground="Red">
-                    </materialDesign:PackIcon>
+                        Foreground="Red" />
                     <materialDesign:PackIcon
-                    Kind="Minus"
-                    Width="30"
-                    Height="30"
-                    Foreground="{StaticResource LightOnPrimary}">
-                    </materialDesign:PackIcon>
+                        Kind="Minus"
+                        Width="30"
+                        Height="30"
+                        Foreground="{StaticResource LightOnPrimary}" />
                 </StackPanel>
                 <StackPanel
                     Grid.Row="1"
@@ -115,7 +113,7 @@
                 <ContentControl
                     Grid.Row="1"
                     Grid.Column="1"
-                    Content="{Binding CurrentViewModel}"/>
+                    Content="{Binding CurrentViewModel}" />
 
             </Grid>
         </Border>
