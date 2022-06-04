@@ -1,5 +1,6 @@
 ﻿using System;
 using accounting.ViewModels;
+using accounting.ViewModels.ManageLoans;
 
 namespace accounting.Store
 {
@@ -14,6 +15,7 @@ namespace accounting.Store
             ManageLoanViewModel = (ManageLoanViewModel)ViewModels[2];
             CreateAccountViewModel = (CreateAccountViewModel)ViewModels[3];
         }
+
         public BaseViewModel CurrentViewModel
         {
             get => _manageLoansCurrentViewModel;
