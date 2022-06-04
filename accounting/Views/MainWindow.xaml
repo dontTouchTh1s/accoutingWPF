@@ -8,7 +8,6 @@
         xmlns:viewModels="clr-namespace:accounting.ViewModels"
         xmlns:dialogViews="clr-namespace:accounting.Views.Dialogs"
         xmlns:dialogVms="clr-namespace:accounting.ViewModels.Dialogs"
-        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -22,7 +21,6 @@
         WindowStyle="None"
         Title="MainWindow" Height="560" Width="1000"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
-    
     <Window.Resources>
         <DataTemplate DataType="{x:Type dialogVms:MessageDialogViewModel}">
             <dialogViews:MessageDialogView />
@@ -31,7 +29,7 @@
             <views:SummeryView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:TransactionsViewModel}">
-            <views:TransactionView/>
+            <views:TransactionView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModels:ManageLoanViewModel}">
             <views:ManageLoanView />
@@ -39,7 +37,7 @@
         <DataTemplate DataType="{x:Type viewModels:CreateAccountViewModel}">
             <views:CreateAccountView />
         </DataTemplate>
-        
+
     </Window.Resources>
     <materialDesign:DialogHost
         Identifier="rootDialog"
@@ -55,35 +53,35 @@
                     </Style>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="200"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="200" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <StackPanel
-                Grid.Row="1"
-                Grid.Column="0">
+                    Grid.Row="1"
+                    Grid.Column="0">
                     <RadioButton
                         GroupName="ViewControl"
                         Content="خانه"
                         IsChecked="True"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Home"/>
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Home" />
                     <RadioButton
                         GroupName="ViewControl"
                         Content="تراکنش ها"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Transactions"/>
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Transactions" />
                     <RadioButton
                         GroupName="ViewControl"
                         Content="مدیریت وام ها"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="ManageLoans"/>
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="ManageLoans" />
                     <RadioButton
                         GroupName="ViewControl"
                         Content="ساخت حساب"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="CreateAccount"/>
+                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="CreateAccount" />
                 </StackPanel>
-                <ContentControl 
+                <ContentControl
                     Grid.Row="1"
                     Grid.Column="1"
                     Content="{Binding CurrentViewModel}"/>
