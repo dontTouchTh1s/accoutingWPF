@@ -14,7 +14,7 @@ namespace accounting.ViewModels
 {
     public class CreateAccountViewModel : BaseViewModel, INotifyDataErrorInfo
     {
-        private readonly Dictionary<string, List<string>> _errors;
+        private readonly Dictionary<string, List<string>?> _errors;
         private string _creditView = "0";
         private string? _fatherName;
         private string? _lastName;
@@ -29,10 +29,9 @@ namespace accounting.ViewModels
         public CreateAccountViewModel(InvestmentFundModel investmentFundModel)
         {
             CreateAccountCommand = new CreateAccountCommand(this, investmentFundModel);
-            CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             CreditLostFocusCommand = new CreditLostFocusCommand(this);
-            _errors = new Dictionary<string, List<string>>();
+            _errors = new Dictionary<string, List<string>?>();
             CreditView = InvestmentFundModel.MinimumCredit.ToString();
         }
 
@@ -97,7 +96,7 @@ namespace accounting.ViewModels
                     errors.Add("فقط حروف وارد کنید.");
 
                 if (errors.Count != 0)
-                    _errors?.Add(nameof(FatherName), errors);
+                    _errors.Add(nameof(FatherName), errors);
                 ErrorChanged(nameof(FatherName));
             }
         }
@@ -119,7 +118,7 @@ namespace accounting.ViewModels
                     errors.Add("فقط عدد وارد کنید.");
 
                 if (errors.Count != 0)
-                    _errors?.Add(nameof(NationalId), errors);
+                    _errors.Add(nameof(NationalId), errors);
                 ErrorChanged(nameof(NationalId));
             }
         }
@@ -139,7 +138,7 @@ namespace accounting.ViewModels
                     errors.Add("فقط عدد وارد کنید.");
 
                 if (errors.Count != 0)
-                    _errors?.Add(nameof(PersonalAccountNumber), errors);
+                    _errors.Add(nameof(PersonalAccountNumber), errors);
                 ErrorChanged(nameof(PersonalAccountNumber));
             }
         }
@@ -158,17 +157,17 @@ namespace accounting.ViewModels
             }
         }
 
-        public ulong Credit { get; set; }
+        public ulong Credit { get; private set; }
 
         public ICommand CreditLostFocusCommand { get; }
 
         public ICommand CreditPreviewKeyDownCommand { get; }
 
-        public ICommand CreditPreviewKeyUpCommand { get; }
-
         public IEnumerable GetErrors(string? propertyName)
         {
-            return _errors.GetValueOrDefault(propertyName, new List<string>());
+            if (propertyName == null) return new List<string>();
+            _errors.TryGetValue(propertyName, out var value);
+            return value ?? new List<string>();
         }
 
         public bool HasErrors => _errors.Any();
