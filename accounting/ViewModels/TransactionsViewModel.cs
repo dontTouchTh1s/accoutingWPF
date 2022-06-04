@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Linq;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Commands.CurrencyComboBoxCommands;
@@ -28,7 +27,6 @@ namespace accounting.ViewModels
             _investmentFundModel = investmentFundModel;
             MakeTransactionsCommand = new MakeTransactionCommand(this, investmentFundModel);
             SelectionChanged = new SelectionChangedCommand(this);
-            CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             _accountList = AccountsList;
             AmountView = "0";
@@ -101,7 +99,6 @@ namespace accounting.ViewModels
             set => SetProperty(ref _transactionType, value);
         }
 
-        public ICommand CreditPreviewKeyUpCommand { get; }
         public ICommand CreditPreviewKeyDownCommand { get; }
 
         private void FilterAccountsList()
