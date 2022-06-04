@@ -16,7 +16,7 @@
     <Page Update="Theme\HomeRadioButtonTheme.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Theme\TabControlTheme.xaml">
+    <Page Update="Theme\Ripple\RippleEffectControl.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\LendLoanView.xaml">
