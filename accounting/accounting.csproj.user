@@ -2,7 +2,7 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup />
   <ItemGroup>
-    <Compile Update="Views\LendLoanView.xaml.cs">
+    <Compile Update="Views\ManageLoans\LendLoanView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\SummeryView.xaml.cs">
@@ -19,7 +19,7 @@
     <Page Update="Theme\Ripple\RippleEffectControl.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\LendLoanView.xaml">
+    <Page Update="Views\ManageLoans\LendLoanView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\SummeryView.xaml">
