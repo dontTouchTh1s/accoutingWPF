@@ -85,7 +85,9 @@ namespace accounting.DataBase.Services
             var peoplesAccounts = new Dictionary<PeoplesModel, IEnumerable<AccountsModel>>();
             var peoples = await FindPeople(owner);
 
-            foreach (var people in peoples) peoplesAccounts.Add(people, await people.GetAllAccounts());
+            if (peoples == null) return peoplesAccounts;
+            foreach (var people in peoples)
+                peoplesAccounts.Add(people, await people.GetAllAccounts());
             return peoplesAccounts;
         }
 
