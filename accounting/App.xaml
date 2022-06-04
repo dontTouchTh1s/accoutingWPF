@@ -8,25 +8,26 @@
                 <ResourceDictionary>
                     <!-- primary -->
                     <Color x:Key="LightPrimaryColor">#00677e</Color>
-                    <SolidColorBrush x:Key="LightPrimary" Color="#00677e"/>
-                    <SolidColorBrush x:Key="LightOnPrimary" Color="#ffffff"/>
-                    <SolidColorBrush x:Key="LightBackground" Color="#fafcfd"/>
-                    <SolidColorBrush x:Key="LightOnBackground" Color="#191c1d"/>
+                    <SolidColorBrush x:Key="LightPrimary" Color="#00677e" />
+                    <SolidColorBrush x:Key="LightOnPrimary" Color="#ffffff" />
+                    <SolidColorBrush x:Key="LightBackground" Color="#fafcfd" />
+                    <SolidColorBrush x:Key="LightOnBackground" Color="#191c1d" />
                     <!-- accent -->
                     <Color x:Key="LightSecondaryColor">#4b6269</Color>
-                    <SolidColorBrush x:Key="LightSecondary" Color="#4b6269"/>
-                    <SolidColorBrush x:Key="LightOnSecondary" Color="#cfe7f0"/>
-                    <SolidColorBrush x:Key="LightSecondarySurface" Color="#dbe4e8"/>
-                    <SolidColorBrush x:Key="LightOnSecondarySurface" Color="#40484b"/>
-                    
-                    
+                    <SolidColorBrush x:Key="LightSecondary" Color="#4b6269" />
+                    <SolidColorBrush x:Key="LightOnSecondary" Color="#cfe7f0" />
+                    <SolidColorBrush x:Key="LightSecondarySurface" Color="#dbe4e8" />
+                    <SolidColorBrush x:Key="LightOnSecondarySurface" Color="#40484b" />
+
+
                 </ResourceDictionary>
 
-                <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="{StaticResource LightPrimaryColor}" SecondaryColor="{StaticResource LightSecondaryColor}"/>
+                <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="{StaticResource LightPrimaryColor}"
+                                  SecondaryColor="{StaticResource LightSecondaryColor}" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
                 <ResourceDictionary Source="Theme/HomeRadioButtonTheme.xaml" />
-                <ResourceDictionary Source="Theme/TabControlTheme.xaml" />
+                <ResourceDictionary Source="Theme/Ripple/RippleEffectControl.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="MdComboboxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
                 <Setter Property="Margin" Value="0,8,0,16" />
