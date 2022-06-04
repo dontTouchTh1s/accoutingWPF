@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="accounting.Views.ViewLoansView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
+             xmlns:manageLoansView="clr-namespace:accounting.Views.ManageLoans"
+             d:DataContext="{d:DesignInstance manageLoans:ViewLoansViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type manageLoans:ViewLoanItemViewModel}">
+            <manageLoansView:ViewLoanItemView />
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid
+        Background="Transparent">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <TextBlock
+            Grid.Row="0"
+            Text="hihi" />
+        <DataGrid
+            Grid.Row="1"
+            ItemsSource="{Binding LoansList}" />
+    </Grid>
+</UserControl>
