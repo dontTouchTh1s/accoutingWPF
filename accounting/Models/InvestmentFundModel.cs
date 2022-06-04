@@ -70,5 +70,10 @@ namespace accounting.Models
         {
             return await _dataBasePeopleServices.DataBaseAccountsServices.GetLoans(fundAccountId);
         }
+
+        public async Task<Dictionary<PeoplesModel, Dictionary<AccountsModel, List<LoanModel>>>> GetAllLoans()
+        {
+            return await _dataBaseInvestmentFundServices.GetAllLoans();
+        }
     }
 }
