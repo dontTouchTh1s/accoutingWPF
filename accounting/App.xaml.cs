@@ -5,6 +5,7 @@ using accounting.DataBase.Services;
 using accounting.Models;
 using accounting.Store;
 using accounting.ViewModels;
+using accounting.ViewModels.ManageLoans;
 using Microsoft.EntityFrameworkCore;
 
 namespace accounting
@@ -30,7 +31,6 @@ namespace accounting
                 _investmentFundDbContextFactory,
                 dataBaseInvestmentFundServices
             );
-
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -39,11 +39,13 @@ namespace accounting
             {
                 dbContext.Database.Migrate();
             }
+
             var summeryViewModel = new SummeryViewModel(_investmentFundModel);
             var transactionsViewModel = new TransactionsViewModel(_investmentFundModel);
             var manageLoanViewModel = new ManageLoanViewModel(_investmentFundModel);
             var createAccountViewModel = new CreateAccountViewModel(_investmentFundModel);
-            var navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel, createAccountViewModel);
+            var navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel,
+                createAccountViewModel);
 
 
             MainWindow = new MainWindow
