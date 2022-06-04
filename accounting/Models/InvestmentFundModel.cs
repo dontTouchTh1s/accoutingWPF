@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
 using accounting.DataBase.Services;
 using accounting.ViewModels;
+using accounting.ViewModels.ManageLoans;
 
 namespace accounting.Models
 {

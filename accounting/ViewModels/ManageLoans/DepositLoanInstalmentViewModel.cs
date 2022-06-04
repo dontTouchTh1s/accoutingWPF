@@ -6,7 +6,7 @@ using accounting.Commands.CurrencyComboBoxCommands;
 using accounting.Models;
 using accounting.ViewModels.ComboBoxItems;
 
-namespace accounting.ViewModels
+namespace accounting.ViewModels.ManageLoans
 {
     public class DepositLoanInstalmentViewModel : BaseViewModel
     {

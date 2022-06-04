@@ -5,6 +5,7 @@ using accounting.Exceptions;
 using accounting.Models;
 using accounting.ViewModels;
 using accounting.ViewModels.Dialogs;
+using accounting.ViewModels.ManageLoans;
 using MaterialDesignThemes.Wpf;
 
 namespace accounting.Commands
