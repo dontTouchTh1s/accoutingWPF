@@ -30,9 +30,7 @@ namespace accounting.ViewModels
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             Amount = 0;
-#pragma warning disable CS4014
             UpdateContent();
-#pragma warning restore CS4014
         }
 
         public ICommand LendLoanCommand { get; }
