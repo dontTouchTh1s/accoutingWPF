@@ -7,23 +7,32 @@
              xmlns:manageLoansView="clr-namespace:accounting.Views.ManageLoans"
              d:DataContext="{d:DesignInstance manageLoans:ViewLoansViewModel}"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="800"
+             FontSize="14">
     <UserControl.Resources>
         <DataTemplate DataType="{x:Type manageLoans:ViewLoanItemViewModel}">
             <manageLoansView:ViewLoanItemView />
         </DataTemplate>
     </UserControl.Resources>
     <Grid
+        FlowDirection="RightToLeft"
         Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock
+            VerticalAlignment="Center"
+            Margin="8,0,0,0"
             Grid.Row="0"
-            Text="hihi" />
-        <DataGrid
+            Text="تمام وام های صندوق در جدول زیر نمایش داده میشوند. میتوانید عملیات مورد نظر را روی آنها اعمال کنید." />
+        <Border
             Grid.Row="1"
-            ItemsSource="{Binding LoansList}" />
+            BorderBrush="{StaticResource LightOutline}"
+            BorderThickness="1">
+            <ListBox
+                ItemsSource="{Binding LoansList}" >
+            </ListBox>
+        </Border>
     </Grid>
 </UserControl>
