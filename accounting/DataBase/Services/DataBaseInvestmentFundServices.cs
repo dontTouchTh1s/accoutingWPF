@@ -146,13 +146,17 @@ namespace accounting.DataBase.Services
                 var accountDic = new Dictionary<AccountsModel, List<LoanModel>>();
                 foreach (var account in context.Accounts)
                 {
+                    if (account.Owner != people) continue;
                     var loanList = new List<LoanModel>();
                     foreach (var loan in context.Loans)
                     {
-                        loanList = new List<LoanModel>();
-                        loanList.Add(_dtoConverterService.LoanDTOToModel(loan));
+                        if (loan.Account != account) continue;
+                        loanList = new List<LoanModel> { _dtoConverterService.LoanDTOToModel(loan) };
                     }
-                    accountDic.Add(_dtoConverterService.AccountDTOToModel(account, DataBasePeopleServices.DataBaseAccountsServices), loanList);
+
+                    accountDic.Add(
+                        _dtoConverterService.AccountDTOToModel(account,
+                            DataBasePeopleServices.DataBaseAccountsServices), loanList);
                 }
                 loansByPeopleAccounts.Add(_dtoConverterService.PeopleDTOToModel(people, DataBasePeopleServices), accountDic);
             }
