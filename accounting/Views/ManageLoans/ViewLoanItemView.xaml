@@ -5,23 +5,29 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
              mc:Ignorable="d"
-             d:DesignHeight="200" d:DesignWidth="800"
+             d:DesignHeight="90" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance manageLoans:ViewLoanItemViewModel}">
+
     <Grid
-        Width="750"
-        FlowDirection="RightToLeft"
-        Margin="8">
+        Width="730"
+        FlowDirection="RightToLeft">
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="FontSize" Value="14" />
+                <Setter Property="Margin" Value="8" />
+            </Style>
+            <Style TargetType="Border">
+                <Setter Property="BorderBrush" Value="{StaticResource LightOutline}" />
+                <Setter Property="BorderThickness" Value="1,0,0,0" />
+                <Setter Property="Margin" Value="0,4,0,4" />
             </Style>
 
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition />
-            <RowDefinition />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="0.65* "/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1.5*" />
@@ -30,33 +36,66 @@
             <ColumnDefinition Width="3*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
-        <TextBlock
+        <Border
+            BorderThickness="0">
+            <TextBlock
             Grid.Row="0"
             Grid.Column="0"
             Text="{Binding Id}" />
-        <TextBlock
+        </Border>
+        <Border
             Grid.Row="0"
-            Grid.Column="1"
+            Grid.Column="1">
+            <TextBlock
             Text="{Binding Amount}" />
-        <TextBlock
+        </Border>
+        <Border
             Grid.Row="0"
-            Grid.Column="2"
+            Grid.Column="2">
+            <TextBlock
             Text="{Binding InstalmentCount}" />
-        <TextBlock
+        </Border>
+        <Border
             Grid.Row="0"
-            Grid.Column="3"
+            Grid.Column="3">
+            <TextBlock
             Text="{Binding OwnerFullName}" />
-        <TextBlock
+        </Border>
+        <Border
             Grid.Row="0"
             Grid.Column="4"
+            BorderThickness="1,0,0,0">
+            <TextBlock
             Text="{Binding AccountId}" />
-        <TextBlock
+        </Border>
+        <Grid
             Grid.Row="1"
-            Grid.Column="4"
-            Text="{Binding LendDate}" />
-        <TextBlock
-            Grid.Row="1"
-            Grid.Column="3"
-            Text="{Binding PersonalAccountNumber}" />
+            Grid.ColumnSpan="5"
+            FlowDirection="RightToLeft"
+            Background="{StaticResource LightSecondarySurfaceNatural50}">
+            <Grid.Resources>
+                <Style TargetType="TextBlock">
+                    <Setter Property="FontSize" Value="11" />
+                    <Setter Property="Margin" Value="0,4,0,4" />
+                    <Setter Property="VerticalAlignment" Value="Center" />
+                    <Setter Property="HorizontalAlignment" Value="Center" />
+                </Style>
+            </Grid.Resources>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1.5*" />
+                <ColumnDefinition Width="1*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="2*" />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock
+                Grid.Column="4"
+                Text="{Binding LendDate}" />
+
+            <TextBlock
+                Grid.Column="3"
+                Text="{Binding PersonalAccountNumber}" />
+        </Grid>
     </Grid>
 </UserControl>
