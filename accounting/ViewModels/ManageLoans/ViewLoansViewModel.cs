@@ -1,6 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Globalization;
-using System.Windows.Input;
+using System.Linq;
 using accounting.Models;
 
 namespace accounting.ViewModels.ManageLoans
@@ -16,8 +16,6 @@ namespace accounting.ViewModels.ManageLoans
             UpdateContent();
         }
 
-        public ICommand UpdateDataCommand { get; }
-
         public ObservableCollection<ViewLoanItemViewModel> LoansList
         {
             get => _loansList;
@@ -31,17 +29,18 @@ namespace accounting.ViewModels.ManageLoans
             foreach (var people in loansDic)
             foreach (var account in people.Value)
             foreach (var loans in account.Value)
-            {
-                var loanItem = new ViewLoanItemViewModel(loans.Id,
-                    loans.Amount.ToString(),
-                    loans.InstallmentsCount,
-                    people.Key.Name + " " + people.Key.LastName,
-                    account.Key.Id,
-                    loans.LendDate.ToString(CultureInfo.CurrentCulture),
-                    loans.PersonalAccountNumber
-                );
-                LoansList.Add(loanItem);
-            }
+                    {
+                        var loanItem = new ViewLoanItemViewModel(loans.Id,
+                            loans.Amount.ToString(),
+                            loans.InstallmentsCount,
+                            people.Key.Name + " " + people.Key.LastName,
+                            account.Key.Id,
+                            loans.LendDate.ToString(CultureInfo.CurrentCulture),
+                            loans.PersonalAccountNumber
+                        );
+                        LoansList.Add(loanItem);
+                    }
+            LoansList = new ObservableCollection<ViewLoanItemViewModel>(LoansList.OrderBy(model => model.OwnerFullName));
         }
 
         public sealed override void UpdateContent()
