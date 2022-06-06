@@ -44,7 +44,7 @@ namespace accounting.CustomControls
         public static readonly DependencyProperty CommandParameterProperty = DependencyProperty.Register(
             "CommandParameter", typeof(object), typeof(CustomHomeMenu), new PropertyMetadata(default(object)));
 
-        public static readonly DependencyProperty GroupProperty = DependencyProperty.Register(
+        public static readonly DependencyProperty GroupNameProperty = DependencyProperty.Register(
             "GroupName", typeof(string), typeof(CustomHomeMenu), new PropertyMetadata(default(string)));
 
         public static readonly RoutedEvent ClickEvent =
@@ -56,10 +56,11 @@ namespace accounting.CustomControls
             DefaultStyleKeyProperty.OverrideMetadata(typeof(CustomHomeMenu),
                 new FrameworkPropertyMetadata(typeof(CustomHomeMenu)));
         }
+
         public string GroupName
         {
-            get => (string)GetValue(GroupProperty);
-            set => SetValue(GroupProperty, value);
+            get => (string)GetValue(GroupNameProperty);
+            set => SetValue(GroupNameProperty, value);
         }
 
         public object? CommandParameter
@@ -100,18 +101,17 @@ namespace accounting.CustomControls
             Command.Execute(CommandParameter);
             IsChecked = true;
 
-            var childCount = VisualTreeHelper.GetChildrenCount(this.Parent);
-            for (int i = 0; i < childCount; i++)
+            var childCount = VisualTreeHelper.GetChildrenCount(Parent);
+            for (var i = 0; i < childCount; i++)
             {
                 object child = VisualTreeHelper.GetChild(Parent, i);
                 if (child is CustomHomeMenu)
                 {
-                    CustomHomeMenu menuItem = (CustomHomeMenu)child;
+                    var menuItem = (CustomHomeMenu)child;
                     if (menuItem.GroupName == GroupName && menuItem != this)
                         menuItem.IsChecked = false;
                 }
             }
-
         }
 
         public event RoutedEventHandler Click
