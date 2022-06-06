@@ -60,6 +60,12 @@
                           materialDesign:HintAssist.Hint="شماره وام"
                           materialDesign:HintAssist.HelperText="یکی از وام هایی که به این حساب تخصیص داده شده است."
                           ItemsSource="{Binding LoansList}">
+                    <b:Interaction.Triggers>
+                        <b:EventTrigger EventName="SelectionChanged">
+                            <b:InvokeCommandAction Command="{Binding Path=SelectedLoanChangedCommand}"
+                                                   PassEventArgsToCommand="True" />
+                        </b:EventTrigger>
+                    </b:Interaction.Triggers>
                     <ComboBox.Text>
                         <Binding
                             Path="LoanSearchText"

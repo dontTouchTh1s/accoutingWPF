@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:accounting.Theme.Ripple">
+                    xmlns:local="clr-namespace:accounting.CustomControls">
     <Style TargetType="{x:Type local:RippleEffectControl}">
         <Setter Property="Template">
             <Setter.Value>

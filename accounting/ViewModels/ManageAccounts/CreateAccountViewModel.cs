@@ -35,6 +35,10 @@ namespace accounting.ViewModels.ManageAccounts
             CreditView = InvestmentFundModel.MinimumCredit.ToString();
         }
 
+        public ICommand? CreateAccountCommand { get; }
+        public ICommand CreditLostFocusCommand { get; }
+        public ICommand CreditPreviewKeyDownCommand { get; }
+
         public string? Name
         {
             get => _name;
@@ -143,8 +147,6 @@ namespace accounting.ViewModels.ManageAccounts
             }
         }
 
-        public ICommand? CreateAccountCommand { get; }
-
         public string CreditView
         {
             get => _creditView;
@@ -158,10 +160,6 @@ namespace accounting.ViewModels.ManageAccounts
         }
 
         public ulong Credit { get; private set; }
-
-        public ICommand CreditLostFocusCommand { get; }
-
-        public ICommand CreditPreviewKeyDownCommand { get; }
 
         public IEnumerable GetErrors(string? propertyName)
         {

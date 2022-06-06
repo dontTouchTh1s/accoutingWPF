@@ -10,6 +10,7 @@
         xmlns:dialogVms="clr-namespace:accounting.ViewModels.Dialogs"
         xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
         xmlns:manageAccounts="clr-namespace:accounting.ViewModels.ManageAccounts"
+        xmlns:customControls="clr-namespace:accounting.CustomControls"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -49,9 +50,10 @@
                 Background="{StaticResource LightPrimary}">
             <Grid FlowDirection="RightToLeft">
                 <Grid.Resources>
-                    <Style BasedOn="{StaticResource RadioButtonTheme}" TargetType="RadioButton">
+                    <Style BasedOn="{StaticResource CustomMenu}" TargetType="customControls:CustomHomeMenu">
                         <Setter Property="Background" Value="{StaticResource LightPrimary}" />
                         <Setter Property="Foreground" Value="{StaticResource LightOnPrimary}" />
+                        <Setter Property="Command" Value="{Binding CheckTabItemUpdateCommand}" />
                     </Style>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
@@ -72,7 +74,6 @@
                     FontSize="20" />
                 <StackPanel
                     Orientation="Horizontal"
-
                     Grid.Row="0"
                     Grid.Column="1"
                     VerticalAlignment="Center"
@@ -93,23 +94,28 @@
                 <StackPanel
                     Grid.Row="1"
                     Grid.Column="0">
-                    <RadioButton
-                        GroupName="ViewControl"
+                    <customControls:CustomHomeMenu
+                        Kind="Home"
                         Content="خانه"
                         IsChecked="True"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Home" />
-                    <RadioButton
-                        GroupName="ViewControl"
+                        Command="{Binding CheckTabItemUpdateCommand}"
+                        CommandParameter="Home" />
+                    
+                    <customControls:CustomHomeMenu
+                        Kind="Money"
                         Content="تراکنش ها"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="Transactions" />
-                    <RadioButton
-                        GroupName="ViewControl"
+                        CommandParameter="Transactions" />
+
+                    <customControls:CustomHomeMenu
+                        Kind="Money100"
                         Content="مدیریت وام ها"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="ManageLoans" />
-                    <RadioButton
-                        GroupName="ViewControl"
-                        Content="ساخت حساب"
-                        Command="{Binding CheckTabItemUpdateCommand}" CommandParameter="CreateAccount" />
+                        CommandParameter="ManageLoans" />
+
+                    <customControls:CustomHomeMenu
+                        Kind="Account"
+                        Content="مدیریت حساب ها"
+                        CommandParameter="CreateAccount" />
+
                 </StackPanel>
                 <ContentControl
                     Grid.Row="1"

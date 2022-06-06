@@ -13,12 +13,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="Theme\HomeRadioButtonTheme.xaml">
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Update="Theme\Ripple\RippleEffectControl.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <Page Update="Views\ManageLoans\LendLoanView.xaml">
       <SubType>Designer</SubType>
     </Page>

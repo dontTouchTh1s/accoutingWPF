@@ -19,7 +19,7 @@ namespace accounting.ViewModels
         ///     value is optional and can be provided automatically when invoked from compilers
         ///     that support <see cref="CallerMemberNameAttribute" />.
         /// </param>
-        protected virtual bool SetProperty<T>(ref T member, T value, [CallerMemberName] string? propertyName = null)
+        public virtual bool SetProperty<T>(ref T member, T value, [CallerMemberName] string? propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(member, value)) return false;
 
@@ -35,6 +35,10 @@ namespace accounting.ViewModels
         private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public virtual void HelperTextChange(string text)
+        {
         }
 
         public virtual void UpdateContent()

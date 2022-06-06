@@ -13,6 +13,7 @@
             AccountId = accountId;
             LendDate = lendDate;
             PersonalAccountNumber = personalAccountNumber ?? "وارد نشده";
+            MinimumInstalmentAmount = int.Parse(amount) / instalmentCount;
         }
 
         public ushort Id { get; }
@@ -22,5 +23,6 @@
         public ushort AccountId { get; }
         public string LendDate { get; }
         public string PersonalAccountNumber { get; }
+        public int MinimumInstalmentAmount { get; }
     }
 }

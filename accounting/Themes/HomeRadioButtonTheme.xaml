@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
-                    xmlns:ripple="clr-namespace:accounting.Theme.Ripple">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:customControls="clr-namespace:accounting.CustomControls">
     <Style
         x:Key="RadioButtonTheme"
         TargetType="{x:Type RadioButton}">
@@ -17,18 +17,19 @@
                                 VerticalAlignment="Center"
                                 Foreground="{TemplateBinding Foreground}"
                                 Text="{TemplateBinding Content}" />
-                            <ripple:RippleEffectControl
+                            <customControls:RippleEffectControl
                                 Background="Transparent"
-                                HighlightBackground="{StaticResource LightPrimary}" />
+                                HighlightBackground="{DynamicResource LightPrimary}" />
                         </Grid>
                     </ControlTemplate>
+                    
                 </Setter.Value>
             </Setter>
         </Style.Setters>
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
-                <Setter Property="Background" Value="{StaticResource LightBackground}" />
-                <Setter Property="Foreground" Value="{StaticResource LightOnBackground}" />
+                <Setter Property="Background" Value="White" />
+                <Setter Property="Foreground" Value="{DynamicResource LightOnBackground}" />
             </Trigger>
         </Style.Triggers>
     </Style>

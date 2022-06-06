@@ -40,6 +40,7 @@
                     Header="وام های تخصیص داده شده">
                     <views:ViewLoansView
                         Margin="12"
+                        Width="970"
                         HorizontalAlignment="Left"
                         DataContext="{Binding ViewLoanViewModle}" />
                 </TabItem>

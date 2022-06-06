@@ -20,18 +20,21 @@
                     <!-- surface -->
                     <SolidColorBrush x:Key="LightSecondarySurface" Color="#dbe4e8" />
                     <SolidColorBrush x:Key="LightOnSecondarySurface" Color="#40484b" />
-                    <SolidColorBrush x:Key="LightSecondarySurfaceNatural50" Color="#dbe4e8" Opacity=".5"/>
-                    <SolidColorBrush x:Key="LightOnSecondarySurfaceNatural50" Color="#40484b" Opacity=".5"/>
+                    <SolidColorBrush x:Key="LightSecondarySurfaceNatural50" Color="#dbe4e8" Opacity=".5" />
+                    <SolidColorBrush x:Key="LightOnSecondarySurfaceNatural50" Color="#40484b" Opacity=".5" />
 
 
                 </ResourceDictionary>
 
                 <materialDesign:CustomColorTheme BaseTheme="Light" PrimaryColor="{StaticResource LightPrimaryColor}"
-                                  SecondaryColor="{StaticResource LightSecondaryColor}" />
+                                                 SecondaryColor="{StaticResource LightSecondaryColor}" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                <ResourceDictionary Source="Theme/HomeRadioButtonTheme.xaml" />
-                <ResourceDictionary Source="Theme/Ripple/RippleEffectControl.xaml" />
+                
+                <ResourceDictionary Source="Themes/HomeRadioButtonTheme.xaml" />
+                <ResourceDictionary Source="Themes/RippleEffectControl.xaml" />
+                <ResourceDictionary Source="Themes/CustomHomeMenu.xaml" />
+
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="MdComboboxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
                 <Setter Property="Margin" Value="0,8,0,16" />

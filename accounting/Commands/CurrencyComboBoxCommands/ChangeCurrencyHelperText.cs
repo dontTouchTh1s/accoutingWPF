@@ -2,15 +2,15 @@
 using accounting.ViewModels;
 using accounting.ViewModels.ComboBoxItems;
 
-namespace accounting.Commands
+namespace accounting.Commands.CurrencyComboBoxCommands
 {
     public class SelectionChangedCommand : BaseCommand
     {
-        private readonly TransactionsViewModel _transactionViewModel;
+        private readonly BaseViewModel _viewModel;
 
-        public SelectionChangedCommand(TransactionsViewModel transactionsViewModel)
+        public SelectionChangedCommand(BaseViewModel viewModel)
         {
-            _transactionViewModel = transactionsViewModel;
+            _viewModel = viewModel;
         }
 
         public override void Execute(object? parameter)
@@ -19,12 +19,11 @@ namespace accounting.Commands
             var items = args.AddedItems;
             if (items.Count != 0)
             {
-                if (items[0] is AccountsItemsViewModel item)
-                    _transactionViewModel.AccountOwnerFullName = item.AccountOwnerFullName;
+                if (items[0] is AccountsItemsViewModel item) _viewModel.HelperTextChange(item.AccountOwnerFullName);
             }
             else
             {
-                _transactionViewModel.AccountOwnerFullName = "";
+                _viewModel.HelperTextChange("");
             }
         }
     }

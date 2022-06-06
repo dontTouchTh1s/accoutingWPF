@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace accounting.Commands.CurrencyComboBoxCommands
 {
@@ -22,7 +23,8 @@ namespace accounting.Commands.CurrencyComboBoxCommands
                     break;
             }
         }
-        private void SendKey(UIElement sourceElement, Key keyToSend)
+
+        private static void SendKey(Visual sourceElement, Key keyToSend)
         {
             var args = new KeyEventArgs(InputManager.Current.PrimaryKeyboardDevice,
                 PresentationSource.FromVisual(sourceElement), 0, keyToSend);

@@ -6,7 +6,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 
-namespace accounting.Theme.Ripple
+namespace accounting.CustomControls
 {
     public class RippleEffectControl : ContentControl
     {

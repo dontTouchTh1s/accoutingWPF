@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Commands.CurrencyComboBoxCommands;
+using accounting.Commands.ManageLoansCommands;
 using accounting.Models;
 using accounting.ViewModels.ComboBoxItems;
 
@@ -25,18 +26,21 @@ namespace accounting.ViewModels.ManageLoans
         public DepositLoanInstalmentViewModel(InvestmentFundModel investmentFundModel)
         {
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
-            CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             PayLoanInstalment = new PayLoanInstalmentCommand();
-
+            SelectedLoanChangedCommand = new SelectedLoanChangedCommand(this);
             _investmentFundModel = investmentFundModel;
-            AmountHelperText = string.Format("حداقل مبلغ قسط {0} تومان است.", 4);
             AmountView = "0";
             _accountList = AccountsList;
             _loanList = LoansList;
             UpdateContent();
+            AmountHelperText = "";
         }
 
-        public string AmountHelperText { get; }
+        public ICommand CreditPreviewKeyDownCommand { get; set; }
+        public ICommand PayLoanInstalment { get; }
+        public ICommand SelectedLoanChangedCommand { get; }
+
+        public string AmountHelperText { get; set; }
         public string? AccountOwnerFullName { get; set; }
 
         public ObservableCollection<LoanItemViewModel> LoansList
@@ -50,10 +54,6 @@ namespace accounting.ViewModels.ManageLoans
             get => _accountList;
             set => SetProperty(ref _accountList, value);
         }
-
-        public ICommand CreditPreviewKeyUpCommand { get; set; }
-        public ICommand CreditPreviewKeyDownCommand { get; set; }
-        public ICommand PayLoanInstalment { get; set; }
 
         public string AmountView
         {
