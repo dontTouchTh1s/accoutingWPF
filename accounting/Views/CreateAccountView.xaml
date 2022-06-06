@@ -6,10 +6,11 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:viewmodel="clr-namespace:accounting.ViewModels"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:manageAccounts="clr-namespace:accounting.ViewModels.ManageAccounts"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="500" d:DesignWidth="1000"
-             d:DataContext="{d:DesignInstance viewmodel:CreateAccountViewModel}">
+             d:DataContext="{d:DesignInstance manageAccounts:CreateAccountViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

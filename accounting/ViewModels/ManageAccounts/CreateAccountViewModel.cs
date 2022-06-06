@@ -10,7 +10,7 @@ using accounting.Commands.CurrencyComboBoxCommands;
 using accounting.Models;
 using accounting.ViewModels.ValidationRules;
 
-namespace accounting.ViewModels
+namespace accounting.ViewModels.ManageAccounts
 {
     public class CreateAccountViewModel : BaseViewModel, INotifyDataErrorInfo
     {

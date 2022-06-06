@@ -9,6 +9,7 @@
         xmlns:dialogViews="clr-namespace:accounting.Views.Dialogs"
         xmlns:dialogVms="clr-namespace:accounting.ViewModels.Dialogs"
         xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
+        xmlns:manageAccounts="clr-namespace:accounting.ViewModels.ManageAccounts"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -35,7 +36,7 @@
         <DataTemplate DataType="{x:Type manageLoans:ManageLoanViewModel}">
             <views:ManageLoanView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:CreateAccountViewModel}">
+        <DataTemplate DataType="{x:Type manageAccounts:CreateAccountViewModel}">
             <views:CreateAccountView />
         </DataTemplate>
 

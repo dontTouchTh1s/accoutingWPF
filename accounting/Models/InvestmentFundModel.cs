@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
 using accounting.DataBase.Services;
 using accounting.ViewModels;
+using accounting.ViewModels.ManageAccounts;
 using accounting.ViewModels.ManageLoans;
 
 namespace accounting.Models
@@ -41,6 +42,11 @@ namespace accounting.Models
         public async Task<ulong> GetBalance()
         {
             return await _dataBaseInvestmentFundServices.GetBalance();
+        }
+
+        public async Task<ulong> GetAvailableBalance()
+        {
+            return await _dataBaseInvestmentFundServices.GetAvailableBalance();
         }
 
         public async Task MakeTransaction(TransactionsViewModel transactionsViewModel)
