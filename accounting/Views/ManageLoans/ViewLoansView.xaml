@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
              xmlns:manageLoansView="clr-namespace:accounting.Views.ManageLoans"
              d:DataContext="{d:DesignInstance manageLoans:ViewLoansViewModel}"
@@ -19,6 +20,7 @@
         Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
+            <RowDefinition Height="Auto"/>
             <RowDefinition />
         </Grid.RowDefinitions>
         <TextBlock
@@ -26,8 +28,22 @@
             Margin="8,0,0,0"
             Grid.Row="0"
             Text="تمام وام های صندوق در جدول زیر نمایش داده میشوند. میتوانید عملیات مورد نظر را روی آنها اعمال کنید." />
-        <Border
+        <TextBox
+            Style="{StaticResource MaterialDesignOutlinedTextBox}"
             Grid.Row="1"
+            Height="54"
+            Margin="8,8,8,18"
+            materialDesign:TextFieldAssist.PrefixText="جست و جو:"
+            materialDesign:HintAssist.Hint="جست و جو"
+            materialDesign:HintAssist.HelperText="برای جست و جو میتوانید از نام صاحب وام، کدملی، قیمت وام استفاده کنید.">
+            <TextBox.Text>
+            <Binding
+                    Path="SearchText"
+                    UpdateSourceTrigger="PropertyChanged"/>
+            </TextBox.Text>
+        </TextBox>
+            <Border
+            Grid.Row="2"
             BorderBrush="{StaticResource LightOutline}"
             BorderThickness="1">
             <ListBox
