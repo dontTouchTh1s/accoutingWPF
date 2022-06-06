@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using System.Linq;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Commands.CurrencyComboBoxCommands;
@@ -11,11 +12,11 @@ namespace accounting.ViewModels
 {
     public class TransactionsViewModel : BaseViewModel
     {
-        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
 
         private string? _accountOwnerFullName;
+        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
         private string _amountView = "0";
         private ushort? _fundAccountId;
         private string? _personalAccountNumber;
@@ -32,6 +33,10 @@ namespace accounting.ViewModels
             AmountView = "0";
             UpdateContent();
         }
+
+        public ICommand? MakeTransactionsCommand { get; }
+        public ICommand? SelectionChanged { get; }
+        public ICommand CreditPreviewKeyDownCommand { get; }
 
         public ushort? FundAccountId
         {
@@ -53,6 +58,7 @@ namespace accounting.ViewModels
                 {
                     FundAccountId = null;
                 }
+
                 FilterAccountsList();
             }
         }
@@ -78,9 +84,6 @@ namespace accounting.ViewModels
             set => SetProperty(ref _personalAccountNumber, value);
         }
 
-        public ICommand? MakeTransactionsCommand { get; }
-        public ICommand? SelectionChanged { get; }
-
         public ObservableCollection<AccountsItemsViewModel> AccountsList
         {
             get => _accountList;
@@ -99,17 +102,15 @@ namespace accounting.ViewModels
             set => SetProperty(ref _transactionType, value);
         }
 
-        public ICommand CreditPreviewKeyDownCommand { get; }
-
         private void FilterAccountsList()
         {
             AccountsList = new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
-            if (SearchText != null)
-                foreach (var accountsItemsViewModel in _accountsItemsViewModels)
-                    if (!accountsItemsViewModel.AccountOwnerFullName.Contains(SearchText) &&
-                        !accountsItemsViewModel.AccountId.ToString().Contains(SearchText) &&
-                        !accountsItemsViewModel.AccountOwnerNationalId.Contains(SearchText))
-                        AccountsList.Remove(accountsItemsViewModel);
+            if (SearchText == null) return;
+            foreach (var accountsItemsViewModel in _accountsItemsViewModels.Where(accountsItemsViewModel =>
+                         !accountsItemsViewModel.AccountOwnerFullName.Contains(SearchText) &&
+                         !accountsItemsViewModel.AccountId.ToString().Contains(SearchText) &&
+                         !accountsItemsViewModel.AccountOwnerNationalId.Contains(SearchText)))
+                AccountsList.Remove(accountsItemsViewModel);
         }
 
         private async void GetAccounts()
@@ -131,7 +132,13 @@ namespace accounting.ViewModels
                         vPeoples.Key.NationalId);
                 _accountsItemsViewModels.Add(accountsItemsViewModels);
             }
+
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
+        }
+
+        public override void HelperTextChange(string text)
+        {
+            AccountOwnerFullName = text;
         }
 
         public sealed override void UpdateContent()
