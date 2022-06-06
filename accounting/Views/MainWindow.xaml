@@ -54,6 +54,7 @@
                         <Setter Property="Background" Value="{StaticResource LightPrimary}" />
                         <Setter Property="Foreground" Value="{StaticResource LightOnPrimary}" />
                         <Setter Property="Command" Value="{Binding CheckTabItemUpdateCommand}" />
+                        <Setter Property="GroupName" Value="ManuItem" />
                     </Style>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
@@ -100,7 +101,7 @@
                         IsChecked="True"
                         Command="{Binding CheckTabItemUpdateCommand}"
                         CommandParameter="Home" />
-                    
+
                     <customControls:CustomHomeMenu
                         Kind="Money"
                         Content="تراکنش ها"
