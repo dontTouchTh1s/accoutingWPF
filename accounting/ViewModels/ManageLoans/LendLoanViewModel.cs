@@ -27,12 +27,12 @@ namespace accounting.ViewModels.ManageLoans
             _accountList = AccountsList;
             LendLoanCommand = new LendLoanCommand(this, investmentFundModel);
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
-            CreditPreviewKeyUpCommand = new CreditPreviewKeyUpCommand();
             Amount = 0;
             UpdateContent();
         }
 
         public ICommand LendLoanCommand { get; }
+        public ICommand CreditPreviewKeyDownCommand { get; }
 
         public string? PersonalAccountNumber
         {
@@ -85,10 +85,6 @@ namespace accounting.ViewModels.ManageLoans
             set => SetProperty(ref _accountList, value);
         }
 
-        public ICommand CreditPreviewKeyDownCommand { get; }
-
-        public ICommand CreditPreviewKeyUpCommand { get; }
-
         public string? AccountOwnerFullName
         {
             get => _accountOwnerFullName;
@@ -131,6 +127,7 @@ namespace accounting.ViewModels.ManageLoans
                         vPeoples.Key.NationalId);
                 _accountsItemsViewModels.Add(accountsItemsViewModels);
             }
+
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
         }
 
