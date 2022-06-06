@@ -13,8 +13,8 @@
                           Background="{TemplateBinding Background}"
                           Height="50">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="0.2*"/>
-                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="0.2*" />
+                            <ColumnDefinition Width="1*" />
                         </Grid.ColumnDefinitions>
                         <materialDesign:PackIcon
                             Grid.Column="0"
@@ -30,18 +30,17 @@
                             Text="{TemplateBinding Content}" />
                         <customControls:RippleEffectControl
                             Grid.Column="0"
+                            Grid.ColumnSpan="2"
                             Background="Transparent"
-                            HighlightBackground="{DynamicResource LightPrimary}" />
+                            HighlightBackground="{StaticResource LightPrimary}" />
                     </Grid>
-                    <ControlTemplate.Triggers>
-                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
         <Style.Triggers>
             <Trigger Property="customControls:CustomHomeMenu.IsChecked" Value="True">
-                <Setter Property="Background" Value="{DynamicResource LightPrimary}" />
-                <Setter Property="Foreground" Value="{DynamicResource LightOnPrimary}" />
+                <Setter Property="Background" Value="{DynamicResource LightBackground}" />
+                <Setter Property="Foreground" Value="{DynamicResource LightOnBackground}" />
             </Trigger>
         </Style.Triggers>
     </Style>
