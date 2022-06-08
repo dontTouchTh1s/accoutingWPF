@@ -1,28 +1,33 @@
-﻿namespace accounting.ViewModels.ManageLoans
+﻿using System;
+using System.Globalization;
+
+namespace accounting.ViewModels.ManageLoans
 {
     public class ViewLoanItemViewModel
     {
-        public ViewLoanItemViewModel(ushort id, string amount, byte instalmentCount,
+        public ViewLoanItemViewModel(ushort id, ulong amount, byte instalmentCount,
             string ownerFullName, ushort accountId,
-            string lendDate, string? personalAccountNumber)
+            DateTime lendDate, ulong remainedAmount, string? personalAccountNumber)
         {
             Id = id;
-            Amount = amount;
+            Amount = amount.ToString("N0", CultureInfo.CurrentCulture);
             InstalmentCount = instalmentCount;
             OwnerFullName = ownerFullName;
             AccountId = accountId;
-            LendDate = lendDate;
+            LendDate = lendDate.ToString(CultureInfo.CurrentCulture);
+            RemainedAmount = remainedAmount.ToString("N0", CultureInfo.CurrentCulture);
             PersonalAccountNumber = personalAccountNumber ?? "وارد نشده";
-            MinimumInstalmentAmount = int.Parse(amount) / instalmentCount;
+            MinimumInstalmentAmount = (amount / instalmentCount).ToString("N0", CultureInfo.CurrentCulture);
         }
 
         public ushort Id { get; }
+        public string OwnerFullName { get; }
         public string Amount { get; }
         public byte InstalmentCount { get; }
-        public string OwnerFullName { get; }
         public ushort AccountId { get; }
         public string LendDate { get; }
+        public string RemainedAmount { get; }
         public string PersonalAccountNumber { get; }
-        public int MinimumInstalmentAmount { get; }
+        public string MinimumInstalmentAmount { get; }
     }
 }
