@@ -9,13 +9,13 @@ namespace accounting.DataBase.DTOs
         [Key]
         public ushort Id { get; set; }
 
-        public long Amount { get; set; }
-        public string Date { get; set; }
+        public long Amount { get; init; }
+        public string Date { get; init; }
 
-        public ushort? AccountId { get; set; }
+        public ushort AccountId { get; init; }
 
         [ForeignKey("AccountId")] public AccountDTO Account { get; set; }
 
-        public string? PersonalAccountNumber { get; set; }
+        public string? PersonalAccountNumber { get; init; }
     }
 }
