@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
-using accounting.DataBase.DTOs;
 using accounting.Exceptions;
 using accounting.Models;
 using Microsoft.EntityFrameworkCore;
@@ -151,15 +150,59 @@ namespace accounting.DataBase.Services
                     foreach (var loan in context.Loans)
                     {
                         if (loan.Account != account) continue;
-                        loanList = new List<LoanModel> { _dtoConverterService.LoanDTOToModel(loan) };
+                        loanList.Add(_dtoConverterService.LoanDTOToModel(loan));
                     }
 
                     accountDic.Add(
                         _dtoConverterService.AccountDTOToModel(account,
                             DataBasePeopleServices.DataBaseAccountsServices), loanList);
                 }
-                loansByPeopleAccounts.Add(_dtoConverterService.PeopleDTOToModel(people, DataBasePeopleServices), accountDic);
+
+                loansByPeopleAccounts.Add(_dtoConverterService.PeopleDTOToModel(people, DataBasePeopleServices),
+                    accountDic);
             }
+
+            return loansByPeopleAccounts;
+        }
+
+        public async Task<ulong> GetLoanPayedAmount(LoanModel loan)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            ulong payedAmount = 0;
+            foreach (var loanInstallment in context.LoanInstallments)
+                if (loanInstallment.LoanId == loan.Id)
+                    payedAmount += loanInstallment.Amount;
+            return payedAmount;
+        }
+
+        public async Task<Dictionary<PeoplesModel, Dictionary<AccountsModel, List<TransactionsModel>>>>
+            GetAllTransactions()
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loansByPeopleAccounts =
+                new Dictionary<PeoplesModel, Dictionary<AccountsModel, List<TransactionsModel>>>();
+            foreach (var people in context.Peoples)
+            {
+                var accountDic = new Dictionary<AccountsModel, List<TransactionsModel>>();
+                foreach (var account in context.Accounts)
+                {
+                    if (account.Owner != people) continue;
+                    var transactionsList = new List<TransactionsModel>();
+                    foreach (var transaction in context.Transactions)
+                    {
+                        if (transaction.Account != account) continue;
+                        transactionsList.Add(_dtoConverterService.TransactionDTOToModel(transaction));
+                    }
+
+                    accountDic.Add(
+                        _dtoConverterService.AccountDTOToModel(account,
+                            DataBasePeopleServices.DataBaseAccountsServices), transactionsList);
+                }
+
+                loansByPeopleAccounts.Add(_dtoConverterService.PeopleDTOToModel(people, DataBasePeopleServices),
+                    accountDic);
+            }
+
             return loansByPeopleAccounts;
         }
     }
