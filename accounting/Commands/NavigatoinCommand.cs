@@ -1,5 +1,4 @@
-﻿using System;
-using accounting.Store;
+﻿using accounting.Store;
 using accounting.ViewModels;
 
 namespace accounting.Commands

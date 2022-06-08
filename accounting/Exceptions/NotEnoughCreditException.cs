@@ -6,7 +6,7 @@ namespace accounting.Exceptions
     {
         public ulong Credit;
         public ulong MaximumLoan;
-        
+
         public NotEnoughCreditException(ulong credit) : base("Not enough credit")
         {
             Credit = credit;

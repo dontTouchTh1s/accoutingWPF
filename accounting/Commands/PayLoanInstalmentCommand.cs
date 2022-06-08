@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 
 namespace accounting.Commands
 {
@@ -6,7 +7,7 @@ namespace accounting.Commands
     {
         public override Task ExecuteAsync(object? parameter)
         {
-            throw new System.NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }
