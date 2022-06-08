@@ -64,6 +64,16 @@ namespace accounting.DataBase.Services
             };
         }
 
+        public TransactionsModel TransactionDTOToModel(TransactionsDTO transactionsDTO)
+        {
+            return new TransactionsModel(transactionsDTO.Id,
+                transactionsDTO.Amount,
+                transactionsDTO.AccountId,
+                DateTime.Parse(transactionsDTO.Date),
+                transactionsDTO.PersonalAccountNumber
+            );
+        }
+
         public LoansDTO LoanModelToDTO(LoanModel loanModel)
         {
             return new LoansDTO
