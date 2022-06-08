@@ -8,6 +8,7 @@ namespace accounting.DataBase.DTOs
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public ushort Id { get; set; }
+
         public ushort LoanId { get; set; }
         [ForeignKey("LoanId")] public LoansDTO Loan { get; set; }
         public ulong Amount { get; set; }
