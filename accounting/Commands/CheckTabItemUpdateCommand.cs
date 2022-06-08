@@ -1,5 +1,4 @@
-﻿using System.Windows.Controls;
-using accounting.Store;
+﻿using accounting.Store;
 using accounting.ViewModels;
 
 namespace accounting.Commands
@@ -31,14 +30,14 @@ namespace accounting.Commands
                     }
                     case "CreateAccount":
                     {
-                        _navigatoinSerivce.Navigate(_navigatoinSerivce.CreateAccountViewModel);
-                        _navigatoinSerivce.CreateAccountViewModel.UpdateContent();
+                        _navigatoinSerivce.Navigate(_navigatoinSerivce.ManageAccountsViewModel);
+                        _navigatoinSerivce.ManageAccountsViewModel.UpdateContent();
                         break;
                     }
                     case "Transactions":
                     {
-                        _navigatoinSerivce.Navigate(_navigatoinSerivce.TransactionsViewModel);
-                        _navigatoinSerivce.TransactionsViewModel.UpdateContent();
+                        _navigatoinSerivce.Navigate(_navigatoinSerivce.ManageTransactionsViewModel);
+                        _navigatoinSerivce.ManageTransactionsViewModel.UpdateContent();
                         break;
                     }
                     case "ManageLoans":
