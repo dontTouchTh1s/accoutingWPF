@@ -50,15 +50,17 @@ namespace accounting.ViewModels.ManageLoans
             var loansDic = await _investmentFundModel.GetAllLoans();
             foreach (var people in loansDic)
             foreach (var account in people.Value)
-            foreach (var loans in account.Value)
+            foreach (var loan in account.Value)
             {
-                var loanItem = new ViewLoanItemViewModel(loans.Id,
-                    loans.Amount.ToString(),
-                    loans.InstallmentsCount,
+                var remainAmount = await _investmentFundModel.GetLoanRemainedAmount(loan);
+                var loanItem = new ViewLoanItemViewModel(loan.Id,
+                    loan.Amount,
+                    loan.InstallmentsCount,
                     people.Key.Name + " " + people.Key.LastName,
                     account.Key.Id,
-                    loans.LendDate.ToString(CultureInfo.CurrentCulture),
-                    loans.PersonalAccountNumber
+                    loan.LendDate,
+                    remainAmount,
+                    loan.PersonalAccountNumber
                 );
                 LoansList.Add(loanItem);
             }
