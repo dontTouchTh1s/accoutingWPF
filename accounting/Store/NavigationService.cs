@@ -2,6 +2,7 @@
 using accounting.ViewModels;
 using accounting.ViewModels.ManageAccounts;
 using accounting.ViewModels.ManageLoans;
+using accounting.ViewModels.ManageTranactions;
 
 namespace accounting.Store
 {
@@ -9,12 +10,12 @@ namespace accounting.Store
     {
         private BaseViewModel _manageLoansCurrentViewModel = null!;
 
-        public NavigationService(params BaseViewModel[] ViewModels)
+        public NavigationService(params BaseViewModel[] viewModels)
         {
-            SummeryViewModel = (SummeryViewModel)ViewModels[0];
-            TransactionsViewModel = (TransactionsViewModel)ViewModels[1];
-            ManageLoanViewModel = (ManageLoanViewModel)ViewModels[2];
-            CreateAccountViewModel = (CreateAccountViewModel)ViewModels[3];
+            SummeryViewModel = (SummeryViewModel)viewModels[0];
+            ManageTransactionsViewModel = (ManageTransactionsViewModel)viewModels[1];
+            ManageLoanViewModel = (ManageLoanViewModel)viewModels[2];
+            ManageAccountsViewModel = (ManageAccountsViewModel)viewModels[3];
         }
 
         public BaseViewModel CurrentViewModel
@@ -27,10 +28,10 @@ namespace accounting.Store
             }
         }
 
-        public ManageLoanViewModel ManageLoanViewModel { get; set; }
-        public SummeryViewModel SummeryViewModel { get; set; }
-        public TransactionsViewModel TransactionsViewModel { get; set; }
-        public CreateAccountViewModel CreateAccountViewModel { get; }
+        public ManageLoanViewModel ManageLoanViewModel { get; }
+        public SummeryViewModel SummeryViewModel { get; }
+        public ManageTransactionsViewModel ManageTransactionsViewModel { get; }
+        public ManageAccountsViewModel ManageAccountsViewModel { get; }
 
         private void OnCurrentViewChanged()
         {
