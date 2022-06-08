@@ -22,12 +22,15 @@ namespace accounting.ViewModels.ManageLoans
         private ObservableCollection<LoanItemViewModel> _loanList;
         private string? _loanSearchText;
         private string? _personalAccountNumber;
+        private string _amountHelperText;
+        private string? _accountOwnerFullName;
 
         public DepositLoanInstalmentViewModel(InvestmentFundModel investmentFundModel)
         {
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
             PayLoanInstalment = new PayLoanInstalmentCommand();
             SelectedLoanChangedCommand = new SelectedLoanChangedCommand(this);
+            SelectionChangedCommand = new SelectionChangedCommand(this);
             _investmentFundModel = investmentFundModel;
             AmountView = "0";
             _accountList = AccountsList;
@@ -39,9 +42,19 @@ namespace accounting.ViewModels.ManageLoans
         public ICommand CreditPreviewKeyDownCommand { get; set; }
         public ICommand PayLoanInstalment { get; }
         public ICommand SelectedLoanChangedCommand { get; }
+        public ICommand SelectionChangedCommand { get; }
 
-        public string AmountHelperText { get; set; }
-        public string? AccountOwnerFullName { get; set; }
+        public string AmountHelperText
+        {
+            get => _amountHelperText;
+            set => SetProperty(ref _amountHelperText, value);
+        }
+
+        public string? AccountOwnerFullName
+        {
+            get => _accountOwnerFullName;
+            set => SetProperty(ref _accountOwnerFullName, value);
+        }
 
         public ObservableCollection<LoanItemViewModel> LoansList
         {
@@ -162,6 +175,11 @@ namespace accounting.ViewModels.ManageLoans
             }
 
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
+        }
+
+        public override void HelperTextChange(string text)
+        {
+            AccountOwnerFullName = text;
         }
 
         public sealed override void UpdateContent()
