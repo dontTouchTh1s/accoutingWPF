@@ -27,46 +27,43 @@
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
-            <RowDefinition Height="0.65* "/>
+            <RowDefinition Height="0.65* " />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1.5*" />
-            <ColumnDefinition Width="1.5*" />
             <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="1*" />
             <ColumnDefinition Width="2*" />
         </Grid.ColumnDefinitions>
         <Border
             BorderThickness="0">
             <TextBlock
-            Grid.Row="0"
-            Grid.Column="0"
-            Text="{Binding Id}" />
+                Text="{Binding Id}" />
         </Border>
         <Border
             Grid.Row="0"
             Grid.Column="1">
             <TextBlock
-            Text="{Binding Amount}" />
+                Text="{Binding OwnerFullName}" />
         </Border>
         <Border
             Grid.Row="0"
             Grid.Column="2">
             <TextBlock
-            Text="{Binding InstalmentCount}" />
+                Text="{Binding Amount}" />
         </Border>
         <Border
             Grid.Row="0"
             Grid.Column="3">
             <TextBlock
-            Text="{Binding OwnerFullName}" />
+                Text="{Binding InstalmentCount}" />
         </Border>
         <Border
             Grid.Row="0"
-            Grid.Column="4"
-            BorderThickness="1,0,0,0">
+            Grid.Column="4">
             <TextBlock
-            Text="{Binding AccountId}" />
+                Text="{Binding LendDate}" />
         </Border>
         <Grid
             Grid.Row="1"
@@ -82,20 +79,28 @@
                 </Style>
             </Grid.Resources>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1.5*" />
-                <ColumnDefinition Width="1.5*" />
                 <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="1*" />
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
 
             <TextBlock
-                Grid.Column="4"
-                Text="{Binding LendDate}" />
+                Grid.Column="0"
+                Text="{Binding AccountId}" />
+
+            <TextBlock
+                Grid.Column="1"
+                Text="{Binding PersonalAccountNumber}" />
+
+            <TextBlock
+                Grid.Column="2"
+                Text="{Binding RemainedAmount}" />
 
             <TextBlock
                 Grid.Column="3"
-                Text="{Binding PersonalAccountNumber}" />
+                Text="{Binding MinimumInstalmentAmount}" />
         </Grid>
     </Grid>
 </UserControl>
