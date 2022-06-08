@@ -7,6 +7,7 @@ using accounting.Store;
 using accounting.ViewModels;
 using accounting.ViewModels.ManageAccounts;
 using accounting.ViewModels.ManageLoans;
+using accounting.ViewModels.ManageTranactions;
 using Microsoft.EntityFrameworkCore;
 
 namespace accounting
@@ -42,16 +43,20 @@ namespace accounting
             }
 
             var summeryViewModel = new SummeryViewModel(_investmentFundModel);
-            var transactionsViewModel = new TransactionsViewModel(_investmentFundModel);
+            var manageTransactionsViewModel = new ManageTransactionsViewModel(_investmentFundModel);
             var manageLoanViewModel = new ManageLoanViewModel(_investmentFundModel);
-            var createAccountViewModel = new CreateAccountViewModel(_investmentFundModel);
-            var navigationStore = new NavigationService(summeryViewModel, transactionsViewModel, manageLoanViewModel,
-                createAccountViewModel);
+            var manageAccountsViewModel = new ManageAccountsViewModel(_investmentFundModel);
+            var navigationStore = new NavigationService(summeryViewModel, manageTransactionsViewModel,
+                manageLoanViewModel,
+                manageAccountsViewModel);
 
 
             MainWindow = new MainWindow
             {
-                DataContext = new MainViewModel(_investmentFundModel, navigationStore)
+                DataContext = new MainViewModel(_investmentFundModel, navigationStore),
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                Width = SystemParameters.PrimaryScreenWidth / 100 * 75,
+                Height = SystemParameters.PrimaryScreenHeight / 100 * 75
             };
             MainWindow.Show();
             base.OnStartup(e);
