@@ -3,12 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local="clr-namespace:accounting.Views"
-             xmlns:viewModels="clr-namespace:accounting.ViewModels"
              xmlns:comboBoxItems="clr-namespace:accounting.ViewModels.ComboBoxItems"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance comboBoxItems:LoanItemViewModel}"
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="150" d:DesignWidth="400">
     <Grid FlowDirection="RightToLeft">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,20 +20,20 @@
         <TextBlock
             Grid.Row="0"
             Grid.Column="0"
-            Text="{Binding Amount}" 
-            FontSize="15"/>
+            Text="{Binding Amount}"
+            FontSize="15" />
         <TextBlock
             Grid.Row="0"
             Grid.RowSpan="2"
             Grid.Column="1"
-            Text="{Binding Id}" 
+            Text="{Binding Id}"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
+            HorizontalAlignment="Center" />
 
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
-            Text="{Binding InstalmentCount}" 
-            FontSize="11"/>
+            Text="{Binding InstalmentCount}"
+            FontSize="11" />
     </Grid>
 </UserControl>
