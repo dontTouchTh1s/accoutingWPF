@@ -11,6 +11,10 @@
         xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
         xmlns:manageAccounts="clr-namespace:accounting.ViewModels.ManageAccounts"
         xmlns:customControls="clr-namespace:accounting.CustomControls"
+        xmlns:manageAccountsView="clr-namespace:accounting.Views.ManageAccounts"
+        xmlns:manageLoansView="clr-namespace:accounting.Views.ManageLoans"
+        xmlns:manageTranactions="clr-namespace:accounting.ViewModels.ManageTranactions"
+        xmlns:manageTransactions="clr-namespace:accounting.Views.ManageTransactions"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -20,9 +24,9 @@
         Foreground="{StaticResource LightOnBackground}"
         FontFamily="{DynamicResource MaterialDesignFont}"
         AllowsTransparency="True"
+        d:DesignHeight="500" d:DesignWidth="1000"
         mc:Ignorable="d"
         WindowStyle="None"
-        Title="MainWindow" Height="560" Width="1000"
         d:DataContext="{d:DesignInstance viewModels:MainViewModel}">
     <Window.Resources>
         <DataTemplate DataType="{x:Type dialogVms:MessageDialogViewModel}">
@@ -31,14 +35,14 @@
         <DataTemplate DataType="{x:Type viewModels:SummeryViewModel}">
             <views:SummeryView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type viewModels:TransactionsViewModel}">
-            <views:TransactionView />
+        <DataTemplate DataType="{x:Type manageTranactions:ManageTransactionsViewModel}">
+            <manageTransactions:ManageTransactionsView />
         </DataTemplate>
         <DataTemplate DataType="{x:Type manageLoans:ManageLoanViewModel}">
-            <views:ManageLoanView />
+            <manageLoansView:ManageLoanView />
         </DataTemplate>
-        <DataTemplate DataType="{x:Type manageAccounts:CreateAccountViewModel}">
-            <views:CreateAccountView />
+        <DataTemplate DataType="{x:Type manageAccounts:ManageAccountsViewModel}">
+            <manageAccountsView:ManageAccountsView />
         </DataTemplate>
 
     </Window.Resources>
@@ -58,7 +62,7 @@
                     </Style>
                 </Grid.Resources>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="80" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
