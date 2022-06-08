@@ -20,8 +20,9 @@
         Background="Transparent">
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="Auto"/>
-            <RowDefinition />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock
             VerticalAlignment="Center"
@@ -39,18 +40,142 @@
             materialDesign:HintAssist.Hint="جست و جو"
             materialDesign:HintAssist.HelperText="برای جست و جو میتوانید از نام صاحب وام، کدملی، قیمت وام استفاده کنید.">
             <TextBox.Text>
-            <Binding
+                <Binding
                     Path="SearchText"
-                    UpdateSourceTrigger="PropertyChanged"/>
+                    UpdateSourceTrigger="PropertyChanged" />
             </TextBox.Text>
         </TextBox>
-            <Border
+        <Border
             Grid.Row="2"
+            BorderThickness="2,2,2,0"
+            CornerRadius="12,12,0,0"
+            BorderBrush="{StaticResource LightOutline}">
+            <Grid
+                Margin="8,0,8,0"
+                Width="Auto">
+                <Grid.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="Margin" Value="0,8,0,8" />
+                        <Setter Property="TextWrapping" Value="Wrap" />
+                    </Style>
+                    <Style TargetType="Border">
+                        <Setter Property="BorderBrush" Value="{StaticResource LightOutline}" />
+                        <Setter Property="BorderThickness" Value="0,0,1,0" />
+                        <Setter Property="Margin" Value="0,0,0,0" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*" />
+                    <RowDefinition Height="0.4* " />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="1*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+                <Border>
+                    <TextBlock
+                        FontSize="12"
+                        Text="شماره  وام" />
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    <TextBlock
+                        Text="نام کامل" />
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="2">
+                    <TextBlock
+                        Text="مبلغ وام" />
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="3">
+                    <TextBlock
+                        Text="تعداد اقساط" />
+                </Border>
+                <Border
+                    Grid.Row="0"
+                    Grid.Column="4"
+                    BorderThickness="0">
+                    <TextBlock
+                        Text="تاریخ" />
+                </Border>
+                <Grid
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="5"
+                    FlowDirection="RightToLeft"
+                    Background="{StaticResource LightSecondarySurfaceNatural50}">
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="11" />
+                            <Setter Property="Margin" Value="0,4,0,4" />
+                            <Setter Property="VerticalAlignment" Value="Center" />
+                            <Setter Property="HorizontalAlignment" Value="Center" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="1*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Border
+                        Grid.Column="0">
+                        <TextBlock
+                            FontSize="11"
+                            Margin="2"
+                            Text="شماره حساب" />
+                    </Border>
+                    <Border
+                        Grid.Column="1">
+                        <TextBlock
+                            FontSize="11"
+                            Margin="2"
+                            Text="شماره حساب شخصی" />
+                    </Border>
+                    <Border
+                        Grid.Column="2">
+                        <TextBlock
+                            FontSize="11"
+                            Margin="2"
+                            Text="مبلغ باقیمانده" />
+                    </Border>
+                    <Border
+                        Grid.Column="3">
+                        <TextBlock
+                            FontSize="11"
+                            Margin="2"
+                            Text="حداقل قسط" />
+                    </Border>
+                    <Border
+                        Grid.Column="4"
+                        BorderThickness="0">
+                        <TextBlock
+                            FontSize="11"
+                            Margin="2"
+                            Text="" />
+                    </Border>
+
+                </Grid>
+            </Grid>
+        </Border>
+        <Border
+            Grid.Row="3"
             BorderBrush="{StaticResource LightOutline}"
-            BorderThickness="1">
+            BorderThickness="2"
+            CornerRadius="0,0,12,12">
             <ListBox
-                ItemsSource="{Binding LoansList}" >
-            </ListBox>
+                ItemsSource="{Binding LoansList}" />
         </Border>
     </Grid>
 </UserControl>
