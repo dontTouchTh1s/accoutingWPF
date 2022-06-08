@@ -1,10 +1,9 @@
-﻿<UserControl x:Class="accounting.Views.CreateAccountView"
+﻿<UserControl x:Class="accounting.Views.ManageAccounts.CreateAccountView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             xmlns:viewmodel="clr-namespace:accounting.ViewModels"
              xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:manageAccounts="clr-namespace:accounting.ViewModels.ManageAccounts"
              mc:Ignorable="d"
@@ -21,18 +20,18 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Border 
+    <Border
         CornerRadius="0,0,25,25"
         Background="{StaticResource LightBackground}">
-        <StackPanel Margin="12">
+        <StackPanel Margin="8">
             <TextBlock Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
             <Grid Margin="8">
                 <Grid.Resources>
                     <Style TargetType="TextBox" BasedOn="{StaticResource MdTextBoxStyle}" />
                 </Grid.Resources>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -133,5 +132,5 @@
                     Command="{Binding CreateAccountCommand}" />
             </Grid>
         </StackPanel>
-        </Border>
+    </Border>
 </UserControl>
