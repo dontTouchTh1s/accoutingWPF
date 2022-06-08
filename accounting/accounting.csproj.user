@@ -5,10 +5,16 @@
     <Compile Update="Views\ManageLoans\LendLoanView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\ManageTransactions\ManageTransactionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\ManageTransactions\ViewTransactionsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\SummeryView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Update="Views\TransactionView.xaml.cs">
+    <Compile Update="Views\ManageTransactions\TransactionView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -16,10 +22,16 @@
     <Page Update="Views\ManageLoans\LendLoanView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\ManageTransactions\ManageTransactionsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\ManageTransactions\ViewTransactionsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\SummeryView.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="Views\TransactionView.xaml">
+    <Page Update="Views\ManageTransactions\TransactionView.xaml">
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>

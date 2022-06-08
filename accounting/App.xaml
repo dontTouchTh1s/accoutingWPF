@@ -30,7 +30,7 @@
                                                  SecondaryColor="{StaticResource LightSecondaryColor}" />
                 <ResourceDictionary
                     Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesign3.Defaults.xaml" />
-                
+
                 <ResourceDictionary Source="Themes/HomeRadioButtonTheme.xaml" />
                 <ResourceDictionary Source="Themes/RippleEffectControl.xaml" />
                 <ResourceDictionary Source="Themes/CustomHomeMenu.xaml" />
