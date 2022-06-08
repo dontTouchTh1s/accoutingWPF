@@ -2,9 +2,9 @@
 using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
 using accounting.DataBase.Services;
-using accounting.ViewModels;
 using accounting.ViewModels.ManageAccounts;
 using accounting.ViewModels.ManageLoans;
+using accounting.ViewModels.ManageTranactions;
 
 namespace accounting.Models
 {
@@ -81,6 +81,23 @@ namespace accounting.Models
         public async Task<Dictionary<PeoplesModel, Dictionary<AccountsModel, List<LoanModel>>>> GetAllLoans()
         {
             return await _dataBaseInvestmentFundServices.GetAllLoans();
+        }
+
+        public async Task<ulong> GetLoanPayedAmount(LoanModel loanModel)
+        {
+            return await _dataBaseInvestmentFundServices.GetLoanPayedAmount(loanModel);
+        }
+
+        public async Task<ulong> GetLoanRemainedAmount(LoanModel loanModel)
+        {
+            var payedAmount = await GetLoanPayedAmount(loanModel);
+            return loanModel.Amount - payedAmount;
+        }
+
+        public async Task<Dictionary<PeoplesModel, Dictionary<AccountsModel, List<TransactionsModel>>>>
+            GetAllTransactinos()
+        {
+            return await _dataBaseInvestmentFundServices.GetAllTransactions();
         }
     }
 }
