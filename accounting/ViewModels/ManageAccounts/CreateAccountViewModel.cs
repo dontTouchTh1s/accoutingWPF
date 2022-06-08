@@ -22,10 +22,6 @@ namespace accounting.ViewModels.ManageAccounts
         private string? _nationalId;
         private string? _personalAccountNumber;
 
-        public CreateAccountViewModel()
-        {
-        }
-
         public CreateAccountViewModel(InvestmentFundModel investmentFundModel)
         {
             CreateAccountCommand = new CreateAccountCommand(this, investmentFundModel);

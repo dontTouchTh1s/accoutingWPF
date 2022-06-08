@@ -2,7 +2,6 @@
 {
     public class AccountsItemsViewModel
     {
-
         public AccountsItemsViewModel(ushort accountId, string accountOwnerFullName, string accountOwnerNationalId)
         {
             AccountId = accountId;

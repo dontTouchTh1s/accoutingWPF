@@ -55,6 +55,7 @@ namespace accounting.DataBase.Services
                     accountDTO.AvailableCredit += (ulong)transactionsDTO.Amount;
                     break;
             }
+
             context.Transactions.Add(transactionsDTO);
             await context.SaveChangesAsync();
         }

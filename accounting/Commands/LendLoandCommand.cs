@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using System.Windows.Media;
 using accounting.Exceptions;
 using accounting.Models;
-using accounting.ViewModels;
 using accounting.ViewModels.Dialogs;
 using accounting.ViewModels.ManageLoans;
 using MaterialDesignThemes.Wpf;
@@ -33,14 +32,17 @@ namespace accounting.Commands
             catch (NotEnoughCreditException e)
             {
                 var dialogViewModel =
-                    new MessageDialogViewModel(string.Format("حداکثر مبلغ وام، دو برابر اعتبار حساب است. حداکثر {0}", e.MaximumLoan),
+                    new MessageDialogViewModel(
+                        string.Format("حداکثر مبلغ وام، دو برابر اعتبار حساب است. حداکثر {0}", e.MaximumLoan),
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
             catch (NotEnoughFundAvailableBalance e)
             {
                 var dialogViewModel =
-                    new MessageDialogViewModel(string.Format("صندوق موجودی دردسترس کافی برای این وام ندارد. موجودی فعلی : {0}", e.AvailableBalance),
+                    new MessageDialogViewModel(
+                        string.Format("صندوق موجودی دردسترس کافی برای این وام ندارد. موجودی فعلی : {0}",
+                            e.AvailableBalance),
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }

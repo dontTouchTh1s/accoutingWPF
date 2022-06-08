@@ -1,5 +1,4 @@
-﻿using accounting.ViewModels;
-using accounting.ViewModels.ManageAccounts;
+﻿using accounting.ViewModels.ManageAccounts;
 
 namespace accounting.Commands.CurrencyComboBoxCommands
 {

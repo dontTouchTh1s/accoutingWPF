@@ -20,20 +20,20 @@
         <TextBlock
             Grid.Row="0"
             Grid.Column="0"
-            Text="{Binding AccountOwnerFullName}" 
-            FontSize="15"/>
+            Text="{Binding AccountOwnerFullName}"
+            FontSize="15" />
         <TextBlock
             Grid.Row="0"
             Grid.RowSpan="2"
             Grid.Column="1"
-            Text="{Binding AccountId}" 
+            Text="{Binding AccountId}"
             VerticalAlignment="Center"
-            HorizontalAlignment="Center"/>
+            HorizontalAlignment="Center" />
 
         <TextBlock
             Grid.Row="1"
             Grid.Column="0"
-            Text="{Binding AccountOwnerNationalId}" 
-            FontSize="11"/>
+            Text="{Binding AccountOwnerNationalId}"
+            FontSize="11" />
     </Grid>
 </UserControl>

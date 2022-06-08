@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using accounting.Commands;
 using accounting.Models;
 using accounting.Store;
@@ -9,6 +8,8 @@ namespace accounting.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly NavigationService _navigationService;
+        private BaseViewModel _currentViewModel;
+
         public MainViewModel(InvestmentFundModel investmentFundModel, NavigationService navigationService)
         {
             _navigationService = navigationService;
@@ -16,19 +17,18 @@ namespace accounting.ViewModels
             _navigationService.CurrentViewChanged += OnCurrentViewChanged;
             navigationService.Navigate(navigationService.SummeryViewModel);
         }
-        private BaseViewModel _currentViewModel;
 
         public BaseViewModel CurrentViewModel
         {
-            get { return _currentViewModel; }
-            set { SetProperty(ref _currentViewModel, value);  }
+            get => _currentViewModel;
+            set => SetProperty(ref _currentViewModel, value);
         }
+
+        public ICommand CheckTabItemUpdateCommand { get; }
 
         private void OnCurrentViewChanged()
         {
             CurrentViewModel = _navigationService.CurrentViewModel;
         }
-
-        public ICommand CheckTabItemUpdateCommand { get; }
     }
 }
