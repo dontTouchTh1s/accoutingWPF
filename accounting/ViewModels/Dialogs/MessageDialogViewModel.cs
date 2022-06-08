@@ -1,6 +1,5 @@
 ﻿using System.Windows.Media;
 using MaterialDesignThemes.Wpf;
-using Color = System.Drawing.Color;
 
 namespace accounting.ViewModels.Dialogs
 {

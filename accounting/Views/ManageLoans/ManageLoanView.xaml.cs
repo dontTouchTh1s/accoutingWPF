@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace accounting.Views
+namespace accounting.Views.ManageLoans
 {
     public partial class ManageLoanView : UserControl
     {
