@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:manageTransactinoViewModel="clr-namespace:accounting.ViewModels.ManageTranactions"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300"
+             d:DesignHeight="50" d:DesignWidth="200"
              d:DataContext="{d:DesignInstance manageTransactinoViewModel:ViewTransactinosItemViewModel}">
     <Grid
         FlowDirection="RightToLeft">
@@ -65,6 +65,7 @@
         </Border>
         <Grid
             Grid.Row="1"
+            Grid.Column="0"
             Grid.ColumnSpan="5"
             FlowDirection="RightToLeft"
             Background="{StaticResource LightSecondarySurfaceNatural50}">
