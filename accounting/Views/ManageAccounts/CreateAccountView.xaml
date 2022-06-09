@@ -23,7 +23,7 @@
     <Border
         CornerRadius="0,0,25,25"
         Background="{StaticResource LightBackground}">
-        <StackPanel 
+        <StackPanel
             Margin="8">
             <TextBlock Text="برای اضافه کردن حساب جدید اطلاعات زیر را وارد و روی ایجاد کلیک کنید." />
             <Grid Margin="8">
@@ -95,7 +95,7 @@
                     Grid.Column="0"
                     Grid.Row="4"
                     materialDesign:HintAssist.Hint="اعتبار اولیه"
-                    materialDesign:HintAssist.HelperText="حداقل اعتبار اولیه 400000 تومان"
+                    materialDesign:HintAssist.HelperText="حداقل اعتبار اولیه 500000 تومان"
                     materialDesign:TextFieldAssist.PrefixText="تومان">
                     <b:Interaction.Triggers>
                         <b:EventTrigger EventName="PreviewKeyDown">
