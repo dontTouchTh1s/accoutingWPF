@@ -10,13 +10,17 @@
                     <Color x:Key="LightPrimaryColor">#00677e</Color>
                     <SolidColorBrush x:Key="LightPrimary" Color="#00677e" />
                     <SolidColorBrush x:Key="LightOnPrimary" Color="#ffffff" />
+                    <SolidColorBrush x:Key="LightPrimaryContainer" Color="#b5ebff" />
+                    <SolidColorBrush x:Key="LightOnPrimaryContainer" Color="#001f28" />
                     <SolidColorBrush x:Key="LightBackground" Color="#fafcfd" />
                     <SolidColorBrush x:Key="LightOnBackground" Color="#191c1d" />
                     <SolidColorBrush x:Key="LightOutline" Color="#70787c" />
-                    <!-- accent -->
+                    <!-- secondary -->
                     <Color x:Key="LightSecondaryColor">#4b6269</Color>
                     <SolidColorBrush x:Key="LightSecondary" Color="#4b6269" />
                     <SolidColorBrush x:Key="LightOnSecondary" Color="#cfe7f0" />
+                    <SolidColorBrush x:Key="LightSecondaryContainer" Color="#cfe6f0" />
+                    <SolidColorBrush x:Key="LightOnSecondaryContainer" Color="#071e26" />
                     <!-- surface -->
                     <SolidColorBrush x:Key="LightSecondarySurface" Color="#dbe4e8" />
                     <SolidColorBrush x:Key="LightOnSecondarySurface" Color="#40484b" />

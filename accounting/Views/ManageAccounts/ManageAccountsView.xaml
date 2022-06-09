@@ -8,8 +8,9 @@
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="1000"
              d:DataContext="{d:DesignInstance manageAccounts:ManageAccountsViewModel}">
-    <Border CornerRadius="0,0,25,25"
-            Background="{StaticResource LightBackground}">
+    <Border 
+        CornerRadius="0,0,24,0"
+        Background="{StaticResource LightBackground}">
         <Grid
             FlowDirection="RightToLeft">
             <TabControl
@@ -25,7 +26,6 @@
                 <TabItem
                     HorizontalContentAlignment="Stretch"
                     HorizontalAlignment="Stretch"
-
                     Header="ایجاد حساب">
                     <manageAccountsViews:CreateAccountView
                         Margin="12"

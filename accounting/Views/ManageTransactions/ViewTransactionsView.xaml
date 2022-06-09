@@ -21,7 +21,7 @@
             <RowDefinition Height="50" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <TextBlock
             VerticalAlignment="Center"
@@ -201,7 +201,9 @@
             BorderThickness="2"
             CornerRadius="0,0,12,12">
             <ListBox
-                ItemsSource="{Binding TranactionsList}" />
+                HorizontalContentAlignment="Stretch"
+                ItemsSource="{Binding TranactionsList}"
+                ScrollViewer.VerticalScrollBarVisibility="Hidden" />
         </Border>
     </Grid>
 </UserControl>

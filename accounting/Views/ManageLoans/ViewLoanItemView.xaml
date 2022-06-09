@@ -9,7 +9,6 @@
              d:DataContext="{d:DesignInstance manageLoans:ViewLoanItemViewModel}">
 
     <Grid
-        Width="730"
         FlowDirection="RightToLeft">
         <Grid.Resources>
             <Style TargetType="TextBlock">

@@ -21,7 +21,7 @@
     <Border CornerRadius="0,0,25,25"
             Background="{StaticResource LightBackground}">
         <StackPanel
-            Margin="12">
+            Margin="8">
             <TextBlock Text="ایجاد تراکنش" />
             <Grid Margin="8">
                 <Grid.Resources>
@@ -33,11 +33,12 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="420" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="3*" />
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0"
                           Grid.Column="0"
@@ -120,7 +121,7 @@
                     </TextBox.Text>
                 </TextBox>
                 <Button
-                    Grid.Row="3"
+                    Grid.Row="4"
                     Grid.Column="1"
                     Content="انجام تراکنش"
                     Command="{Binding MakeTransactionsCommand}" />
