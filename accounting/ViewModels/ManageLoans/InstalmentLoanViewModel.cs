@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Windows.Input;
 using accounting.Commands;
 using accounting.Commands.CurrencyComboBoxCommands;
@@ -9,40 +10,45 @@ using accounting.ViewModels.ComboBoxItems;
 
 namespace accounting.ViewModels.ManageLoans
 {
-    public class DepositLoanInstalmentViewModel : BaseViewModel
+    public class InstalmentLoanViewModel : BaseViewModel
     {
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
-        private string? _accountSearchText;
-        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
-        private string _amountView = "0";
-        private ushort? _fundAccountId;
-        private ushort? _loanId;
-        private List<LoanItemViewModel> _loanItemsViewModels = new();
         private ObservableCollection<LoanItemViewModel> _loanList;
+        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
+        private List<LoanItemViewModel> _loanItemsViewModels = new();
+        private string? _accountSearchText;
         private string? _loanSearchText;
+
+        private ushort? _loanId;
+        private ushort? _fundAccountId;
+        private string? _accountOwnerFullName;
+        private string _amountView = "0";
         private string? _personalAccountNumber;
         private string _amountHelperText;
-        private string? _accountOwnerFullName;
+        private ulong _currentLoanMinimumInstalment;
+        
 
-        public DepositLoanInstalmentViewModel(InvestmentFundModel investmentFundModel)
+        public InstalmentLoanViewModel(InvestmentFundModel investmentFundModel)
         {
+            PayLoanInstalment = new PayLoanInstalmentCommand(this, investmentFundModel);
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
-            PayLoanInstalment = new PayLoanInstalmentCommand();
             SelectedLoanChangedCommand = new SelectedLoanChangedCommand(this);
             SelectionChangedCommand = new SelectionChangedCommand(this);
+            InstalmentAmountLostFocuse = new CreditLostFocusCommand(this);
             _investmentFundModel = investmentFundModel;
             AmountView = "0";
             _accountList = AccountsList;
             _loanList = LoansList;
-            UpdateContent();
             AmountHelperText = "";
+            UpdateContent();
         }
 
         public ICommand CreditPreviewKeyDownCommand { get; set; }
         public ICommand PayLoanInstalment { get; }
         public ICommand SelectedLoanChangedCommand { get; }
         public ICommand SelectionChangedCommand { get; }
+        public ICommand InstalmentAmountLostFocuse { get; }
 
         public string AmountHelperText
         {
@@ -56,23 +62,43 @@ namespace accounting.ViewModels.ManageLoans
             set => SetProperty(ref _accountOwnerFullName, value);
         }
 
+        public ulong CurrentLoanMinimumInstalment
+        {
+            get => _currentLoanMinimumInstalment;
+            set
+            {
+                var currencyValue = value.ToString("N0", CultureInfo.CurrentCulture);
+                _currentLoanMinimumInstalment = value;
+                AmountHelperText = string.Format("حداقل میزان پرداختی هر قسط {0} تومان است.", currencyValue);
+                AmountView = currencyValue;
+            }
+        }
+
         public ObservableCollection<LoanItemViewModel> LoansList
         {
             get => _loanList;
-            set => SetProperty(ref _loanList, value);
+            private set => SetProperty(ref _loanList, value);
         }
 
         public ObservableCollection<AccountsItemsViewModel> AccountsList
         {
             get => _accountList;
-            set => SetProperty(ref _accountList, value);
+            private set => SetProperty(ref _accountList, value);
         }
 
         public string AmountView
         {
             get => _amountView;
-            set => SetProperty(ref _amountView, value);
+            set
+            {
+                ulong.TryParse(value, NumberStyles.Number, CultureInfo.CurrentCulture, out var provider);
+                Amount = provider;
+                value = provider.ToString("N0", CultureInfo.CurrentCulture);
+                SetProperty(ref _amountView, value);
+            }
         }
+
+        public ulong Amount { get; private set; }
 
         public string? PersonalAccountNumber
         {

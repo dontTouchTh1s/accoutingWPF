@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:views="clr-namespace:accounting.Views"
              xmlns:manageLoans="clr-namespace:accounting.ViewModels.ManageLoans"
+             xmlns:manageLoans1="clr-namespace:accounting.Views.ManageLoans"
              mc:Ignorable="d"
              d:DesignHeight="500" d:DesignWidth="1000"
              d:DataContext="{d:DesignInstance manageLoans:ManageLoanViewModel }">
@@ -31,10 +32,10 @@
                 </TabItem>
                 <TabItem
                     Header="واریز اقساط">
-                    <views:DepositLoanInstalmentView
+                    <manageLoans1:InstalmentLoanView
                         Margin="12"
                         HorizontalAlignment="Stretch"
-                        DataContext="{Binding DepositLoanInstalmentViewModel}" />
+                        DataContext="{Binding InstalmentLoanViewModel}" />
                 </TabItem>
                 <TabItem
                     Header="وام های تخصیص داده شده">

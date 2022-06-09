@@ -39,7 +39,8 @@ namespace accounting.Commands
             catch (NotEnoughAvailableCreditException e)
             {
                 var dialogViewModel =
-                    new MessageDialogViewModel(e.Message,
+                    new MessageDialogViewModel(
+                        string.Format("موجودی کافی برای برداشت وجود ندارد، موجودی دردسترس: {0}", e.AvailableCredit),
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }

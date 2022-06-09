@@ -95,5 +95,15 @@ namespace accounting.DataBase.Services
                 loan.PersonalAccountNumber,
                 loan.AccountId);
         }
+
+        public LoanInstallmentsDTO LoanInstalmentModelToDTO(InstalmentLoanModel instalmentLoanModel)
+        {
+            return new LoanInstallmentsDTO
+            {
+                LoanId = instalmentLoanModel.LoanId,
+                Amount = instalmentLoanModel.Amount,
+                Date = instalmentLoanModel.Date.ToString(CultureInfo.CurrentCulture)
+            };
+        }
     }
 }

@@ -9,9 +9,9 @@ namespace accounting.DataBase.DTOs
         [Key]
         public ushort Id { get; set; }
 
-        public ushort LoanId { get; set; }
+        public ushort LoanId { get; init; }
         [ForeignKey("LoanId")] public LoansDTO Loan { get; set; }
-        public ulong Amount { get; set; }
-        public string Date { get; set; }
+        public ulong Amount { get; init; }
+        public string Date { get; init; }
     }
 }

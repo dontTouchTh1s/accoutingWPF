@@ -1,17 +1,17 @@
-﻿using System.Windows.Controls;
+﻿using System.Globalization;
+using System.Windows.Controls;
 using accounting.ViewModels.ComboBoxItems;
 using accounting.ViewModels.ManageLoans;
-using accounting.Views.ComboBoxItems;
 
 namespace accounting.Commands.ManageLoansCommands
 {
     public class SelectedLoanChangedCommand : BaseCommand
     {
-        private readonly DepositLoanInstalmentViewModel _depositLoanInstalmentViewModel;
+        private readonly InstalmentLoanViewModel _instalmentLoanViewModel;
 
-        public SelectedLoanChangedCommand(DepositLoanInstalmentViewModel depositLoanInstalmentViewModel)
+        public SelectedLoanChangedCommand(InstalmentLoanViewModel instalmentLoanViewModel)
         {
-            _depositLoanInstalmentViewModel = depositLoanInstalmentViewModel;
+            _instalmentLoanViewModel = instalmentLoanViewModel;
         }
 
         public override void Execute(object? parameter)
@@ -19,8 +19,8 @@ namespace accounting.Commands.ManageLoansCommands
             var args = (SelectionChangedEventArgs)parameter!;
             if (args.AddedItems.Count == 0) return;
             var item = (LoanItemViewModel)args.AddedItems[0]!;
-            _depositLoanInstalmentViewModel.AmountHelperText =
-                string.Format("حداقل میزان قسط {0} تومان است.", item.MinimumInstalmentAmount.ToString());
+            _instalmentLoanViewModel.CurrentLoanMinimumInstalment =
+                ulong.Parse(item.MinimumInstalmentAmount, NumberStyles.Number, CultureInfo.CurrentCulture);
         }
     }
 }

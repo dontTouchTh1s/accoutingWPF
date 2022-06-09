@@ -7,19 +7,19 @@ namespace accounting.ViewModels.ManageLoans
         public ManageLoanViewModel(InvestmentFundModel investmentFundModel)
         {
             LendLoanViewModel = new LendLoanViewModel(investmentFundModel);
-            DepositLoanInstalmentViewModel = new DepositLoanInstalmentViewModel(investmentFundModel);
+            InstalmentLoanViewModel = new InstalmentLoanViewModel(investmentFundModel);
             ViewLoanViewModle = new ViewLoansViewModel(investmentFundModel);
         }
 
         public LendLoanViewModel LendLoanViewModel { get; }
-        public DepositLoanInstalmentViewModel DepositLoanInstalmentViewModel { get; }
+        public InstalmentLoanViewModel InstalmentLoanViewModel { get; }
 
         public ViewLoansViewModel ViewLoanViewModle { get; }
 
         public sealed override void UpdateContent()
         {
             LendLoanViewModel.UpdateContent();
-            DepositLoanInstalmentViewModel.UpdateContent();
+            InstalmentLoanViewModel.UpdateContent();
             ViewLoanViewModle.UpdateContent();
         }
     }

@@ -37,7 +37,7 @@ namespace accounting.Commands
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
-            catch (NotEnoughFundAvailableBalance e)
+            catch (NotEnoughFundAvailableBalanceExeption e)
             {
                 var dialogViewModel =
                     new MessageDialogViewModel(

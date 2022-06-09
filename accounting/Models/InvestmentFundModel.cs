@@ -99,5 +99,13 @@ namespace accounting.Models
         {
             return await _dataBaseInvestmentFundServices.GetAllTransactions();
         }
+
+        public async Task PayLoanInstalment(InstalmentLoanViewModel instalmentLoanViewModel)
+        {
+            var instalmentLoanModel = new InstalmentLoanModel(instalmentLoanViewModel.LoanId ?? 0,
+                instalmentLoanViewModel.Amount
+            );
+            await _dataBaseInvestmentFundServices.PayLoanInstalment(instalmentLoanModel);
+        }
     }
 }

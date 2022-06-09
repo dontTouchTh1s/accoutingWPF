@@ -101,7 +101,7 @@ namespace accounting.DataBase.Services
             var fundAvailableBalance = Convert.ToDouble(await GetAvailableBalance());
             // If fund didnt have enough available credit to lend the loan, throw
             if (fundAvailableBalance < loanModel.Amount)
-                throw new NotEnoughFundAvailableBalance(Convert.ToInt64(fundAvailableBalance));
+                throw new NotEnoughFundAvailableBalanceExeption(Convert.ToInt64(fundAvailableBalance));
             var loanAmount = Convert.ToDouble(loanModel.Amount);
             var loanAccount = await context.Accounts.Where(ac => ac.AccountId == loanModel.AccountId)
                 .FirstOrDefaultAsync();
@@ -204,6 +204,14 @@ namespace accounting.DataBase.Services
             }
 
             return loansByPeopleAccounts;
+        }
+
+        public async Task PayLoanInstalment(InstalmentLoanModel instalmentLoanModel)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var instalmentLoanDto = _dtoConverterService.LoanInstalmentModelToDTO(instalmentLoanModel);
+            context.LoanInstallments.Add(instalmentLoanDto);
+            await context.SaveChangesAsync();
         }
     }
 }

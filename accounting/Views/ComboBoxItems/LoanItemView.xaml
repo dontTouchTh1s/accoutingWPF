@@ -6,7 +6,7 @@
              xmlns:comboBoxItems="clr-namespace:accounting.ViewModels.ComboBoxItems"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance comboBoxItems:LoanItemViewModel}"
-             d:DesignHeight="150" d:DesignWidth="400">
+             d:DesignHeight="50" d:DesignWidth="200">
     <Grid FlowDirection="RightToLeft">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
