@@ -27,12 +27,14 @@ namespace accounting.ViewModels.ManageLoans
             _accountList = AccountsList;
             LendLoanCommand = new LendLoanCommand(this, investmentFundModel);
             CreditPreviewKeyDownCommand = new CreditPreviewKeyDownCommand();
+            SelectionChangedCommand = new SelectionChangedCommand(this);
             Amount = 0;
             UpdateContent();
         }
 
         public ICommand LendLoanCommand { get; }
         public ICommand CreditPreviewKeyDownCommand { get; }
+        public ICommand SelectionChangedCommand { get; }
 
         public string? PersonalAccountNumber
         {
@@ -52,7 +54,7 @@ namespace accounting.ViewModels.ManageLoans
             }
         }
 
-        public ulong? Amount { get; set; }
+        public ulong? Amount { get; private set; }
 
         public byte? FundAccountId
         {
@@ -129,6 +131,11 @@ namespace accounting.ViewModels.ManageLoans
             }
 
             return new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
+        }
+
+        public override void HelperTextChange(string text)
+        {
+            AccountOwnerFullName = text;
         }
 
         public sealed override void UpdateContent()
