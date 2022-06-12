@@ -13,7 +13,7 @@ namespace accounting.ViewModels.ManageTranactions
             Amount = Math.Abs(amount).ToString("N0", CultureInfo.CurrentCulture);
             AccountId = accountId;
             Date = date.ToString(CultureInfo.CurrentCulture);
-            PersonalAccountNumber = personalAccountNumber;
+            PersonalAccountNumber = personalAccountNumber ?? "وارد نشده";
             Type = amount < 0 ? "برداشت" : "واریز";
         }
 
@@ -23,6 +23,6 @@ namespace accounting.ViewModels.ManageTranactions
         public ushort AccountId { get; }
         public string Date { get; }
         public string Type { get; }
-        public string? PersonalAccountNumber { get; }
+        public string PersonalAccountNumber { get; }
     }
 }
