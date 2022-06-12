@@ -41,10 +41,9 @@
 
             </ResourceDictionary.MergedDictionaries>
             <Style x:Key="MdComboboxStyle" TargetType="ComboBox" BasedOn="{StaticResource MaterialDesignComboBox}">
-                <Setter Property="Margin" Value="0,8,0,16" />
+                <Setter Property="Margin" Value="0,8,0,20" />
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Width" Value="300" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
                 <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
                 <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
@@ -53,10 +52,9 @@
                 <Setter Property="StaysOpenOnEdit" Value="True" />
             </Style>
             <Style x:Key="MdTextBoxStyle" TargetType="TextBox" BasedOn="{StaticResource MaterialDesignTextBox}">
-                <Setter Property="Margin" Value="0,8,0,16" />
+                <Setter Property="Margin" Value="0,8,0,20" />
                 <Setter Property="VerticalAlignment" Value="Center" />
-                <Setter Property="HorizontalAlignment" Value="Left" />
-                <Setter Property="Width" Value="300" />
+                <Setter Property="HorizontalAlignment" Value="Stretch" />
                 <Setter Property="materialDesign:HintAssist.HelperTextFontSize" Value="12" />
                 <Setter Property="materialDesign:ValidationAssist.FontSize" Value="12" />
                 <Setter Property="materialDesign:TextFieldAssist.TextBoxViewMargin" Value="8,0" />
