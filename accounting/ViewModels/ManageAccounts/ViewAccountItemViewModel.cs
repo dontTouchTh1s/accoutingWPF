@@ -5,12 +5,13 @@ namespace accounting.ViewModels.ManageAccounts
     public class ViewAccountItemViewModel
     {
         public ViewAccountItemViewModel(ushort id, string ownerFullName, string ownerNationalId, ulong credit,
-            string createDate, string personalAccountNumber)
+            ulong availableCredit, string createDate, string personalAccountNumber)
         {
             Id = id;
             OwnerFullName = ownerFullName;
             OwnerNationalId = ownerNationalId;
             Credit = credit.ToString("N0", CultureInfo.CurrentCulture);
+            AvailableCredit = availableCredit.ToString("N0", CultureInfo.CurrentCulture);
             CreateDate = createDate;
             PersonalAccountNumber = personalAccountNumber;
         }
@@ -20,6 +21,7 @@ namespace accounting.ViewModels.ManageAccounts
         public string OwnerFullName { get; }
         public string OwnerNationalId { get; }
         public string Credit { get; }
+        public string AvailableCredit { get; }
         public string CreateDate { get; }
         public string PersonalAccountNumber { get; }
     }
