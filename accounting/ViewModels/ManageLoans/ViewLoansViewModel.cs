@@ -52,7 +52,7 @@ namespace accounting.ViewModels.ManageLoans
             foreach (var account in people.Value)
             foreach (var loan in account.Value)
             {
-                var remainAmount = await _investmentFundModel.GetLoanRemainedAmount(loan);
+                var remainAmount = await _investmentFundModel.GetLoanRemainedAmount(loan.Id);
                 var loanItem = new ViewLoanItemViewModel(loan.Id,
                     loan.Amount,
                     loan.InstallmentsCount,
