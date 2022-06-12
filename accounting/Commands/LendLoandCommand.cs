@@ -46,7 +46,7 @@ namespace accounting.Commands
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 var dialogViewModel =
                     new MessageDialogViewModel("خطایی در ثبت اطالاعات رخ داده است.",
