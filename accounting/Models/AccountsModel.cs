@@ -30,7 +30,7 @@ namespace accounting.Models
             _dataBaseAccountsServices = dataBaseAccountsServices;
             CreateDate = DateTime.Now;
             Credit = credit;
-            AvailableCredit = credit - InvestmentFundModel.MinimumCredit;
+            AvailableCredit = credit;
             OwnerNationalId = ownerNationalId;
         }
 
