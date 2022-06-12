@@ -1,5 +1,4 @@
-﻿using System.Globalization;
-using accounting.Models;
+﻿using accounting.Models;
 using accounting.ViewModels.ManageAccounts;
 using accounting.ViewModels.ManageLoans;
 
@@ -24,13 +23,15 @@ namespace accounting.Commands.CurrencyComboBoxCommands
         {
             if (_instalmentLoanViewModel != null)
             {
-                if (_instalmentLoanViewModel.Amount < _instalmentLoanViewModel.CurrentLoanMinimumInstalment)
+                if (_instalmentLoanViewModel.Amount <
+                    ulong.Parse(_instalmentLoanViewModel.CurrentSelectedLoan.MinimumInstalmentAmount))
                     _instalmentLoanViewModel.AmountView =
-                        _instalmentLoanViewModel.CurrentLoanMinimumInstalment.ToString();
+                        _instalmentLoanViewModel.CurrentSelectedLoan.MinimumInstalmentAmount;
                 return;
             }
+
             if (_createAccountViewModel.Credit < InvestmentFundModel.MinimumCredit)
-                    _createAccountViewModel.CreditView = "500000";
+                _createAccountViewModel.CreditView = "500000";
         }
     }
 }
