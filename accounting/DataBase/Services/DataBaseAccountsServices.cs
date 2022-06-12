@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
+using accounting.DataBase.DTOs;
 using accounting.Exceptions;
 using accounting.Models;
 using Microsoft.EntityFrameworkCore;
@@ -43,8 +44,16 @@ namespace accounting.DataBase.Services
                 case < 0:
                 {
                     // Check if available credit is not enough on withdraw, throw exception
-                    if (accountDTO.AvailableCredit < (ulong)Math.Abs(transactionsModel.Amount))
-                        throw new NotEnoughAvailableCreditException(accountDTO.AvailableCredit);
+                    if (accountDTO.AvailableCredit <
+                        (ulong)Math.Abs(transactionsModel.Amount) + InvestmentFundModel.MinimumCredit)
+                    {
+                        ulong withdrawablleCredit;
+                        if (InvestmentFundModel.MinimumCredit > accountDTO.AvailableCredit)
+                            withdrawablleCredit = 0;
+                        else withdrawablleCredit = accountDTO.AvailableCredit - InvestmentFundModel.MinimumCredit;
+                        throw new NotEnoughAvailableCreditException(withdrawablleCredit);
+                    }
+
                     var value = (ulong)Math.Abs(transactionsDTO.Amount);
                     accountDTO.Credit -= value;
                     accountDTO.AvailableCredit -= value;
@@ -60,11 +69,28 @@ namespace accounting.DataBase.Services
             await context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<LoanModel>> GetLoans(ushort? fundAccountId)
+        public async Task<IEnumerable<LoanModel>> GetAccountLoans(ushort? fundAccountId)
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var loans = await context.Loans.Where(lone => lone.AccountId == fundAccountId).ToListAsync();
             return loans.Select(loan => _dtoConverterService.LoanDTOToModel(loan)).ToList();
+        }
+
+        public async Task<Dictionary<LoanModel, ulong>> GetAccountUnpaidLoans(ushort? fundAccountId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loansModel = new Dictionary<LoanModel, ulong>();
+            var loans = await context.Loans.Where(lone => lone.AccountId == fundAccountId).ToListAsync();
+            foreach (var loan in loans)
+            {
+                var loanPayedAmount = Enumerable.Aggregate<LoanInstallmentsDTO, ulong>(
+                    context.LoanInstallments.Where(loanInstallment => loanInstallment.LoanId == loan.Id), 0,
+                    (current, loanInstallment) => current + loanInstallment.Amount);
+                if (loanPayedAmount != loan.Amount)
+                    loansModel.Add(_dtoConverterService.LoanDTOToModel(loan), loan.Amount - loanPayedAmount);
+            }
+
+            return loansModel;
         }
     }
 }
