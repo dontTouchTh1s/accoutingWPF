@@ -8,11 +8,11 @@ namespace accounting.ViewModels.ManageTranactions
     public class ViewTransactionsViewModel : BaseViewModel
     {
         private readonly InvestmentFundModel _investmentFundModel;
-        private string _serachText;
+        private string? _serachText;
         private ObservableCollection<ViewTransactinosItemViewModel> _tranactionsList;
-        private List<ViewTransactinosItemViewModel> _viewTransactinosItemViewModels = new();
 
         private byte _type;
+        private List<ViewTransactinosItemViewModel> _viewTransactinosItemViewModels = new();
 
         public ViewTransactionsViewModel(InvestmentFundModel investmentFundModel)
         {
@@ -26,7 +26,7 @@ namespace accounting.ViewModels.ManageTranactions
             set => SetProperty(ref _tranactionsList, value);
         }
 
-        public string SearchText
+        public string? SearchText
         {
             get => _serachText;
             set
@@ -46,7 +46,7 @@ namespace accounting.ViewModels.ManageTranactions
             }
         }
 
-        private void FilterTransactions(string filterValue)
+        private void FilterTransactions(string? filterValue)
         {
             var transactionsType = _type switch
             {
@@ -63,8 +63,8 @@ namespace accounting.ViewModels.ManageTranactions
                 }
                 else
                 {
-                    if (!transactinosItem.OwnerFullName.Contains(filterValue) &&
-                        !transactinosItem.Amount.Contains(filterValue))
+                    if (!transactinosItem.OwnerFullName.Contains(filterValue ?? "") &&
+                        !transactinosItem.Amount.Contains(filterValue ?? ""))
                         TranactionsList.Remove(transactinosItem);
                 }
         }
