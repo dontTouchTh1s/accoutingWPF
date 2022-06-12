@@ -1,0 +1,45 @@
+﻿<UserControl x:Class="SSWheatAdmin.Views.ManageAccounts.ManageAccountsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:manageAccounts="clr-namespace:SSWheatAdmin.ViewModels.ManageAccounts"
+             xmlns:manageAccountsViews="clr-namespace:SSWheatAdmin.Views.ManageAccounts"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="1000"
+             d:DataContext="{d:DesignInstance manageAccounts:ManageAccountsViewModel}">
+    <Border 
+        CornerRadius="0,0,24,0"
+        Background="{StaticResource LightBackground}">
+        <Grid
+            FlowDirection="RightToLeft">
+            <TabControl
+                Style="{StaticResource MaterialDesignFilledTabControl}"
+                Margin="0"
+                FlowDirection="RightToLeft">
+                <TabControl.Resources>
+                    <Style TargetType="TabItem" BasedOn="{StaticResource MaterialDesignTabItem}">
+                        <Setter Property="MinWidth" Value="250" />
+                        <Setter Property="Height" Value="56" />
+                    </Style>
+                </TabControl.Resources>
+                <TabItem
+                    HorizontalContentAlignment="Stretch"
+                    HorizontalAlignment="Stretch"
+                    Header="ایجاد حساب">
+                    <manageAccountsViews:CreateAccountView
+                        Margin="12"
+                        HorizontalAlignment="Stretch"
+                        DataContext="{Binding CreateAccountViewModel}" />
+                </TabItem>
+                <TabItem
+                    Header="مدیریت حساب ها">
+                    <manageAccountsViews:ViewAccountsView
+                        Margin="12"
+                        HorizontalAlignment="Stretch"
+                        DataContext="{Binding ViewAccountsViewModel}" />
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </Border>
+</UserControl>
