@@ -10,6 +10,7 @@ namespace accounting.DataBase.DbContexts
         public DbSet<LoansDTO> Loans { get; set; }
         public DbSet<TransactionsDTO> Transactions { get; set; }
         public DbSet<LoanInstallmentsDTO> LoanInstallments { get; set; }
+        public DbSet<LoanTransactinosDTO> LoanTransactinos { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
         {
