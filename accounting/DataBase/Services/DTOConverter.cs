@@ -14,6 +14,7 @@ namespace accounting.DataBase.Services
             return new AccountDTO
             {
                 Credit = accountsModel.Credit,
+                AvailableCredit = accountsModel.AvailableCredit,
                 CreateDate = accountsModel.CreateDate.ToString(_faCulture),
                 OwnerNationalId = accountsModel.OwnerNationalId
             };
@@ -71,6 +72,29 @@ namespace accounting.DataBase.Services
                 transactionsDTO.AccountId,
                 DateTime.Parse(transactionsDTO.Date),
                 transactionsDTO.PersonalAccountNumber
+            );
+        }
+
+        public LoanTransactinosDTO LoanTransactionModelToDTO(LoanTransactinosModel loanTransactinosModel)
+        {
+            return new LoanTransactinosDTO
+            {
+                Amount = loanTransactinosModel.Amount,
+                Date = loanTransactinosModel.Date.ToString(CultureInfo.CurrentCulture),
+                LoanId = loanTransactinosModel.LoanId,
+                AccountId = loanTransactinosModel.AccountId,
+                PersonalAccountNumber = loanTransactinosModel.PersonalAccountNumber
+            };
+        }
+
+        public LoanTransactinosModel LoanTransactionsDTOToModel(LoanTransactinosDTO loanTransactinosDTO)
+        {
+            return new LoanTransactinosModel(loanTransactinosDTO.Id,
+                loanTransactinosDTO.Amount,
+                DateTime.Parse(loanTransactinosDTO.Date, _faCulture),
+                loanTransactinosDTO.LoanId,
+                loanTransactinosDTO.AccountId,
+                loanTransactinosDTO.PersonalAccountNumber
             );
         }
 
