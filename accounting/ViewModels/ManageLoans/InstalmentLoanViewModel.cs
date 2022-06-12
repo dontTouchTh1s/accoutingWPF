@@ -14,20 +14,24 @@ namespace accounting.ViewModels.ManageLoans
     {
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<AccountsItemsViewModel> _accountList;
-        private ObservableCollection<LoanItemViewModel> _loanList;
-        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
-        private List<LoanItemViewModel> _loanItemsViewModels = new();
+        private string? _accountOwnerFullName;
         private string? _accountSearchText;
-        private string? _loanSearchText;
+        private List<AccountsItemsViewModel> _accountsItemsViewModels = new();
+        private string _amountHelperText;
+        private string _amountView = "0";
+        private LoanItemViewModel _currentSelectedLoan;
+        private ushort? _fundAccountId;
 
         private ushort? _loanId;
-        private ushort? _fundAccountId;
-        private string? _accountOwnerFullName;
-        private string _amountView = "0";
+        private List<LoanItemViewModel> _loanItemsViewModels = new();
+        private ObservableCollection<LoanItemViewModel> _loanList;
+        private string? _loanSearchText;
+
+        private bool _payFromFund;
         private string? _personalAccountNumber;
-        private string _amountHelperText;
-        private ulong _currentLoanMinimumInstalment;
-        
+
+        private bool _personalAccountNumberIsEnable = true;
+
 
         public InstalmentLoanViewModel(InvestmentFundModel investmentFundModel)
         {
@@ -50,6 +54,18 @@ namespace accounting.ViewModels.ManageLoans
         public ICommand SelectionChangedCommand { get; }
         public ICommand InstalmentAmountLostFocuse { get; }
 
+        public LoanItemViewModel CurrentSelectedLoan
+        {
+            get => _currentSelectedLoan;
+            set
+            {
+                SetProperty(ref _currentSelectedLoan, value);
+                var currencyValue = value.MinimumInstalmentAmount;
+                AmountHelperText = string.Format("حداقل میزان پرداختی هر قسط {0} تومان است.", currencyValue);
+                AmountView = currencyValue;
+            }
+        }
+
         public string AmountHelperText
         {
             get => _amountHelperText;
@@ -60,18 +76,6 @@ namespace accounting.ViewModels.ManageLoans
         {
             get => _accountOwnerFullName;
             set => SetProperty(ref _accountOwnerFullName, value);
-        }
-
-        public ulong CurrentLoanMinimumInstalment
-        {
-            get => _currentLoanMinimumInstalment;
-            set
-            {
-                var currencyValue = value.ToString("N0", CultureInfo.CurrentCulture);
-                _currentLoanMinimumInstalment = value;
-                AmountHelperText = string.Format("حداقل میزان پرداختی هر قسط {0} تومان است.", currencyValue);
-                AmountView = currencyValue;
-            }
         }
 
         public ObservableCollection<LoanItemViewModel> LoansList
@@ -98,7 +102,7 @@ namespace accounting.ViewModels.ManageLoans
             }
         }
 
-        public ulong Amount { get; private set; }
+        public ulong Amount { get; set; }
 
         public string? PersonalAccountNumber
         {
@@ -158,6 +162,22 @@ namespace accounting.ViewModels.ManageLoans
             }
         }
 
+        public bool PayFromFund
+        {
+            get => _payFromFund;
+            set
+            {
+                SetProperty(ref _payFromFund, value);
+                PersonalAccountNumberIsEnable = !value;
+            }
+        }
+
+        public bool PersonalAccountNumberIsEnable
+        {
+            get => _personalAccountNumberIsEnable;
+            private set => SetProperty(ref _personalAccountNumberIsEnable, value);
+        }
+
         private void FilterAccountsList()
         {
             AccountsList = new ObservableCollection<AccountsItemsViewModel>(_accountsItemsViewModels);
@@ -173,9 +193,10 @@ namespace accounting.ViewModels.ManageLoans
         {
             LoansList = new ObservableCollection<LoanItemViewModel>();
             _loanItemsViewModels = new List<LoanItemViewModel>();
-            var loanModels = await _investmentFundModel.GetAccountLoans(FundAccountId);
+            var loanModels = await _investmentFundModel.GetAccountUnpaidLoans(FundAccountId);
             foreach (var loan in loanModels)
-                _loanItemsViewModels.Add(new LoanItemViewModel(loan.Id, loan.Amount, loan.InstallmentsCount));
+                _loanItemsViewModels.Add(new LoanItemViewModel(loan.Key.Id, loan.Key.Amount, loan.Key.InstallmentsCount,
+                    loan.Value));
 
             LoansList = new ObservableCollection<LoanItemViewModel>(_loanItemsViewModels);
         }
