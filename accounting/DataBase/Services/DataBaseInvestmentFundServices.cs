@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using accounting.DataBase.DbContexts;
-using accounting.Exceptions;
 using accounting.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -37,7 +36,10 @@ namespace accounting.DataBase.Services
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             var accountsCredit = await context.Accounts.Select(r => r.AvailableCredit).ToListAsync();
-            return accountsCredit.Aggregate((a, c) => a + c);
+            if (accountsCredit != null && accountsCredit.Any())
+                return accountsCredit.Aggregate((a, c) => a +
+                                                          c);
+            return 0;
         }
 
         public async Task<IEnumerable<PeoplesModel>> GetAllPeoples()
@@ -91,48 +93,48 @@ namespace accounting.DataBase.Services
             return peoplesAccounts;
         }
 
+        public async Task<AccountsModel> GetLoanAccount(ushort accountId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loanAccount = await context.Accounts.Where(ac => ac.AccountId == accountId)
+                .FirstOrDefaultAsync();
+            return _dtoConverterService.AccountDTOToModel(loanAccount, DataBasePeopleServices.DataBaseAccountsServices);
+        }
+
+        public async Task<ushort> GetAccountsCount()
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var accountsCount = Convert.ToUInt16(await context.Accounts.CountAsync());
+            return accountsCount;
+        }
+
+        public async Task RemoveLoan(ushort loanId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loanDto = await context.Loans.Where(dto => dto.Id == loanId).FirstAsync();
+            context.Loans.Remove(loanDto);
+            await context.SaveChangesAsync();
+        }
+
         /// <summary>
         ///     Add a loan to database loan table and reduce the amount of loan, from each account available credit.
         ///     <param name="loanModel">Model of loan</param>
         /// </summary>
-        public async Task LendLoad(LoanModel loanModel)
+        public async Task<ushort> LendLoad(LoanModel loanModel)
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
-            var fundAvailableBalance = Convert.ToDouble(await GetAvailableBalance());
-            // If fund didnt have enough available credit to lend the loan, throw
-            if (fundAvailableBalance < loanModel.Amount)
-                throw new NotEnoughFundAvailableBalanceExeption(Convert.ToInt64(fundAvailableBalance));
-            var loanAmount = Convert.ToDouble(loanModel.Amount);
-            var loanAccount = await context.Accounts.Where(ac => ac.AccountId == loanModel.AccountId)
-                .FirstOrDefaultAsync();
-            // Amount of the loan can be twice of account credit. If it's not, throw
-            if (loanAmount > loanAccount.Credit * 2)
-                throw new NotEnoughCreditException(Convert.ToUInt64(loanAccount.Credit));
-            // First, reduce amount of loan from each account available credit
-            // We can reduce up to 500000 (Minimum credit)
-            var accountsCount = await context.Accounts.CountAsync();
-            var amountPerAccount = Convert.ToInt32(loanAmount / accountsCount);
-            var minimumAmountPerAccount = amountPerAccount;
-            if (amountPerAccount > InvestmentFundModel.MinimumCredit)
-                minimumAmountPerAccount = InvestmentFundModel.MinimumCredit;
-            foreach (var account in context.Accounts)
-                account.AvailableCredit -= Convert.ToUInt64(minimumAmountPerAccount);
-            // If any amount of loan remains, reduce from accounts that have available credit
-            var remainAmount = Convert.ToInt32(loanAmount - minimumAmountPerAccount * accountsCount);
-            if (remainAmount != 0)
-            {
-                var amountPercentPerAccount = remainAmount * 100 / fundAvailableBalance;
-                foreach (var account in context.Accounts)
-                {
-                    var availableCredit = Convert.ToDouble(account.AvailableCredit);
-                    if (availableCredit == 0) break;
-                    var loanAmountForAccount = Convert.ToInt32(availableCredit / 100 * amountPercentPerAccount);
-                    account.AvailableCredit -= Convert.ToUInt64(loanAmountForAccount);
-                }
-            }
-
             var loanDTO = _dtoConverterService.LoanModelToDTO(loanModel);
-            context.Loans.Add(loanDTO);
+            await context.Loans.AddAsync(loanDTO);
+            await context.SaveChangesAsync();
+
+            return loanDTO.Id;
+        }
+
+        public async Task UpdateFinalLoanAmount(ushort loenId, ulong amount)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loan = await context.Loans.Where(dto => dto.Id == loenId).FirstAsync();
+            loan.Amount = amount;
             await context.SaveChangesAsync();
         }
 
@@ -165,14 +167,20 @@ namespace accounting.DataBase.Services
             return loansByPeopleAccounts;
         }
 
-        public async Task<ulong> GetLoanPayedAmount(LoanModel loan)
+        public async Task<ulong> GetLoanPayedAmount(ushort loanId)
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
             ulong payedAmount = 0;
             foreach (var loanInstallment in context.LoanInstallments)
-                if (loanInstallment.LoanId == loan.Id)
+                if (loanInstallment.LoanId == loanId)
                     payedAmount += loanInstallment.Amount;
             return payedAmount;
+        }
+
+        public async Task<ulong> GetLoanAmount(ushort loanId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            return context.Loans.First(dto => dto.Id == loanId).Amount;
         }
 
         public async Task<Dictionary<PeoplesModel, Dictionary<AccountsModel, List<TransactionsModel>>>>
@@ -206,12 +214,36 @@ namespace accounting.DataBase.Services
             return loansByPeopleAccounts;
         }
 
-        public async Task PayLoanInstalment(InstalmentLoanModel instalmentLoanModel)
+        public async Task<LoanModel> GetLoan(ushort loanId)
         {
             await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loanDto = await context.Loans.Where(dto => dto.Id == loanId).FirstAsync();
+            return _dtoConverterService.LoanDTOToModel(loanDto);
+        }
+
+        public async Task<IEnumerable<LoanTransactinosModel>> GetLoanTransactions(ushort loanId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var loanTransactionsList = await context.LoanTransactinos.Where(dto => dto.LoanId == loanId &&
+                dto.Amount < 0).ToListAsync();
+            return loanTransactionsList.Select(loanTransaction =>
+                _dtoConverterService.LoanTransactionsDTOToModel(loanTransaction)).ToList();
+        }
+
+        public async Task PayLoanInstalment(InstalmentLoanModel instalmentLoanModel, InvestmentFundDbContext context)
+        {
             var instalmentLoanDto = _dtoConverterService.LoanInstalmentModelToDTO(instalmentLoanModel);
-            context.LoanInstallments.Add(instalmentLoanDto);
+            await context.LoanInstallments.AddAsync(instalmentLoanDto);
             await context.SaveChangesAsync();
+        }
+
+        public async Task MakeLoanTransaction(LoanTransactinosModel loanTransactinosModel,
+            InvestmentFundDbContext context)
+        {
+            var accountDTO = await context.Accounts.FindAsync(loanTransactinosModel.AccountId);
+            var loanTransactinosDTO = _dtoConverterService.LoanTransactionModelToDTO(loanTransactinosModel);
+            accountDTO.AvailableCredit += (ulong)loanTransactinosModel.Amount;
+            await context.LoanTransactinos.AddAsync(loanTransactinosDTO);
         }
     }
 }
