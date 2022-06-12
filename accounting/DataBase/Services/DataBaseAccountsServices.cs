@@ -47,11 +47,11 @@ namespace accounting.DataBase.Services
                     if (accountDTO.AvailableCredit <
                         (ulong)Math.Abs(transactionsModel.Amount) + InvestmentFundModel.MinimumCredit)
                     {
-                        ulong withdrawablleCredit;
+                        ulong withdrawableCredit;
                         if (InvestmentFundModel.MinimumCredit > accountDTO.AvailableCredit)
-                            withdrawablleCredit = 0;
-                        else withdrawablleCredit = accountDTO.AvailableCredit - InvestmentFundModel.MinimumCredit;
-                        throw new NotEnoughAvailableCreditException(withdrawablleCredit);
+                            withdrawableCredit = 0;
+                        else withdrawableCredit = accountDTO.AvailableCredit - InvestmentFundModel.MinimumCredit;
+                        throw new NotEnoughAvailableCreditException(withdrawableCredit);
                     }
 
                     var value = (ulong)Math.Abs(transactionsDTO.Amount);
