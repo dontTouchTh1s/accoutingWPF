@@ -39,8 +39,9 @@
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="7*" />
+                    <ColumnDefinition Width="5*" />
                     <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="2*" />
                 </Grid.ColumnDefinitions>
                 <ComboBox Grid.Row="0"
                           Grid.Column="0"
@@ -103,8 +104,6 @@
                             <b:InvokeCommandAction Command="{Binding Path=InstalmentAmountLostFocuse}" />
                         </b:EventTrigger>
                     </b:Interaction.Triggers>
-
-
                     <TextBox.Text>
                         <Binding
                             Path="AmountView"
@@ -112,10 +111,17 @@
                             ValidatesOnNotifyDataErrors="True" />
                     </TextBox.Text>
                 </TextBox>
+                <CheckBox
+                    Margin="8,4,4,4"
+                    Grid.Row="2"
+                    Grid.Column="1"
+                    Content="پرداخت از حساب صندوق"
+                    IsChecked="{Binding PayFromFund}" />
                 <TextBox Grid.Row="3"
                          Grid.Column="0"
                          materialDesign:HintAssist.Hint="شماره حساب شخصی (اختیاری)"
-                         materialDesign:HintAssist.HelperText="شماره حسابی که به آن وام واریز میشود.">
+                         materialDesign:HintAssist.HelperText="شماره حسابی که به آن وام واریز میشود."
+                         IsEnabled="{Binding PersonalAccountNumberIsEnable}">
                     <TextBox.Text>
                         <Binding
                             Path="PersonalAccountNumber"
@@ -125,8 +131,8 @@
                 </TextBox>
                 <Button
                     Grid.Row="4"
-                    Grid.Column="1"
-                    Content="تخصیص وام"
+                    Grid.Column="2"
+                    Content="پرداخت قسط"
                     Command="{Binding PayLoanInstalment}" />
             </Grid>
         </StackPanel>
