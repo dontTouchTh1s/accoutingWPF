@@ -33,7 +33,7 @@
             Style="{StaticResource MaterialDesignOutlinedTextBox}"
             Grid.Row="1"
             Height="54"
-            Width="350"
+            Width="400"
             HorizontalAlignment="Left"
             Margin="8,8,8,18"
             materialDesign:TextFieldAssist.PrefixText="جست و جو:"

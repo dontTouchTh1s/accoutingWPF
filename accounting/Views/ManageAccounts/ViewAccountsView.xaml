@@ -35,7 +35,7 @@
             Style="{StaticResource MaterialDesignOutlinedTextBox}"
             Grid.Row="1"
             Height="54"
-            Width="350"
+            Width="400"
             HorizontalAlignment="Left"
             Margin="8,8,8,18"
             materialDesign:TextFieldAssist.PrefixText="جست و جو:"
@@ -176,6 +176,7 @@
             BorderThickness="2"
             CornerRadius="0,0,12,12">
             <ListBox
+                Style="{StaticResource MaterialDesignNavigationAccentListBox}"
                 HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding AccountList}"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden" />
