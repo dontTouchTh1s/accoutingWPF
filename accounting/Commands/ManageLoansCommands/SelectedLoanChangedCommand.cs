@@ -19,8 +19,8 @@ namespace accounting.Commands.ManageLoansCommands
             var args = (SelectionChangedEventArgs)parameter!;
             if (args.AddedItems.Count == 0) return;
             var item = (LoanItemViewModel)args.AddedItems[0]!;
-            _instalmentLoanViewModel.CurrentLoanMinimumInstalment =
-                ulong.Parse(item.MinimumInstalmentAmount, NumberStyles.Number, CultureInfo.CurrentCulture);
+            _instalmentLoanViewModel.CurrentSelectedLoan =
+                item;
         }
     }
 }
