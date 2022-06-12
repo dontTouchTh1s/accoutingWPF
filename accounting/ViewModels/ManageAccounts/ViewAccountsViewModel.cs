@@ -56,6 +56,7 @@ namespace accounting.ViewModels.ManageAccounts
                     people.Key.Name + " " + people.Key.LastName,
                     people.Key.NationalId,
                     accountsModel.Credit,
+                    accountsModel.AvailableCredit,
                     accountsModel.CreateDate.ToString(CultureInfo.CurrentCulture),
                     people.Key.PersonalAccountNumber ?? "وارد نشده"
                 );
