@@ -40,7 +40,7 @@ namespace accounting.Commands
             {
                 var dialogViewModel =
                     new MessageDialogViewModel(
-                        string.Format("موجودی کافی برای برداشت وجود ندارد، موجودی دردسترس: {0}", e.AvailableCredit),
+                        string.Format("موجودی کافی برای برداشت وجود ندارد، موجودی قابل برداشت: {0}", e.AvailableCredit),
                         PackIconKind.WarningCircle, new SolidColorBrush(Colors.Red));
                 await DialogHost.Show(dialogViewModel, "rootDialog");
             }
