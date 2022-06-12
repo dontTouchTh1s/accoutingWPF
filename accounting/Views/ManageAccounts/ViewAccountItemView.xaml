@@ -86,6 +86,10 @@
             </Grid.ColumnDefinitions>
 
             <TextBlock
+                Grid.Column="3"
+                Text="{Binding AvailableCredit}" />
+            
+            <TextBlock
                 Grid.Column="4"
                 Text="{Binding PersonalAccountNumber}" />
         </Grid>
