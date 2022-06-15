@@ -2,6 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Globalization;
 using System.Linq;
+using System.Windows.Input;
+using SSWheatAdmin.Commands.ManageLoansCommands;
 using SSWheatAdmin.Models;
 
 namespace SSWheatAdmin.ViewModels.ManageLoans
@@ -16,9 +18,10 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
         public ViewLoansViewModel(InvestmentFundModel investmentFundModel)
         {
             _investmentFundModel = investmentFundModel;
+            LoanSelectedCommand = new LoanSelectedCommand(investmentFundModel);
             UpdateContent();
         }
-
+        public ICommand LoanSelectedCommand { get; }
         public ObservableCollection<ViewLoanItemViewModel> LoansList
         {
             get => _loansList;

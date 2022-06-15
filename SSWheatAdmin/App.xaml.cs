@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using SSWheatAdmin.DataBase.DbContexts;
 using SSWheatAdmin.DataBase.Services;
 using SSWheatAdmin.Models;
+using SSWheatAdmin.Services;
 using SSWheatAdmin.Store;
 using SSWheatAdmin.ViewModels;
 using SSWheatAdmin.ViewModels.ManageAccounts;
@@ -35,6 +36,7 @@ namespace SSWheatAdmin
             );
         }
 
+        public static WindowsNavigationServices WindowsNavigationServices = new WindowsNavigationServices();
         protected override void OnStartup(StartupEventArgs e)
         {
             using (var dbContext = _investmentFundDbContextFactory.CreateDbContext())
@@ -49,6 +51,7 @@ namespace SSWheatAdmin
             var navigationStore = new NavigationService(summeryViewModel, manageTransactionsViewModel,
                 manageLoanViewModel,
                 manageAccountsViewModel);
+
 
 
             MainWindow = new MainWindow

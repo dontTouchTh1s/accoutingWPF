@@ -245,5 +245,13 @@ namespace SSWheatAdmin.DataBase.Services
             accountDTO.AvailableCredit += (ulong)loanTransactinosModel.Amount;
             await context.LoanTransactinos.AddAsync(loanTransactinosDTO);
         }
+
+        public async Task<IEnumerable<InstalmentLoanModel>> GetLoanInstalments(ushort loanId)
+        {
+            await using var context = _investmentFundDbContextFactory.CreateDbContext();
+            var instalmentList = await context.LoanInstallments.Where(instalemnt => instalemnt.LoanId == loanId)
+                .ToListAsync();
+            return instalmentList.Select(dto => _dtoConverterService.LoanInstalemntDTOToModel(dto));
+        }
     }
 }

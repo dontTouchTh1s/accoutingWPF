@@ -201,6 +201,7 @@
             BorderThickness="2"
             CornerRadius="0,0,12,12">
             <ListBox
+                Style="{StaticResource MaterialDesignNavigationAccentListBox}"
                 HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding TranactionsList}"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden" />

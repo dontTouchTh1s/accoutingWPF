@@ -213,5 +213,10 @@ namespace SSWheatAdmin.Models
         {
             return await _dataBasePeopleServices.DataBaseAccountsServices.GetAccountUnpaidLoans(fundAccountId);
         }
+
+        public async Task<IEnumerable<InstalmentLoanModel>> GetLoanInstalments(ushort loanId)
+        {
+            return await _dataBaseInvestmentFundServices.GetLoanInstalments(loanId);
+        }
     }
 }

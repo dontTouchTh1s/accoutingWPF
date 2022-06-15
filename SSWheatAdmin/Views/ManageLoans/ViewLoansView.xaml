@@ -6,6 +6,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:manageLoans="clr-namespace:SSWheatAdmin.ViewModels.ManageLoans"
              xmlns:manageLoansView="clr-namespace:SSWheatAdmin.Views.ManageLoans"
+             xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
              d:DataContext="{d:DesignInstance manageLoans:ViewLoansViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800"
@@ -175,9 +176,18 @@
             BorderThickness="2"
             CornerRadius="0,0,12,12">
             <ListBox
+                Style="{StaticResource MaterialDesignNavigationAccentListBox}"
                 HorizontalContentAlignment="Stretch"
                 ItemsSource="{Binding LoansList}"
-                ScrollViewer.VerticalScrollBarVisibility="Hidden" />
+                ScrollViewer.VerticalScrollBarVisibility="Hidden" >
+
+            <b:Interaction.Triggers>
+                <b:EventTrigger EventName="SelectionChanged">
+                    <b:InvokeCommandAction Command="{Binding Path= LoanSelectedCommand}"
+                                           PassEventArgsToCommand="True" />
+                </b:EventTrigger>
+            </b:Interaction.Triggers>
+            </ListBox>
         </Border>
     </Grid>
 </UserControl>

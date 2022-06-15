@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Globalization;
+using System.Windows.Input;
+using SSWheatAdmin.Commands.ManageLoansCommands;
 
 namespace SSWheatAdmin.ViewModels.ManageLoans
 {
@@ -19,7 +21,6 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
             PersonalAccountNumber = personalAccountNumber ?? "وارد نشده";
             MinimumInstalmentAmount = (amount / instalmentCount).ToString("N0", CultureInfo.CurrentCulture);
         }
-
         public ushort Id { get; }
         public string OwnerFullName { get; }
         public string Amount { get; }

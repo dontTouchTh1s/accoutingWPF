@@ -129,5 +129,13 @@ namespace SSWheatAdmin.DataBase.Services
                 Date = instalmentLoanModel.Date.ToString(CultureInfo.CurrentCulture)
             };
         }
+
+        public InstalmentLoanModel LoanInstalemntDTOToModel(LoanInstallmentsDTO dto)
+        {
+            return new InstalmentLoanModel(dto.Id,
+                dto.LoanId,
+                dto.Amount,
+                DateTime.Parse(dto.Date, _faCulture));
+        }
     }
 }

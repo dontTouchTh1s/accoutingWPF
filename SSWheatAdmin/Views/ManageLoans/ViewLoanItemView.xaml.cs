@@ -1,4 +1,8 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
+using System.Windows.Controls;
+using SSWheatAdmin.ViewModels.ManageLoans;
+using SSWheatAdmin.ViewModels.MoreInfoWindowViewModel;
+using SSWheatAdmin.Views.MoreInfoWindow;
 
 namespace SSWheatAdmin.Views.ManageLoans
 {
@@ -11,5 +15,6 @@ namespace SSWheatAdmin.Views.ManageLoans
         {
             InitializeComponent();
         }
+
     }
 }

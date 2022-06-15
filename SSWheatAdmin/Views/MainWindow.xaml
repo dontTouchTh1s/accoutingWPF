@@ -15,6 +15,8 @@
         xmlns:manageLoansView="clr-namespace:SSWheatAdmin.Views.ManageLoans"
         xmlns:manageTranactions="clr-namespace:SSWheatAdmin.ViewModels.ManageTranactions"
         xmlns:manageTransactions="clr-namespace:SSWheatAdmin.Views.ManageTransactions"
+        xmlns:moreInfoWindowsViewModel="clr-namespace:SSWheatAdmin.ViewModels.MoreInfoWindowViewModel"
+        xmlns:moreInfoWindowsView="clr-namespace:SSWheatAdmin.Views.MoreInfoWindow"
         TextElement.Foreground="{DynamicResource MaterialDesignBody}"
         TextElement.FontWeight="Regular"
         TextElement.FontSize="14"
@@ -43,6 +45,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type manageAccounts:ManageAccountsViewModel}">
             <manageAccountsView:ManageAccountsView />
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type moreInfoWindowsViewModel:LoanMoreInfoViewModel}">
+            <moreInfoWindowsView:LoanMoreInfo />
         </DataTemplate>
 
     </Window.Resources>
@@ -109,7 +114,7 @@
                             Foreground="{StaticResource LightOnPrimary}"
                             Kind="HamburgerMenu"
                             Margin="16,20,4,20"/>
-                    <TextBlock 
+                    <TextBlock
                             VerticalAlignment="Center"
                             FontSize="24"
                             Foreground="{StaticResource LightOnPrimary}"
