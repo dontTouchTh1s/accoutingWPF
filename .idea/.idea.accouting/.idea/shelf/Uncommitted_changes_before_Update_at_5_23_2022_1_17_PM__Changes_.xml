@@ -1,0 +1,69 @@
+<changelist name="Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]" date="1653295671315" recycled="false" toDelete="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/shelved.patch" />
+  <option name="DESCRIPTION" value="Uncommitted changes before Update at 5/23/2022 1:17 PM [Changes]" />
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.csproj.CoreCompileInputs.cache" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.csproj.CoreCompileInputs.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting.csproj.CoreCompileInputs.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/bin/Debug/net5.0-windows/accounting.pdb" />
+    <option name="AFTER_PATH" value="accounting/bin/Debug/net5.0-windows/accounting.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/bin/Debug/net5.0-windows/accounting.dll" />
+    <option name="AFTER_PATH" value="accounting/bin/Debug/net5.0-windows/accounting.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/accounting_MarkupCompile.cache" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/accounting_MarkupCompile.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting_MarkupCompile.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.csproj.AssemblyReference.cache" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.csproj.AssemblyReference.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting.csproj.AssemblyReference.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.g.resources" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.g.resources" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting.g.resources" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/project.nuget.cache" />
+    <option name="AFTER_PATH" value="accounting/obj/project.nuget.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/project.nuget.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.assets.cache" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.assets.cache" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting.assets.cache" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.pdb" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.pdb" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting1.pdb" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.dll" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/accounting.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting1.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/obj/Debug/net5.0-windows/ref/accounting.dll" />
+    <option name="AFTER_PATH" value="accounting/obj/Debug/net5.0-windows/ref/accounting.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting2.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="accounting/bin/Debug/net5.0-windows/ref/accounting.dll" />
+    <option name="AFTER_PATH" value="accounting/bin/Debug/net5.0-windows/ref/accounting.dll" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/accounting3.dll" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value=".vs/accouting/v16/.suo" />
+    <option name="AFTER_PATH" value=".vs/accouting/v16/.suo" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/.idea.accouting/.idea/shelf/Uncommitted_changes_before_Update_at_5_23_2022_1_17_PM_[Changes]/.suo" />
+  </binary>
+</changelist>
