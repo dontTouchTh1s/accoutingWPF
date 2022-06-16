@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:moreInfoViewModel="clr-namespace:SSWheatAdmin.ViewModels.MoreInfoWindowViewModel"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="اطلاعات وام"
         d:DesignHeight="640" d:DesignWidth="450"
@@ -12,156 +13,200 @@
         AllowsTransparency="True"
         Background="Transparent">
     <Border
-        Background="{StaticResource LightBackground}"
+        BorderThickness="2"
+        BorderBrush="{StaticResource LightSecondary}"
+        Background="{StaticResource LightSecondary}"
         CornerRadius="20">
-        <Grid
-            Margin="8"
-            FlowDirection="RightToLeft">
+        <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="2.5*" />
-                <RowDefinition Height="7.5*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Grid.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="FontSize" Value="11" />
-                    <Setter Property="Margin" Value="4,0,0,0" />
-                    <Setter Property="Foreground" Value="{StaticResource LightOutline}" />
-                </Style>
-                <Style TargetType="TextBlock" x:Key="Content">
-                    <Setter Property="FontSize" Value="14" />
-                    <Setter Property="Foreground" Value="{StaticResource LightPrimary}" />
-                </Style>
-                <Style TargetType="StackPanel">
-                    <Setter Property="Margin" Value="4,8" />
-                </Style>
-            </Grid.Resources>
-            <Grid
+            <Border
                 Grid.Row="0"
-                Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition />
-                    <RowDefinition />
-                    <RowDefinition />
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
+                FlowDirection="RightToLeft"
+                CornerRadius="18,18,0,0"
+                Background="{StaticResource LightSecondary}">
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="SelectionChanged">
+                        <b:InvokeCommandAction Command="{Binding Path= MoveWindowCommand}"
+                                               PassEventArgsToCommand="True" />
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
                 <StackPanel
-                    Grid.Row="0">
+                    Margin="8"
+                    Orientation="Horizontal">
                     <TextBlock
-                        Text="مشخصات وام" />
+                        Foreground="{StaticResource LightOnSecondaryContainer}"
+                        Text=" مشخصات وام" />
                     <TextBlock
-                        Style="{StaticResource Content}"
+                        Foreground="{StaticResource LightOnSecondaryContainer}"
                         Text="{Binding LoanId}" />
                 </StackPanel>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="0">
-                    <TextBlock
-                        Text="نام صاحب حساب" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding OwnerFullName}" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="1">
-                    <TextBlock
-                        Text="شماره حساب" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding OwnerAccountId}" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="2">
-                    <TextBlock
-                        Text="تاریخ تخصیص" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding LendDate}" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="2"
-                    Grid.Column="1">
-                    <TextBlock
-                        Text="میزان وام" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding LoanAmount}" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="2"
-                    Grid.Column="2">
-                    <TextBlock
-                        Text="تعداد اقساط" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding InstalemntCount}" />
-                </StackPanel>
-            </Grid>
-            <Grid
+            </Border>
+            <Border
+                Margin="0,0,0,12"
                 Grid.Row="1"
-                Grid.Column="0">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="1*" />
-                    <RowDefinition Height="5*" />
+                CornerRadius="12"
+                Background="{StaticResource LightBackground}">
+                <Grid
+                    Margin="8"
+                    FlowDirection="RightToLeft">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="2.5*" />
+                        <RowDefinition Height="7.5*" />
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="FontSize" Value="11" />
+                            <Setter Property="Foreground" Value="{StaticResource LightSecondary}" />
+                        </Style>
+                        <Style TargetType="TextBlock" x:Key="Content">
+                            <Setter Property="Margin" Value="4,0,0,0" />
+                            <Setter Property="FontSize" Value="16" />
+                            <Setter Property="Foreground" Value="{StaticResource LightOnBackground}" />
+                        </Style>
+                        <Style TargetType="StackPanel">
+                            <Setter Property="Margin" Value="4,8" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid
+                        Grid.Row="0"
+                        Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="0">
+                            <TextBlock
+                                Text="نام صاحب حساب" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding OwnerFullName, Mode=OneTime}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="1">
+                            <TextBlock
+                                Text="شماره حساب" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding OwnerAccountId, Mode=OneTime}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="2">
+                            <TextBlock
+                                Text="مبلغ هر قسمت" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding InstalmentAmount, Mode=OneTime}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="0">
+                            <TextBlock
+                                Text="تاریخ تخصیص" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding LendDate, Mode=OneTime}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1">
+                            <TextBlock
+                                Text="میزان وام" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding LoanAmount, Mode=OneTime}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="2">
+                            <TextBlock
+                                Text="تعداد اقساط" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding InstalmentCount, Mode=OneTime}" />
+                        </StackPanel>
+                    </Grid>
 
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                    <ColumnDefinition />
-                </Grid.ColumnDefinitions>
-                <StackPanel
-                    Grid.Row="0"
-                    Grid.Column="0">
-                    <TextBlock
-                        Text="اقساط وام" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="0">
-                    <TextBlock
-                        Text="تاریخ قسط بعدی" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding NextInstalmentDate}" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="1">
-                    <TextBlock
-                        Text="مبلغ پرداخت شده" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding PayedAmount}" />
-                </StackPanel>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="2">
-                    <TextBlock
-                        Text="تعداد اقساط پرداخت شده" />
-                    <TextBlock
-                        Style="{StaticResource Content}"
-                        Text="{Binding PayedInstalemtCount}" />
-                </StackPanel>
-                <DataGrid
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    ItemsSource="{Binding InstalmentList}"
-                    AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="شماره قسط" Binding="{Binding Id}" />
-                        <DataGridTextColumn Header="شماره وام" Binding="{Binding LoanId}" />
-                        <DataGridTextColumn Header="مبلغ" Binding="{Binding Amount}" />
-                        <DataGridTextColumn Header="تاریخ" Binding="{Binding Date}" />
-                    </DataGrid.Columns>
-                </DataGrid>
-            </Grid>
+                    <Grid
+                        Grid.Row="1"
+                        Grid.Column="0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="auto" />
+                            <RowDefinition Height="*" />
+
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel
+                            Grid.Row="0"
+                            Grid.Column="0">
+                            <TextBlock
+                                Text="اقساط وام" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="0">
+                            <TextBlock
+                                Text="تاریخ قسط بعدی" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding NextInstalmentDate}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="1">
+                            <TextBlock
+                                Text="مبلغ پرداخت شده" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding PayedAmount}" />
+                        </StackPanel>
+                        <StackPanel
+                            Grid.Row="1"
+                            Grid.Column="2">
+                            <TextBlock
+                                Text="تعداد اقساط پرداخت شده" />
+                            <TextBlock
+                                Style="{StaticResource Content}"
+                                Text="{Binding PayedInstalemtCount}" />
+                        </StackPanel>
+                        <Border
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="3"
+                            CornerRadius="25">
+                            <DataGrid
+                                Background="Transparent"
+                                Foreground="{StaticResource LightOnBackground}"
+                                ItemsSource="{Binding InstalmentList}"
+                                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                AutoGenerateColumns="False">
+                                <DataGrid.Columns>
+                                    <DataGridTextColumn Header="شماره قسط" Binding="{Binding Id, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="شماره وام" Binding="{Binding LoanId, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="مبلغ" Binding="{Binding Amount, Mode=OneWay}" />
+                                    <DataGridTextColumn Header="تاریخ" Binding="{Binding Date, Mode=OneWay}" />
+                                </DataGrid.Columns>
+                            </DataGrid>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </Border>
         </Grid>
     </Border>
 </Window>
