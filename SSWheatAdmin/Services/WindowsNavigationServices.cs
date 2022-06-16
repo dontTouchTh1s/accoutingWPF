@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
-using SSWheatAdmin.ViewModels;
 using SSWheatAdmin.ViewModels.MoreInfoWindowViewModel;
 using SSWheatAdmin.Views.MoreInfoWindow;
 
@@ -9,11 +8,7 @@ namespace SSWheatAdmin.Services
 {
     public class WindowsNavigationServices
     {
-        private readonly Dictionary<ushort, Window> _openWindows = new Dictionary<ushort, Window>();
-        public WindowsNavigationServices()
-        {
-
-        }
+        private readonly Dictionary<ushort, Window> _openWindows = new();
 
         public void OpenMoreInfoWindow(BaseWindowsViewModel viewModel)
         {
@@ -23,12 +18,21 @@ namespace SSWheatAdmin.Services
                 oldViewModel.Value.Focus();
                 return;
             }
+
             var win = new LoanMoreInfo
             {
                 DataContext = viewModel
             };
             win.Show();
             _openWindows.Add(viewModel.WindowId, win);
+        }
+
+        public void CloseWindows(ushort windowId)
+        {
+            if (!_openWindows.ContainsKey(windowId)) return;
+            var oldViewModel = _openWindows.First(x => x.Key == windowId);
+            oldViewModel.Value.Close();
+            _openWindows.Remove(oldViewModel.Key);
         }
     }
 }
