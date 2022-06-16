@@ -3,7 +3,7 @@
 namespace SSWheatAdmin.Views.MoreInfoWindow
 {
     /// <summary>
-    /// Interaction logic for LoanMoreInfo.xaml
+    ///     Interaction logic for LoanMoreInfo.xaml
     /// </summary>
     public partial class LoanMoreInfo : Window
     {
