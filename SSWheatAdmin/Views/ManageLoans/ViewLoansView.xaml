@@ -181,12 +181,12 @@
                 ItemsSource="{Binding LoansList}"
                 ScrollViewer.VerticalScrollBarVisibility="Hidden" >
 
-            <b:Interaction.Triggers>
-                <b:EventTrigger EventName="SelectionChanged">
-                    <b:InvokeCommandAction Command="{Binding Path= LoanSelectedCommand}"
+                <b:Interaction.Triggers>
+                    <b:EventTrigger EventName="SelectionChanged">
+                        <b:InvokeCommandAction Command="{Binding Path= LoanSelectedCommand}"
                                            PassEventArgsToCommand="True" />
-                </b:EventTrigger>
-            </b:Interaction.Triggers>
+                    </b:EventTrigger>
+                </b:Interaction.Triggers>
             </ListBox>
         </Border>
     </Grid>
