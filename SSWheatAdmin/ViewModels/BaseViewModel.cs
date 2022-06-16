@@ -1,11 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 
 namespace SSWheatAdmin.ViewModels
 {
     public abstract class BaseViewModel : INotifyPropertyChanged
     {
+        public ICommand MoveWindowCommand { get; }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
