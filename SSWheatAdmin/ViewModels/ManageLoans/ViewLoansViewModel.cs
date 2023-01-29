@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
 using SSWheatAdmin.Commands.ManageLoansCommands;
@@ -12,7 +11,7 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
     {
         private readonly InvestmentFundModel _investmentFundModel;
         private ObservableCollection<ViewLoanItemViewModel> _loansList;
-        private string _serachText;
+        private string _searchText;
         private List<ViewLoanItemViewModel> _viewLoanItemViewModelsList = new();
 
         public ViewLoansViewModel(InvestmentFundModel investmentFundModel)
@@ -30,10 +29,10 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
 
         public string SearchText
         {
-            get => _serachText;
+            get => _searchText;
             set
             {
-                SetProperty(ref _serachText, value);
+                SetProperty(ref _searchText, value);
                 FilterLoans(value);
             }
         }

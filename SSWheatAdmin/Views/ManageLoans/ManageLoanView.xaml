@@ -42,7 +42,7 @@
                     <views:ViewLoansView
                         Margin="12"
                         HorizontalAlignment="Stretch"
-                        DataContext="{Binding ViewLoanViewModle}" />
+                        DataContext="{Binding ViewLoanViewModel}" />
                 </TabItem>
             </TabControl>
         </Grid>

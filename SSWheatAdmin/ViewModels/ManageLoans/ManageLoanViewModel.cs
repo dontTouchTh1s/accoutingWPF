@@ -8,19 +8,19 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
         {
             LendLoanViewModel = new LendLoanViewModel(investmentFundModel);
             InstalmentLoanViewModel = new InstalmentLoanViewModel(investmentFundModel);
-            ViewLoanViewModle = new ViewLoansViewModel(investmentFundModel);
+            ViewLoanViewModel = new ViewLoansViewModel(investmentFundModel);
         }
 
         public LendLoanViewModel LendLoanViewModel { get; }
         public InstalmentLoanViewModel InstalmentLoanViewModel { get; }
 
-        public ViewLoansViewModel ViewLoanViewModle { get; }
+        public ViewLoansViewModel ViewLoanViewModel { get; }
 
         public sealed override void UpdateContent()
         {
             LendLoanViewModel.UpdateContent();
             InstalmentLoanViewModel.UpdateContent();
-            ViewLoanViewModle.UpdateContent();
+            ViewLoanViewModel.UpdateContent();
         }
     }
 }

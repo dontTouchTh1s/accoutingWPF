@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:moreInfoViewModel="clr-namespace:SSWheatAdmin.ViewModels.MoreInfoWindowViewModel"
         xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="اطلاعات وام"
         d:DesignHeight="640" d:DesignWidth="450"
@@ -12,6 +13,10 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Background="Transparent">
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler"/>
+    </Window.CommandBindings>
     <Border
         BorderThickness="2"
         BorderBrush="{StaticResource LightSecondary}"
@@ -33,16 +38,30 @@
                                                PassEventArgsToCommand="True" />
                     </b:EventTrigger>
                 </b:Interaction.Triggers>
-                <StackPanel
+                <DockPanel
+                    MouseLeftButtonDown="UIElement_OnMouseLeftButtonDown"
                     Margin="8"
-                    Orientation="Horizontal">
+                    Background="Transparent">
                     <TextBlock
+                        VerticalAlignment="Center"
                         Foreground="{StaticResource LightOnSecondaryContainer}"
                         Text=" مشخصات وام" />
                     <TextBlock
+                        VerticalAlignment="Center"
                         Foreground="{StaticResource LightOnSecondaryContainer}"
                         Text="{Binding LoanId}" />
-                </StackPanel>
+                    <Button
+                        HorizontalAlignment="Right"
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Padding="0"
+                        Command="ApplicationCommands.Close">
+                        <materialDesign:PackIcon
+                            Kind="CloseCircleOutline"
+                            Width="30"
+                            Height="30"
+                            Foreground="Red" />
+                    </Button>
+                </DockPanel>
             </Border>
             <Border
                 Margin="0,0,0,12"

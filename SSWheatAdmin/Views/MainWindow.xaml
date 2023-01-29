@@ -51,6 +51,10 @@
         </DataTemplate>
 
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="ApplicationCommands.Close"
+                        Executed="CloseCommandHandler"/>
+    </Window.CommandBindings>
     <materialDesign:DialogHost
         Identifier="rootDialog"
         DialogTheme="Inherit"
@@ -84,23 +88,35 @@
                     Margin="16,0,0,0"
                     FontSize="20" />
                 <StackPanel
+                    MouseLeftButtonDown="UIElement_OnMouseDown"
+                    Background="Transparent"
                     Orientation="Horizontal"
                     Grid.Row="0"
                     Grid.Column="1"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Right"
+                    VerticalAlignment="Stretch"
+                    HorizontalAlignment="Stretch" 
                     FlowDirection="LeftToRight"
                     Margin="0,0,16,0">
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Padding="0"
+                        Command="ApplicationCommands.Close">
                     <materialDesign:PackIcon
                         Kind="CloseCircleOutline"
                         Width="30"
                         Height="30"
                         Foreground="Red" />
-                    <materialDesign:PackIcon
+                    </Button>
+                    <Button
+                        Style="{StaticResource MaterialDesignFlatButton}"
+                        Padding="0"
+                        Click="Button_Click">
+                        <materialDesign:PackIcon
                         Kind="Minus"
                         Width="30"
                         Height="30"
                         Foreground="{StaticResource LightOnPrimary}" />
+                    </Button>
                 </StackPanel>
                 <StackPanel
                     Background="{StaticResource LightPrimary}"
