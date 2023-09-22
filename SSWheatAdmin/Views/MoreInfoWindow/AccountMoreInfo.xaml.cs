@@ -23,5 +23,11 @@ namespace SSWheatAdmin.Views.MoreInfoWindow
         {
             InitializeComponent();
         }
+
+
+        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            this.Close();
+        }
     }
 }
