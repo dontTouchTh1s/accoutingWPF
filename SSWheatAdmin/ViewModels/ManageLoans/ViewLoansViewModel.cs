@@ -17,10 +17,10 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
         public ViewLoansViewModel(InvestmentFundModel investmentFundModel)
         {
             _investmentFundModel = investmentFundModel;
-            LoanSelectedCommand = new LoanSelectedCommand(investmentFundModel);
+            // LoanSelectedCommand = new LoanSelectedCommand(investmentFundModel);
             UpdateContent();
         }
-        public ICommand LoanSelectedCommand { get; }
+        // public ICommand LoanSelectedCommand { get; }
         public ObservableCollection<ViewLoanItemViewModel> LoansList
         {
             get => _loansList;
@@ -62,7 +62,8 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
                     account.Key.Id,
                     loan.LendDate,
                     remainAmount,
-                    loan.PersonalAccountNumber
+                    loan.PersonalAccountNumber,
+                    _investmentFundModel
                 );
                 LoansList.Add(loanItem);
             }

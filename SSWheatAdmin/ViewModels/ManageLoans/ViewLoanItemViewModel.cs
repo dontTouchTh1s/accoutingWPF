@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Windows.Input;
 using SSWheatAdmin.Commands.ManageLoansCommands;
+using SSWheatAdmin.Models;
 
 namespace SSWheatAdmin.ViewModels.ManageLoans
 {
@@ -9,7 +10,8 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
     {
         public ViewLoanItemViewModel(ushort id, ulong amount, byte instalmentCount,
             string ownerFullName, ushort accountId,
-            DateTime lendDate, ulong remainedAmount, string? personalAccountNumber)
+            DateTime lendDate, ulong remainedAmount, string? personalAccountNumber,
+            InvestmentFundModel investmentFundModel)
         {
             Id = id;
             Amount = amount.ToString("N0", CultureInfo.CurrentCulture);
@@ -20,6 +22,7 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
             RemainedAmount = remainedAmount.ToString("N0", CultureInfo.CurrentCulture);
             PersonalAccountNumber = personalAccountNumber ?? "وارد نشده";
             MinimumInstalmentAmount = (amount / instalmentCount).ToString("N0", CultureInfo.CurrentCulture);
+            LoanSelectedCommand = new LoanSelectedCommand(this, investmentFundModel);
         }
         public ushort Id { get; }
         public string OwnerFullName { get; }
@@ -30,5 +33,6 @@ namespace SSWheatAdmin.ViewModels.ManageLoans
         public string RemainedAmount { get; }
         public string PersonalAccountNumber { get; }
         public string MinimumInstalmentAmount { get; }
+        public ICommand LoanSelectedCommand { get; }
     }
 }
