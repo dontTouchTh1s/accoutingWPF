@@ -7,7 +7,12 @@
              mc:Ignorable="d"
              d:DesignHeight="90" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance manageLoans:ViewLoanItemViewModel}">
-
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="MouseDown">
+            <b:InvokeCommandAction Command="{Binding Path= LoanSelectedCommand}"
+                                   PassEventArgsToCommand="True" />
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
     <Grid
         FlowDirection="RightToLeft">
         <Grid.Resources>
